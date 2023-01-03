@@ -3,6 +3,7 @@
 *.tgz
 common
 .rush
+.secrets
 
 # Yarn
 .yarn/cache
