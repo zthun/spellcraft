@@ -12,6 +12,7 @@ commands:
         type: string
     steps:
       - checkout
+      - run: rm -fr .secrets
       - run: mkdir .secrets
       - run: echo $GIT_CREDENTIALS >> .secrets/.git-credentials
       - run: echo $NPM_CREDENTIALS >> .secrets/.npmrc
