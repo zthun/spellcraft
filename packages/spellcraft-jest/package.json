@@ -10,6 +10,9 @@
     "url": "https://github.com/zthun/spellcraft",
     "directory": "packages/spellcraft-jest"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest --coverage",
     "build": "microbundle --format esm,cjs"
