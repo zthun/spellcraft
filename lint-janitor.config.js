@@ -3,7 +3,7 @@ const generated = [
   'packages/**/dist/**',
   'node_modules/**',
   'packages/**/node_modules/**',
-  'package-lock.json',
+  'packages/**/coverage/**',
   '.yarnrc.yml'
 ];
 const partialGenerated = ['cspell.json', 'lerna.json'];
@@ -11,7 +11,7 @@ const partialGenerated = ['cspell.json', 'lerna.json'];
 const esFiles = ['*.js', 'packages/**/src/**/*.ts'];
 const markdownFiles = ['*.md', 'packages/**/*.md'];
 const jsonFiles = ['*.json', 'packages/**/*.json'];
-const yamlFiles = ['*.yaml', '*.yml', 'packages/**/*.yaml', 'packages/**/*.yml'];
+const yamlFiles = ['.circleci/config.yml'];
 const prettyFiles = [].concat(esFiles).concat(markdownFiles).concat(jsonFiles).concat(yamlFiles);
 const spellingFiles = [].concat(esFiles).concat(markdownFiles).concat(jsonFiles).concat(yamlFiles);
 

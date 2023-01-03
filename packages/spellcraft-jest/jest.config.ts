@@ -1,7 +1,7 @@
 export default {
-  coverageDirectory: '../reports/coverage',
+  coverageDirectory: '../coverage',
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  reporters: ['default', ['jest-junit', { outputDirectory: 'reports/results' }]],
+  reporters: ['default'],
   rootDir: 'src',
   testEnvironment: 'node',
   testRegex: '.spec.(ts|tsx)$',

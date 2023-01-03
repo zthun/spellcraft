@@ -9,17 +9,18 @@
   },
   "private": true,
   "scripts": {
-    "clean": "rimraf 'packages/**/dist' 'packages/**/docs' 'reports' 'coverage' 'packages/**/*.tgz'",
+    "clean": "rimraf 'packages/**/dist' 'packages/**/coverage' 'packages/**/*.tgz'",
     "test": "lerna run test",
     "lint": "lint-janitor",
     "build": "lerna run build",
-    "make": "yarn clean && yarn lint && yarn test && yarn build && yarn doc",
+    "make": "yarn clean && yarn lint && yarn test && yarn build",
     "postinstall": "husky install"
   },
   "author": "Anthony Bonta",
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
+    "@types/jest": "^29.2.5",
     "@zthun/lint-janitor": "^13.0.2",
     "@zthun/lint-janitor-config": "^13.0.2",
     "husky": "^8.0.2",

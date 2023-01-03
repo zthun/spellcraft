@@ -9,6 +9,7 @@
     "commitlint",
     "conventionalcommits",
     "htmlhint",
+    "microbundle",
     "nonbrowser",
     "noreply",
     "npmjs",
