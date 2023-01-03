@@ -5,6 +5,7 @@
   "license": "MIT",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.esm.js",
+  "types": "dist/types/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
