@@ -1,3 +1,12 @@
+# Output
+*.gz
+*.tgz
+common
+.rush
+
+# Yarn
+.yarn/cache
+
 # Logs
 logs
 *.log

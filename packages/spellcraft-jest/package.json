@@ -1,0 +1,27 @@
+{
+  "name": "@zthun/spellcraft-jest",
+  "version": "0.0.0",
+  "description": "The spellcraft library for jest.",
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zthun/spellcraft",
+    "directory": "packages/spellcraft-jest"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "echo build"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "jest-junit": "^15.0.0",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1"
+  },
+  "peerDependencies": {
+    "jest": "^29.3.1"
+  },
+  "author": "Anthony Bonta"
+}

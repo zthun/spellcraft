@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "packages",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules/**", "**/common/**"]
+}
