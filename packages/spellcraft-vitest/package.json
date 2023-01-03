@@ -15,8 +15,12 @@
   },
   "scripts": {
     "test": "vitest --run --coverage",
-    "build": "microbundle --format cjs,esm"
+    "build": "microbundle --format cjs,esm",
+    "bundle": "yarn pack"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@vitest/coverage-c8": "^0.26.3",
     "microbundle": "^0.15.1",
@@ -26,5 +30,6 @@
   "peerDependencies": {
     "vitest": "^0.25.3"
   },
-  "author": "Anthony Bonta"
+  "author": "Anthony Bonta",
+  "gitHead": "8fad245cc04de65126f286c0a6f53c5c5a1bc3db"
 }

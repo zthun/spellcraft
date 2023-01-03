@@ -15,8 +15,12 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "microbundle --format esm,cjs"
+    "build": "microbundle --format esm,cjs",
+    "bundle": "yarn pack"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/node": "^18.11.18",
     "jest": "^29.3.1",
@@ -29,5 +33,6 @@
   "peerDependencies": {
     "jest": "^29.3.1"
   },
-  "author": "Anthony Bonta"
+  "author": "Anthony Bonta",
+  "gitHead": "8fad245cc04de65126f286c0a6f53c5c5a1bc3db"
 }

@@ -13,6 +13,7 @@
     "test": "lerna run test",
     "lint": "lint-janitor",
     "build": "lerna run build",
+    "bundle": "lerna run bundle",
     "make": "yarn clean && yarn lint && yarn test && yarn build",
     "postinstall": "husky install"
   },
