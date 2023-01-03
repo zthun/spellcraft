@@ -15,10 +15,10 @@
     "build": "microbundle --format cjs,esm"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "^0.25.3",
+    "@vitest/coverage-c8": "^0.26.3",
     "microbundle": "^0.15.1",
-    "vite": "^3.2.4",
-    "vitest": "^0.25.3"
+    "vite": "^4.0.4",
+    "vitest": "^0.26.3"
   },
   "peerDependencies": {
     "vitest": "^0.25.3"
