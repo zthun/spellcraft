@@ -1,6 +1,6 @@
 {
   "name": "@zthun/spellcraft-vitest",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The spellcraft library for vitest.",
   "license": "MIT",
   "main": "dist/lib/index.js",
