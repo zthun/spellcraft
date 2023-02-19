@@ -3,7 +3,7 @@ import { vitest, Mocked } from 'vitest';
 /**
  * Creates a mocked object with a given set of methods.
  *
- * @param methods
+ * @param methods -
  *        The methods of type T to mock.
  *
  * @returns
