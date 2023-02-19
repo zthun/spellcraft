@@ -29,7 +29,7 @@
     "vitest": "^0.26.3"
   },
   "peerDependencies": {
-    "vitest": "^0.25.3"
+    "vitest": ">=0.25.3 <1.0.0"
   },
   "author": "Anthony Bonta",
   "gitHead": "2aabf402126b02359993fc79414562a80038c98b"

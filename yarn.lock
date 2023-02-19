@@ -4447,7 +4447,7 @@ __metadata:
     vite: ^4.0.4
     vitest: ^0.26.3
   peerDependencies:
-    vitest: ^0.25.3
+    vitest: ">0.25.3 <1.0.0"
   languageName: unknown
   linkType: soft
 
