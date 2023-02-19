@@ -1,4 +1,4 @@
-import { vitest, Mocked } from 'vitest';
+import { vi, Mocked } from 'vitest';
 
 /**
  * Creates a mocked object with a given set of methods.
@@ -14,7 +14,7 @@ export function createMocked<T>(methods?: Array<keyof T>): Mocked<T> {
 
   methods = methods || [];
   methods.forEach((method) => {
-    mockup[method] = vitest.fn() as unknown as Mocked<T>[keyof T];
+    mockup[method] = vi.fn() as unknown as Mocked<T>[keyof T];
   });
 
   return mockup;
