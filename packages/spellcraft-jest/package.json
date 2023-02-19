@@ -1,6 +1,6 @@
 {
   "name": "@zthun/spellcraft-jest",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "The spellcraft library for jest.",
   "license": "MIT",
   "main": "dist/lib/index.js",
