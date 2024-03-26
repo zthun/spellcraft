@@ -1,10 +1,13 @@
-FROM node:18.12.1 as setup
+FROM node:lts as setup
 WORKDIR /usr/dev
 COPY . .
 RUN yarn install
 
 FROM setup as analyze
 RUN yarn lint
+
+FROM setup as check
+RUN yarn check
 
 FROM setup as test
 RUN yarn test
@@ -25,3 +28,4 @@ RUN --mount=type=secret,id=GIT_CREDENTIALS,dst=/root/.git-credentials npx lerna 
     git push && \
     git push --tags
 RUN --mount=type=secret,id=NPM_CREDENTIALS,dst=/root/.npmrc npx lerna publish from-package --yes
+
