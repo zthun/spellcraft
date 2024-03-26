@@ -1,11 +1,11 @@
 // @vitest-environment jsdom
 import { createGuid, css, html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { ZAttribute } from '../attribute/attribute.mjs';
 import { ZElementListenBuilder } from '../element/element-listen.mjs';
 import { nodePaint } from '../node/node-paint.mjs';
-import { ZAttribute } from './component-attribute.mjs';
+import { ZProperty } from '../property/property.mjs';
 import { ZComponentBackground } from './component-background.mjs';
-import { ZProperty } from './component-property.mjs';
 import { IZComponentRender, IZComponentStyles, IZComponentTemplate } from './component-render.mjs';
 import { ZComponentShadow } from './component-shadow.mjs';
 

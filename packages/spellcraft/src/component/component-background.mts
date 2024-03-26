@@ -1,9 +1,9 @@
 import { css } from '@zthun/helpful-fn';
 import { kebabCase } from 'lodash-es';
+import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
 import { nodePaint } from '../node/node-paint.mjs';
-import { registerCustomElement } from '../register-custom-element/register-custom-element.mjs';
-import { IZComponentAttributeChanged } from './component-lifecycle.mjs';
-import { IZComponentPropertyChanged } from './component-property.mjs';
+import { IZComponentPropertyChanged } from '../property/property.mjs';
+import { registerCustomElement } from '../register/register-custom-element.mjs';
 
 /**
  * Options for a {@link ZComponentBackground} element.
@@ -76,7 +76,7 @@ export function ZComponentBackground(options: IZComponentBackgroundOptions) {
   return function <C extends typeof HTMLElement>(Target: C) {
     const _Target = Target as any;
 
-    const K: any = class extends _Target implements IZComponentAttributeChanged, IZComponentPropertyChanged {
+    const K: any = class extends _Target implements IZLifecycleAttributeChanged, IZComponentPropertyChanged {
       _dispatchEvent = () => {
         let $event: Event = new Event('change');
 

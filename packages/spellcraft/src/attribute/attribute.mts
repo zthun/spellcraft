@@ -1,6 +1,6 @@
 import { ZIntrinsic, ZTrilean, firstDefined, trilean } from '@zthun/helpful-fn';
 import { kebabCase } from 'lodash-es';
-import { mutateAttribute } from '../attribute/mutate-attribute.mjs';
+import { mutateAttribute } from './mutate-attribute.mjs';
 
 /**
  * Options for an attribute property.

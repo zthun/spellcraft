@@ -3,8 +3,8 @@
 import { ZTrilean, trilean } from '@zthun/helpful-fn';
 import { camelCase, kebabCase } from 'lodash-es';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { registerCustomElement } from '../register-custom-element/register-custom-element.mjs';
-import { ZAttribute } from './component-attribute.mjs';
+import { registerCustomElement } from '../register/register-custom-element.mjs';
+import { ZAttribute } from './attribute.mjs';
 
 const Batman = 'batman';
 const TowardsInfinity = BigInt('9394839483984938493849839483984938493849');

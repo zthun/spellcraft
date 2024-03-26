@@ -1,8 +1,6 @@
 {
-  "useWorkspaces": true,
   "stream": true,
   "version": "1.0.6",
-  "nx": true,
   "npmClient": "yarn",
   "command": {
     "publish": {
@@ -11,9 +9,7 @@
   },
   "changelogPreset": {
     "name": "conventionalcommits",
-    "issuePrefixes": [
-      "#"
-    ],
+    "issuePrefixes": ["#"],
     "types": [
       {
         "type": "feat",
