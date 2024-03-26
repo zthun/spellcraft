@@ -1,4 +1,3 @@
-// @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
 import { registerCustomElement } from './register-custom-element.mjs';
 

@@ -1,6 +1,6 @@
 import { ZIntrinsic, ZTrilean, firstDefined, trilean } from '@zthun/helpful-fn';
 import { kebabCase } from 'lodash-es';
-import { mutateAttribute } from './attribute-mutate.mjs';
+import { ZAttributes } from './attributes.mjs';
 
 /**
  * Options for an attribute property.
@@ -112,7 +112,7 @@ export function ZAttribute<V>(options?: IZAttributeOptions): PropertyDecorator {
 
     function set(this: C, newValue: V | null | undefined) {
       const asText = intrToAttr[_type](newValue);
-      mutateAttribute(this, attr, asText);
+      ZAttributes.mutate(this, attr, asText);
     }
 
     Object.defineProperty(target, propertyKey, {

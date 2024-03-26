@@ -1,5 +1,3 @@
-// @vitest-environment jsdom
-
 import { ZTrilean, trilean } from '@zthun/helpful-fn';
 import { camelCase, kebabCase } from 'lodash-es';
 import { beforeAll, describe, expect, it } from 'vitest';

@@ -1,7 +1,7 @@
 import { css } from '@zthun/helpful-fn';
 import { kebabCase } from 'lodash-es';
 import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
-import { nodePaint } from '../node/node-paint.mjs';
+import { ZNode } from '../node/node.mjs';
 import { IZComponentPropertyChanged } from '../property/property.mjs';
 import { registerCustomElement } from '../register/register-custom-element.mjs';
 
@@ -101,7 +101,7 @@ export function ZComponentBackground(options: IZComponentBackgroundOptions) {
         `;
 
         const shadow = this.attachShadow({ mode: 'closed' });
-        nodePaint(shadow, { css: $css });
+        new ZNode(shadow).clear().styles($css);
       }
 
       public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {

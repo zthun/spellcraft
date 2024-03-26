@@ -1,4 +1,5 @@
 export * from './attribute/attribute.mjs';
+export * from './attribute/attributes.mjs';
 export * from './component/component-background.mjs';
 export * from './component/component-render.mjs';
 export * from './component/component-shadow.mjs';
@@ -9,7 +10,7 @@ export * from './lifecycle/lifecycle-adopted.mjs';
 export * from './lifecycle/lifecycle-attribute-changed.mjs';
 export * from './lifecycle/lifecycle-connected.mjs';
 export * from './lifecycle/lifecycle-disconnected.mjs';
-export * from './node/node-paint.mjs';
+export * from './node/node.mjs';
 export * from './property/property.mjs';
 export * from './register/include-custom-element.mjs';
 export * from './register/register-custom-element.mjs';

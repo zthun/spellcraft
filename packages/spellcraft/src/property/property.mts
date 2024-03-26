@@ -1,5 +1,5 @@
 import { kebabCase } from 'lodash-es';
-import { mutateAttribute } from '../attribute/attribute-mutate.mjs';
+import { ZAttributes } from '../attribute/attributes.mjs';
 
 /**
  * The callback function type for an object that supports a PropertyChanged event.
@@ -106,7 +106,7 @@ export function ZProperty<V>(options?: ZPropertyOptions<V>): PropertyDecorator {
             : typeof newValue === 'string'
               ? newValue
               : JSON.stringify(newValue);
-        mutateAttribute(this, name, value);
+        ZAttributes.mutate(this, name, value);
       }
     }
 

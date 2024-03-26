@@ -6,5 +6,5 @@
       "@zthun/helpful-fn": ["../helpful-fn/src/index"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.mts"]
+  "include": ["src/**/*.ts", "src/**/*.mts", "../../vitest.config.ts"]
 }

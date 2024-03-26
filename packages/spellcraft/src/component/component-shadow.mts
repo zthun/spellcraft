@@ -4,7 +4,7 @@ import { IZElementListen } from '../element/element-listen.mjs';
 import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
 import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
 import { IZLifecycleDisconnected } from '../lifecycle/lifecycle-disconnected.mjs';
-import { nodePaint } from '../node/node-paint.mjs';
+import { ZNode } from '../node/node.mjs';
 import { IZComponentPropertyChanged } from '../property/property.mjs';
 import { registerCustomElement } from '../register/register-custom-element.mjs';
 import { IZComponentRender } from './component-render.mjs';
@@ -144,7 +144,7 @@ export function ZComponentShadow(options: IZComponentShadowOptions) {
 
         const $css = this.styles?.call(this);
         const $html = this.template?.call(this);
-        nodePaint(node, { css: $css, html: $html });
+        new ZNode(node).clear().styles($css).template($html);
       }
 
       public connectedCallback() {

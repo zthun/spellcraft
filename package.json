@@ -9,12 +9,12 @@
   },
   "private": true,
   "scripts": {
-    "clean": "rimraf 'packages/**/dist' 'packages/**/coverage' 'packages/**/*.tgz'",
-    "test": "lerna run test",
+    "clean": "rimraf --glob 'dist' 'reports' 'coverage' '*.tgz' '*.log' 'packages/**/dist' 'packages/**/docs' 'packages/**/*.tgz' 'packages/**/*.log' 'packages/**/.certificates'",
+    "test": "vitest --run --coverage",
     "lint": "lint-janitor",
+    "check": "tsc --noEmit",
     "build": "lerna run build",
-    "bundle": "lerna run bundle",
-    "make": "yarn clean && yarn lint && yarn test && yarn build",
+    "make": "yarn clean && yarn lint && yarn check && yarn test && yarn build",
     "postinstall": "husky install"
   },
   "author": "Anthony Bonta",

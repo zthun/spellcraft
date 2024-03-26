@@ -1,16 +1,19 @@
-// @vitest-environment jsdom
 import { createGuid, css, html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
 import { ZElementListenBuilder } from '../element/element-listen.mjs';
-import { nodePaint } from '../node/node-paint.mjs';
+import { ZNode } from '../node/node.mjs';
 import { ZProperty } from '../property/property.mjs';
 import { ZComponentBackground } from './component-background.mjs';
-import { IZComponentRender, IZComponentStyles, IZComponentTemplate } from './component-render.mjs';
+import { IZComponentRender } from './component-render.mjs';
 import { ZComponentShadow } from './component-shadow.mjs';
+import { IZComponentStyles } from './component-styles.mjs';
+import { IZComponentTemplate } from './component-template.mjs';
 
 describe('ZComponent', () => {
-  afterEach(() => nodePaint(document.body));
+  afterEach(() => {
+    new ZNode(document.body).clear();
+  });
 
   describe('Empty Component', () => {
     @ZComponentShadow({ name: 'TestEmptyComponent' })
@@ -18,7 +21,7 @@ describe('ZComponent', () => {
 
     const createTestTarget = () => {
       const $html = html`<test-empty-component></test-empty-component>`;
-      nodePaint(document.body, { html: $html });
+      new ZNode(document.body).clear().template($html);
       return document.querySelector<ZTestComponent>('test-empty-component')!;
     };
 
@@ -68,7 +71,7 @@ describe('ZComponent', () => {
 
     const createTestTarget = () => {
       const $html = html`<${tag}><span>${name}</span></${tag}>`;
-      nodePaint(document.body, { html: $html });
+      new ZNode(document.body).clear().template($html);
       return document.querySelector<ZTestComponent>(tag)!;
     };
 
@@ -116,13 +119,13 @@ describe('ZComponent', () => {
           </div>
         `;
 
-        nodePaint(shadow, { css: $css, html: $html });
+        new ZNode(shadow).clear().styles($css).template($html);
       }
     }
 
     const createTestTarget = () => {
       const $html = html`<z-test-render><span>Rendered</span></z-test-render>`;
-      nodePaint(document.body, { html: $html });
+      new ZNode(document.body).clear().template($html);
       return document.querySelector<ZTestRender>('z-test-render')!;
     };
 
@@ -161,7 +164,7 @@ describe('ZComponent', () => {
 
     const createTestTarget = () => {
       const $html = html`<z-attributes-and-properties></z-attributes-and-properties>`;
-      nodePaint(document.body, { html: $html });
+      new ZNode(document.body).clear().template($html);
       return document.querySelector<ZAttributesAndProperties>('z-attributes-and-properties')!;
     };
 
@@ -227,7 +230,7 @@ describe('ZComponent', () => {
           <z-identity name="charlie" identity=${charlie}></z-identity>
         </z-identity-listen>
       `;
-      nodePaint(document.body, { html: $html });
+      new ZNode(document.body).clear().template($html);
       return document.querySelector<ZIdentityListen>('z-identity-listen')!;
     };
 
@@ -304,7 +307,7 @@ describe('ZComponent', () => {
           <z-custom-bar value="beta"></z-identity>
         </z-custom-listen>
       `;
-      nodePaint(document.body, { html: $html });
+      new ZNode(document.body).clear().template($html);
       return document.querySelector<ZCustomListen>('z-custom-listen')!;
     };
 
