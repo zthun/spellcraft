@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
-import { mutateAttribute } from './mutate-attribute.mjs';
+import { mutateAttribute } from './attribute-mutate.mjs';
 
 describe('Mutate Attribute', () => {
   it('should remove the attribute if the value is null', () => {

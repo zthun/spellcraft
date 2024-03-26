@@ -1,5 +1,5 @@
 import { kebabCase } from 'lodash-es';
-import { mutateAttribute } from '../attribute/mutate-attribute.mjs';
+import { mutateAttribute } from '../attribute/attribute-mutate.mjs';
 
 /**
  * The callback function type for an object that supports a PropertyChanged event.
