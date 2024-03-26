@@ -3,5 +3,5 @@
   "compilerOptions": {
     "baseUrl": "packages"
   },
-  "include": ["**/src/**/*.ts"]
+  "include": ["**/*.ts", "**/*.mts"]
 }
