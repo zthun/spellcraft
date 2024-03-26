@@ -2504,6 +2504,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@zthun/helpful-fn@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@zthun/helpful-fn@npm:4.0.1"
+  dependencies:
+    uuid: "npm:^9.0.1"
+  checksum: 10/c5fe1922dd8d6649ca628bfb2f33b0488f8acd9e2c66edb5e10e9adb7c03c85a04f94c1bea6e73e35d8c8c7836529c64e68192a50546f0f2b2412221ba2e9122
+  languageName: node
+  linkType: hard
+
 "@zthun/htmlhint-config@npm:^16.0.0":
   version: 16.0.0
   resolution: "@zthun/htmlhint-config@npm:16.0.0"
@@ -2581,6 +2590,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft@workspace:packages/spellcraft"
   dependencies:
+    "@zthun/helpful-fn": "npm:^4.0.1"
     lodash-es: "npm:^4.17.21"
     typescript: "npm:~5.4.3"
     vite: "npm:^5.2.6"
@@ -10801,7 +10811,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^9.0.0":
+"uuid@npm:^9.0.0, uuid@npm:^9.0.1":
   version: 9.0.1
   resolution: "uuid@npm:9.0.1"
   bin:
