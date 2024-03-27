@@ -1,0 +1,11 @@
+{
+  "extends": "../../.config/.tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
+    "paths": {
+      "@zthun/spellcraft": ["../spellcraft/src/index"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.mts"]
+}
