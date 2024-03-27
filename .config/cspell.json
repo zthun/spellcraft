@@ -2,26 +2,22 @@
   "version": "0.2",
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/master/cspell.schema.json",
   "language": "en",
+  "caseSensitive": false,
   "words": [
-    "Bonta",
-    "BUILDKIT",
+    "bonta",
+    "buildkit",
     "changefiles",
     "commitlint",
     "conventionalcommits",
     "htmlhint",
-    "microbundle",
     "nonbrowser",
     "noreply",
     "npmjs",
     "npmrc",
-    "Spellcraft",
-    "Trilean",
-    "zthun"
+    "spellcraft",
+    "trilean",
+    "zthun",
+    "zthunworks"
   ],
-  "dictionaries": [
-    "typescript",
-    "node",
-    "npm",
-    "en_US"
-  ]
+  "dictionaries": ["typescript", "node", "npm", "en_US"]
 }
