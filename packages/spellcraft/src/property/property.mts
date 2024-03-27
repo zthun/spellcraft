@@ -1,54 +1,6 @@
 import { kebabCase } from 'lodash-es';
 import { ZAttributes } from '../attribute/attributes.mjs';
-
-/**
- * The callback function type for an object that supports a PropertyChanged event.
- */
-export type ZPropertyChangedCallbackFunction = (name: string | symbol, oldValue: any, newValue: any) => void;
-
-/**
- * An event for when a property changes.
- */
-export interface IZComponentPropertyChanged {
-  /**
-   * Occurs when a property declared with the {@link ZProperty} decorator changes it's value.
-   *
-   * @param name -
-   *        The name of the property.
-   * @param oldValue -
-   *        The old value of the property.
-   * @param newValue -
-   *        The new value of the property.
-   */
-  propertyChangedCallback(name: string | symbol, oldValue: any, newValue: any): void;
-}
-
-/**
- * Gets whether an object implements an IZComponentPropertyChanged.
- *
- * @param x -
- *        The object to check
- *
- * @returns
- *        True if x implements the property change callback interface.
- *        False otherwise.
- */
-export function implementsPropertyChanged(x: any): x is IZComponentPropertyChanged {
-  return typeof x.propertyChangedCallback === 'function';
-}
-
-/**
- * Gets whether an object can have attributes set to it.
- *
- * @param x -
- *        The object to check.
- *
- * @returns
- *        True if x implements a setAttribute method. False otherwise.
- */
-export function implementsSetAttribute(x: any): x is Element {
-  return typeof x.setAttribute === 'function';
-}
+import { implementsPropertyChanged } from './property-changed.mjs';
 
 /**
  * Options for a web component property.
@@ -81,6 +33,10 @@ export interface ZPropertyOptions<V> {
  *        property change event when it changes.
  */
 export function ZProperty<V>(options?: ZPropertyOptions<V>): PropertyDecorator {
+  function implementsSetAttribute(x: any): x is Element {
+    return typeof x.setAttribute === 'function';
+  }
+
   return <C extends HTMLElement>(target: C, propertyKey: string | symbol): void => {
     const attribute = options?.attribute || undefined;
 

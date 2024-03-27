@@ -1,10 +1,11 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { registerCustomElement } from '../register/register-custom-element.mjs';
-import { IZComponentPropertyChanged, ZProperty, ZPropertyChangedCallbackFunction } from './property.mjs';
+import { IZPropertyChanged, ZPropertyChangedCallbackFunction } from './property-changed.mjs';
+import { ZProperty } from './property.mjs';
 
 const initial = 'foo';
 
-class ZTestComponentWithProperties extends HTMLElement implements Partial<IZComponentPropertyChanged> {
+class ZTestComponentWithProperties extends HTMLElement implements Partial<IZPropertyChanged> {
   propertyChangedCallback?: ZPropertyChangedCallbackFunction;
 
   @ZProperty({ initial })

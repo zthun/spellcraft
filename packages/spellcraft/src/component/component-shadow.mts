@@ -5,40 +5,15 @@ import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-ch
 import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
 import { IZLifecycleDisconnected } from '../lifecycle/lifecycle-disconnected.mjs';
 import { ZNode } from '../node/node.mjs';
-import { IZComponentPropertyChanged } from '../property/property.mjs';
+import { IZPropertyChanged } from '../property/property-changed.mjs';
 import { registerCustomElement } from '../register/register-custom-element.mjs';
 import { IZComponentRender } from './component-render.mjs';
+import { IZComponent } from './component.mjs';
 
 /**
  * Options for a component that renders in the shadow dom.
  */
-export interface IZComponentShadowOptions {
-  /**
-   * The name of the component.
-   *
-   * This should be in PascalCase as using
-   * the ZComponentShadow will effectively
-   * add a class of `${name}-root`.
-   *
-   * This will be converted to kebab case
-   * as the tag name.
-   *
-   * @example
-   *
-   * name = 'MyButton'
-   *
-   * // Results in
-   * <my-button class="MyButton-root"></my-button>
-   */
-  name: string;
-
-  /**
-   * The tag to use.
-   *
-   * If this is falsy, then the kebab case of the name is used.
-   */
-  tag?: string;
-
+export interface IZComponentShadowOptions extends IZComponent {
   /**
    * The class name to set on the host element.
    *
@@ -47,27 +22,9 @@ export interface IZComponentShadowOptions {
    *
    * If you pass an array for this value, then
    * every class in the array will be added.  If you pass an empty
-   * array, then no classes will be added (not recommended).
+   * array, then no classes will be added.
    */
   className?: string | string[];
-
-  /**
-   * This does nothing.
-   *
-   * The main point of this is if you want to keep all
-   * of your custom web components tree shakable, but
-   * the component you're writing depends on other components
-   * that have to be registered with the custom elements
-   * registry.
-   *
-   * This essentially makes sure that your dependency graph
-   * auto registers those components by forcing an import
-   * where you may not actually need the web component
-   * instance and instead just need to make sure the actual
-   * web component class constructor function is included
-   * with your bundle.
-   */
-  dependencies?: CustomElementConstructor[];
 
   /**
    * The list of child selectors to listen on for various events.
@@ -91,7 +48,7 @@ export interface IZComponentShadowOptions {
  * @returns
  *        A new decorated type that automatically implements
  *        {@link IZLifecycleAttributeChanged} and {@link IZLifecycleConnected}
- *        and {@link IZComponentPropertyChanged}.
+ *        and {@link IZPropertyChanged}.
  */
 export function ZComponentShadow(options: IZComponentShadowOptions) {
   const { className, listen, name, tag } = options;
@@ -112,7 +69,7 @@ export function ZComponentShadow(options: IZComponentShadowOptions) {
         IZLifecycleAttributeChanged,
         IZLifecycleConnected,
         IZLifecycleDisconnected,
-        IZComponentPropertyChanged,
+        IZPropertyChanged,
         IZComponentRender
     {
       public constructor() {
