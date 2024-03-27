@@ -1,6 +1,7 @@
 # Outputs
 coverage
 reports
+stats
 *.lerna_backup
 *.tgz
 .rpt2_cache
