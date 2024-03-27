@@ -10,6 +10,7 @@
     "commitlint",
     "conventionalcommits",
     "htmlhint",
+    "htmx",
     "nonbrowser",
     "noreply",
     "npmjs",
@@ -19,5 +20,5 @@
     "zthun",
     "zthunworks"
   ],
-  "dictionaries": ["typescript", "node", "npm", "en_US"]
+  "dictionaries": ["typescript", "node", "fonts", "npm", "en_US"]
 }
