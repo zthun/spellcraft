@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/svg/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +20,37 @@
     <title>Zthunworks Spellcraft</title>
   </head>
   <body>
-    <div id="zthunworks-spellcraft"></div>
+    <z-spellcraft-theme></z-spellcraft-theme>
+    <main id="ZSpellcraft-root">
+      <z-spellcraft-header></z-spellcraft-header>
+      <div class="ZSpellcraft-page">
+        <z-spellcraft-card>
+          <div slot="avatar">
+            <i class="fa-solid fa-question"></i>
+          </div>
+          <h2 slot="title">Introduction</h2>
+          <p slot="subtitle">What is Spellcraft?</p>
+
+          <div slot="body">
+            <p>
+              Spellcraft is a non-intrusive web component framework that was built with the idea that it can live
+              alongside other web component frameworks and not interfere with their operations. Spellcraft is designed
+              in a way that you can completely rip it out and only lose the functionality that it provides, rather than
+              having to redesign your entire application around
+            </p>
+
+            <p>
+              Spellcraft only grants you JavaScript decorators that allow you to decorate a custom element and have it
+              follow a functional pattern for it's behavior. This is in contrast to frameworks such as
+              <a href="https://lit.dev/" target="blank">Lit</a> which require all of your components to inherit from a
+              single source. Instead, all of your inheritance is akin to web component standards and, with Spellcraft,
+              you will simply inherit from the root HTMLElement you need to inherit from. You then decorate it with the
+              behaviors you desire and you're finished.
+            </p>
+          </div>
+        </z-spellcraft-card>
+      </div>
+    </main>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
