@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "removeComments": true,
     "esModuleInterop": true,
+    "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,6 +12,7 @@
     "declaration": true,
     "strictNullChecks": true,
     "strictBindCallApply": true,
+    "skipLibCheck": true,
     "target": "ES5",
     "module": "ESNext"
   }
