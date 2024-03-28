@@ -13,6 +13,5 @@ export * from './lifecycle/lifecycle-attribute-changed.mjs';
 export * from './lifecycle/lifecycle-connected.mjs';
 export * from './lifecycle/lifecycle-disconnected.mjs';
 export * from './node/node.mjs';
-export * from './property/property.mjs';
 export * from './register/include-custom-element.mjs';
 export * from './register/register-custom-element.mjs';
