@@ -5,7 +5,6 @@ export * from './component/component-dependencies.mjs';
 export * from './component/component-register.mjs';
 export * from './component/component-render-template.mjs';
 export * from './component/component-render.mjs';
-export * from './component/component-shadow-root.mjs';
 export * from './component/component-shadow.mjs';
 export * from './component/component-styles.mjs';
 export * from './element/element-listen.mjs';

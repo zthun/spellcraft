@@ -4,14 +4,14 @@ import {
   ZComponentRegister,
   ZComponentRender,
   ZComponentRenderTemplate,
-  ZComponentShadowRoot
+  ZComponentShadow
 } from '@zthun/spellcraft';
 import { ZSpellcraftIconElement } from 'src/icon/icon-element.mjs';
 
 @ZComponentRegister('z-spellcraft-header')
 @ZComponentRenderTemplate()
 @ZComponentRender()
-@ZComponentShadowRoot()
+@ZComponentShadow()
 @ZComponentDependencies([ZSpellcraftIconElement])
 export class ZSpellcraftHeaderElement extends HTMLElement {
   public template() {

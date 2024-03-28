@@ -5,10 +5,10 @@ import { ZElementListenBuilder } from '../element/element-listen.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZProperty } from '../property/property.mjs';
 import { ZComponentBackground } from './component-background.mjs';
+import { IZComponentTemplate } from './component-render-template.mjs';
 import { IZComponentRender } from './component-render.mjs';
 import { ZComponentShadow } from './component-shadow.mjs';
 import { IZComponentStyles } from './component-styles.mjs';
-import { IZComponentTemplate } from './component-template.mjs';
 
 describe('ZComponent', () => {
   afterEach(() => {
