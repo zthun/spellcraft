@@ -50,6 +50,13 @@ export interface IZComponentStylesOptions extends IZComponent {
 
 /**
  * A styles component is a component that adds a style element to the document head.
+ *
+ * @param options -
+ *        The options for the style component.
+ *
+ * @returns
+ *        A new class that extends from the target class that implements
+ *        the styles component.
  */
 export function ZComponentStyles(options: IZComponentStylesOptions) {
   const { className = [], id, name, tag } = options;
