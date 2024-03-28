@@ -1,11 +1,17 @@
 import { html } from '@zthun/helpful-fn';
-import { ZComponentRegister, ZComponentRender, ZComponentRenderTemplate, ZComponentShadow } from '@zthun/spellcraft';
+import {
+  IZComponentTemplate,
+  ZComponentRegister,
+  ZComponentRender,
+  ZComponentRenderTemplate,
+  ZComponentShadow
+} from '@zthun/spellcraft';
 
 @ZComponentRegister('z-spellcraft-card')
 @ZComponentRenderTemplate()
 @ZComponentRender()
 @ZComponentShadow()
-export class ZSpellcraftCardElement extends HTMLElement {
+export class ZSpellcraftCardElement extends HTMLElement implements IZComponentTemplate {
   public template() {
     return html`
       <style>
