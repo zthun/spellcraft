@@ -1,7 +1,10 @@
 {
   "extends": "./.config/.tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "packages"
+    "baseUrl": "packages",
+    "paths": {
+      "@zthun/spellcraft": ["spellcraft/src/index"]
+    }
   },
   "include": ["**/*.ts", "**/*.mts"]
 }
