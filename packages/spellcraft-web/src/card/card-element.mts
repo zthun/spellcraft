@@ -8,8 +8,9 @@ export class ZSpellcraftCardElement extends HTMLElement {
 
     return css`
       :host {
-        display: block;
         box-shadow: var(--color-surface-shadow);
+        display: block;
+        margin-bottom: var(--gap-md);
       }
 
       ::slotted([slot='title']),
