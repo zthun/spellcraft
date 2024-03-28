@@ -1,6 +1,6 @@
-import { IZLifecycleAttributeChanged, ZAttribute, ZComponentDirective } from '@zthun/spellcraft';
+import { IZLifecycleAttributeChanged, ZAttribute, ZComponentRegister } from '@zthun/spellcraft';
 
-@ZComponentDirective({ name: 'ZSpellcraftIcon', extend: 'img' })
+@ZComponentRegister('z-spellcraft-icon', { extend: 'img' })
 export class ZSpellcraftIconElement extends HTMLImageElement implements IZLifecycleAttributeChanged {
   public static readonly observedAttributes = ['size'];
 
