@@ -26,27 +26,50 @@
       <div class="ZSpellcraft-page">
         <z-spellcraft-card>
           <div slot="avatar">
-            <i class="fa-solid fa-question"></i>
+            <i class="fa-solid fa-question" title="Introduction" aria-label="Introduction"></i>
           </div>
           <h2 slot="title">Introduction</h2>
           <p slot="subtitle">What is Spellcraft?</p>
 
           <div slot="body">
             <p>
-              Spellcraft is a non-intrusive web component framework that was built with the idea that it can live
-              alongside other web component frameworks and not interfere with their operations. Spellcraft is designed
-              in a way that you can completely rip it out and only lose the functionality that it provides, rather than
-              having to redesign your entire application around
+              Spellcraft is a web component library designed to complement other frameworks without disrupting their
+              functionality. Unlike other frameworks, Spellcraft can be seamlessly integrated into your application
+              without requiring a complete redesign.
             </p>
 
             <p>
-              Spellcraft only grants you JavaScript decorators that allow you to decorate a custom element and have it
-              follow a functional pattern for it's behavior. This is in contrast to frameworks such as
-              <a href="https://lit.dev/" target="blank">Lit</a> which require all of your components to inherit from a
-              single source. Instead, all of your inheritance is akin to web component standards and, with Spellcraft,
-              you will simply inherit from the root HTMLElement you need to inherit from. You then decorate it with the
-              behaviors you desire and you're finished.
+              At its core, Spellcraft provides JavaScript decorators that empower you to imbue custom elements with
+              functional patterns, enhancing their behavior. This stands in contrast to other frameworks, which mandate
+              inheritance from a singular source for all components. With Spellcraft, prioritizing basic web component
+              standards streamlines the process, allowing you to effortlessly add desired behaviors to your components
+              without being locked into the framework
             </p>
+          </div>
+        </z-spellcraft-card>
+
+        <z-spellcraft-card>
+          <div slot="avatar">
+            <i class="fa-solid fa-download"></i>
+          </div>
+
+          <h2 slot="title">Installation</h2>
+          <p slot="subtitle">Start using</p>
+
+          <div slot="body">
+            <z-spellcraft-code-block>
+              <pre>
+<code lang="bash">
+# Using npm 
+&gt; npm install @zthun/spellcraft 
+
+# Using yarn 
+&gt; yarn add @zthun/spellcraft 
+&gt; yarn workspace @org/package add @zthun/Spellcraft
+
+</code>
+            </pre>
+            </z-spellcraft-code-block>
           </div>
         </z-spellcraft-card>
       </div>
