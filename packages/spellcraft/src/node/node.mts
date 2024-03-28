@@ -22,26 +22,8 @@ export class ZNode {
   }
 
   /**
-   * Adds a style node to the node given some css text.
-   *
-   * @param css -
-   *        The css text to construct the style to.  If this
-   *        is falsy, then no style element is added.
-   *
-   * @returns
-   *        This object.
-   */
-  public styles(css: string | null | undefined): this {
-    if (css) {
-      const style = document.createElement('style');
-      style.textContent = css;
-      this.node.appendChild(style);
-    }
-    return this;
-  }
-
-  /**
-   * Constructs an html template and adds the nodes to the node instance.
+   * Constructs an html template elements and adds the content fragment
+   * clone to the node.
    *
    * @param html -
    *        The html text to construct the template from.  If this
