@@ -1,7 +1,7 @@
 import { includeCustomElement } from '@zthun/spellcraft';
-import { ZSpellcraftCardElement } from './card/card-element';
-import { ZSpellcraftHeaderElement } from './header/header-element';
-import { ZSpellcraftThemeElement } from './theme/spellcraft-theme-element';
+import { ZSpellcraftCardElement } from './card/card-element.mjs';
+import { ZSpellcraftHeaderElement } from './header/header-element.mjs';
+import { ZSpellcraftThemeElement } from './theme/spellcraft-theme-element.mjs';
 
 includeCustomElement(ZSpellcraftThemeElement);
 includeCustomElement(ZSpellcraftHeaderElement);
