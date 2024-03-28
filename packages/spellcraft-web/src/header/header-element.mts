@@ -6,7 +6,7 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
-import { ZSpellcraftIconElement } from 'src/icon/icon-element.mjs';
+import { ZSpellcraftIconElement } from '../icon/icon-element.mjs';
 
 @ZComponentRegister('z-spellcraft-header')
 @ZComponentRenderTemplate()
