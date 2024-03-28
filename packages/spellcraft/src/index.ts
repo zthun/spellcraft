@@ -1,6 +1,7 @@
 export * from './attribute/attribute.mjs';
 export * from './attribute/attributes.mjs';
 export * from './component/component-background.mjs';
+export * from './component/component-directive.mjs';
 export * from './component/component-render.mjs';
 export * from './component/component-shadow.mjs';
 export * from './component/component-styles.mjs';
