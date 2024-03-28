@@ -1,12 +1,9 @@
 import { createGuid, firstDefined } from '@zthun/helpful-fn';
-import { castArray, kebabCase } from 'lodash-es';
 import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
 import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
 import { IZLifecycleDisconnected } from '../lifecycle/lifecycle-disconnected.mjs';
 import { IZPropertyChanged } from '../property/property-changed.mjs';
-import { registerCustomElement } from '../register/register-custom-element.mjs';
 import { IZComponentRender } from './component-render.mjs';
-import { IZComponent } from './component.mjs';
 
 /**
  * A web component that has a css factory.
@@ -25,31 +22,27 @@ export interface IZComponentStyles {
 /**
  * Options for a global styles component.
  */
-export interface IZComponentStylesOptions extends IZComponent {
+export interface IZComponentStylesOptions {
   /**
    * The id of the styles.
    *
-   * If this is set, then when the component is added, it will attach
-   * to the style node and modify that one.
+   * By setting this, it will keep the styles even
+   * after the component has been removed.  Setting an id
+   * is usually for global styles and will only be set once
+   * a component with the styles is used.
    *
-   * It is recommended that if you have this set, then it will only
-   * have one style node as that will create a singleton.
+   * It is recommended to only use this if you have styles
+   * that are static and will not change past the first
+   * render.  If you wind up with dynamic styles, I.E, styles
+   * that change with an attribute, setting a global style is
+   * not recommended and you should instead encapsulate those
+   * in the components shadow root if available.
    */
   id?: string;
-
-  /**
-   * The class name(s) to set on the style element.
-   *
-   * If this is falsy, then no classes are added.
-   *
-   * If you pass an array for this value, then
-   * every class in the array will be added.
-   */
-  className?: string | string[];
 }
 
 /**
- * A styles component is a component that adds a style element to the document head.
+ * A component that adds styles to the document.
  *
  * @param options -
  *        The options for the style component.
@@ -59,10 +52,8 @@ export interface IZComponentStylesOptions extends IZComponent {
  *        the styles component.
  */
 export function ZComponentStyles(options: IZComponentStylesOptions) {
-  const { className = [], id, name, tag } = options;
-
-  const $className = castArray(className);
-  const $tag = firstDefined(kebabCase(name), tag);
+  const { id } = options;
+  const persistent = !!id;
 
   return function <C extends typeof HTMLElement>(Target: C) {
     const _Target = Target as any;
@@ -83,15 +74,16 @@ export function ZComponentStyles(options: IZComponentStylesOptions) {
         this._id = id || createGuid();
       }
 
-      public style() {
+      public styleElement() {
         const selector = `#${this._id}`;
-        let e = document.querySelector(selector);
+        const target: Element = this.shadowRoot || document.head;
+        let e = target.querySelector(selector);
 
         if (e == null) {
           e = document.createElement('style');
           e.id = this._id;
-          document.head.appendChild(e);
-          e = document.querySelector<HTMLStyleElement>(selector)!;
+          target.appendChild(e);
+          e = target.querySelector<HTMLStyleElement>(selector)!;
         }
 
         return e;
@@ -99,18 +91,20 @@ export function ZComponentStyles(options: IZComponentStylesOptions) {
 
       public render() {
         const $css = this.styles?.call(this);
-        this.style().textContent = firstDefined('', $css);
+        this.styleElement().textContent = firstDefined('', $css);
       }
 
       public connectedCallback() {
         super.connectedCallback?.call(this);
-        $className.forEach(($class) => this.style().classList.add($class));
         this.render();
       }
 
       public disconnectedCallback() {
         super.disconnectedCallback?.call(this);
-        this.style().remove();
+
+        if (!persistent) {
+          this.styleElement().remove();
+        }
       }
 
       public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
@@ -123,8 +117,6 @@ export function ZComponentStyles(options: IZComponentStylesOptions) {
         this.render();
       }
     };
-
-    registerCustomElement($tag, K);
 
     return K;
   };

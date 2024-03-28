@@ -1,7 +1,8 @@
 import { css } from '@zthun/helpful-fn';
-import { IZComponentStyles, ZComponentStyles } from '@zthun/spellcraft';
+import { IZComponentStyles, ZComponentRegister, ZComponentStyles } from '@zthun/spellcraft';
 
-@ZComponentStyles({ name: 'ZSpellcraftTheme', id: 'ZSpellcraftTheme-root' })
+@ZComponentRegister('z-spellcraft-theme')
+@ZComponentStyles({ id: 'ZSpellcraftTheme-root' })
 export class ZSpellcraftThemeElement extends HTMLElement implements IZComponentStyles {
   public styles() {
     return css`
