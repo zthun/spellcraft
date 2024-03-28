@@ -1,3 +1,4 @@
+import { ZNode } from '../node/node.mjs';
 import { IZComponentRender } from './component-render.mjs';
 
 /**
@@ -19,37 +20,27 @@ export interface IZComponentTemplate {
  * to the shadow root if it exists or directly under the host container if it does not contain
  * a shadow root.
  *
+ * Note that rendering under the host container directly clears it of any child nodes.  If you
+ * want to have child nodes, you MUST use a shadow root and have a slot somewhere inside of it.
  * In order for the component to actually render anything, it needs to implement
  * {@link IZComponentTemplate} and return a non-empty html string.
  *
+ * Note that if you have multiples of these, it becomes last one wins and you will waste
+ * cycles rendering extra templates that you will never see.
+ *
  * @returns
- *        A new decorated type that automatically implements
- *        {@link IZLifecycleAttributeChanged} and {@link IZLifecycleConnected}
- *        and {@link IZPropertyChanged} and invokes the {@link IZComponentTemplate.template} method
- *        if it exists when it renders.
+ *        A new decorated type that automatically implements a render method that clears
+ *        the target shadow root or target node and renders an html template.
  */
 export function ZComponentRenderTemplate() {
   return function <C extends typeof HTMLElement>(Target: C) {
     const _Target = Target as any;
 
     const K: any = class extends _Target implements IZComponentRender {
-      _fragment: HTMLElement | null;
-
       public render(node: Node) {
         super.render?.call(this, node);
-
-        this._fragment?.remove();
-        this._fragment = document.createElement('span');
-
         const $html = this.template?.call(this);
-
-        if ($html) {
-          const template = document.createElement('template');
-          template.innerHTML = $html;
-          this._fragment.appendChild(template.content.cloneNode(true));
-        }
-
-        node.appendChild(this._fragment);
+        new ZNode(node).clear().template($html);
       }
     };
 

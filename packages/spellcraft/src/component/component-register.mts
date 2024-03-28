@@ -1,5 +1,3 @@
-import { registerCustomElement } from '../register/register-custom-element.mjs';
-
 /**
  * Options for registering a component.
  */
@@ -20,8 +18,11 @@ export interface IZComponentRegisterOptions {
  * for {@link registerCustomElement} with the given options.
  *
  * The registration for a given component should happen as the final step in the
- * decoration stack.  This will register the final output class that extends the target
- * to be constructed.
+ * decoration stack - meaning it should be at the top.  This will register the final
+ * output class that extends the target to be constructed.
+ *
+ * If you have more than 1 of these, then only the first one will be registered and
+ * subsequent ones will be ignored.
  *
  * @param tag -
  *        The tag that this component will register with.
@@ -29,14 +30,13 @@ export interface IZComponentRegisterOptions {
  *        The options for the registration.
  *
  * @returns
- *        An empty class that extends the given class target.  This will
- *        be the constructor function that will get the final registration.
+ *        The class target.
  */
 export function ZComponentRegister(tag: string, options?: IZComponentRegisterOptions) {
   return function <C extends typeof HTMLElement>(Target: C) {
-    const _Target = Target as any;
-    const K: any = class extends _Target {};
-    registerCustomElement(tag, K, { extends: options?.extend });
-    return K;
+    if (customElements.get(tag) == null) {
+      customElements.define(tag, Target, { extends: options?.extend });
+    }
+    return Target;
   };
 }

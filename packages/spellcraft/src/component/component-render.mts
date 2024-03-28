@@ -1,6 +1,5 @@
 import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
 import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
-import { IZPropertyChanged } from '../property/property-changed.mjs';
 
 /**
  * A web component that can be rendered
@@ -25,15 +24,6 @@ export interface IZComponentRender {
  */
 export interface IZComponentRenderOptions {
   /**
-   * Automatically renders in the constructor.
-   *
-   * You only want to do this if the component you are
-   * registering is created through the "is" attribute instead
-   * of inheriting from the HTMLElement.
-   */
-  immediately?: boolean;
-
-  /**
    * Skip the render method in the connected lifecycle.
    */
   skipConnected?: boolean;
@@ -42,11 +32,6 @@ export interface IZComponentRenderOptions {
    * Skip the render method in the attribute changed lifecycle.
    */
   skipAttributeChanged?: boolean;
-
-  /**
-   * Skip the render method in the property changed lifecycle.
-   */
-  skipPropertyChanged?: boolean;
 }
 
 /**
@@ -68,22 +53,13 @@ export interface IZComponentRenderOptions {
 export function ZComponentRender(options?: IZComponentRenderOptions) {
   return function <C extends typeof HTMLElement>(Target: C) {
     const _Target = Target as any;
-    const { immediately, skipConnected, skipAttributeChanged, skipPropertyChanged } = options || {};
-    const skipImmediately = !immediately;
+    const { skipConnected, skipAttributeChanged } = options || {};
 
-    const K: any = class
-      extends _Target
-      implements IZLifecycleAttributeChanged, IZLifecycleConnected, IZPropertyChanged
-    {
+    const K: any = class extends _Target implements IZLifecycleAttributeChanged, IZLifecycleConnected {
       __component_render(skip?: boolean) {
         if (!skip) {
           this.render?.call(this, this.shadowRoot || this);
         }
-      }
-
-      public constructor() {
-        super();
-        this.__component_render(skipImmediately);
       }
 
       public connectedCallback() {
@@ -94,11 +70,6 @@ export function ZComponentRender(options?: IZComponentRenderOptions) {
       public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
         super.attributeChangedCallback?.call(this, name, oldValue, newValue);
         this.__component_render(skipAttributeChanged);
-      }
-
-      public propertyChangedCallback(name: string | symbol, oldValue: any, newValue: any): void {
-        super.propertyChangedCallback?.call(this, name, oldValue, newValue);
-        this.__component_render(skipPropertyChanged);
       }
     };
 

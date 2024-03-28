@@ -1,5 +1,8 @@
 /**
  * A mixin that adds an open shadow root to the component.
+ *
+ * Note that calling this more than once has no effect. It will
+ * simply keep the shadow root that has already been declared.
  */
 export function ZComponentShadow() {
   return function <C extends typeof HTMLElement>(Target: C) {
