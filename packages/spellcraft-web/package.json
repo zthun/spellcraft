@@ -9,8 +9,7 @@
     "url": "https://github.com/zthun/spellcraft",
     "directory": "packages/spellcraft-web"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "vite build",
     "start": "vite"
