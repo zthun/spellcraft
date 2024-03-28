@@ -1,6 +1,5 @@
 export * from './attribute/attribute.mjs';
 export * from './attribute/attributes.mjs';
-export * from './component/component-background.mjs';
 export * from './component/component-dependencies.mjs';
 export * from './component/component-register.mjs';
 export * from './component/component-render-template.mjs';
