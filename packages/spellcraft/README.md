@@ -1,16 +1,13 @@
-# Helpful DOM
+# Spellcraft
 
-Provides a basic set of javascript functions and classes that are not a part of the basic DOM api.
-
-This package is ONLY meant to be used by browsers and not node as methods and extensions found in this package include
-potential system access that node does not have, unlike @zthun/helpful-fn, where methods are supported on both node apps
-and browsers.
+The Spellcraft library contains all decorators and helpers that can be used to build web components using the native
+JavaScript APIs.
 
 ## Installation
 
 ```sh
 # NPM
-npm install @zthun/helpful-dom
+npm install @zthun/spellcraft
 # Yarn
-yarn add @zthun/helpful-dom
+yarn add @zthun/spellcraft
 ```

@@ -1,4 +1,5 @@
-import { ZIntrinsic, ZTrilean, firstDefined, trilean } from '@zthun/helpful-fn';
+import { firstDefined } from '@zthun/helpful-fn';
+import { ZIntrinsic, ZTrilean, trilean } from '@zthun/trilean';
 import { kebabCase } from 'lodash-es';
 import { ZAttributes } from './attributes.mjs';
 
