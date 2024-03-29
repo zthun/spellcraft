@@ -1,7 +1,7 @@
 {
   "name": "@zthun/spellcraft",
   "version": "1.0.6",
-  "description": "Basic Web Component framework.",
+  "description": "Basic Web Component library.",
   "author": "Anthony Bonta",
   "license": "MIT",
   "repository": {
