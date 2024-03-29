@@ -1,4 +1,4 @@
-import { identity } from 'lodash-es';
+import { noop } from 'lodash-es';
 
 /**
  * Does nothing.
@@ -9,4 +9,4 @@ import { identity } from 'lodash-es';
  * @param ctor -
  *        The custom element constructor.
  */
-export const includeCustomElement: (ctor: CustomElementConstructor) => void = identity;
+export const includeCustomElement: (ctor: CustomElementConstructor) => void = noop;
