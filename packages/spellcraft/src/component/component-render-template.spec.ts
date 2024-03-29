@@ -2,8 +2,8 @@ import { html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZNode } from '../node/node.mjs';
 import { ZComponentRegister } from './component-register.mjs';
+import { ZComponentRenderOnConnected } from './component-render-on-connected.mjs';
 import { IZComponentTemplate, ZComponentRenderTemplate } from './component-render-template.mjs';
-import { ZComponentRender } from './component-render.mjs';
 
 describe('ZComponentRenderTemplate', () => {
   afterEach(() => {
@@ -22,7 +22,7 @@ describe('ZComponentRenderTemplate', () => {
 
     @ZComponentRegister($tag)
     @ZComponentRenderTemplate()
-    @ZComponentRender()
+    @ZComponentRenderOnConnected()
     class ZComponentRenderWithTemplateTest extends HTMLElement implements IZComponentTemplate {
       public template() {
         return html`<div class="template-content"></div>`;
@@ -44,7 +44,7 @@ describe('ZComponentRenderTemplate', () => {
 
     @ZComponentRegister($tag)
     @ZComponentRenderTemplate()
-    @ZComponentRender()
+    @ZComponentRenderOnConnected()
     class ZComponentRenderWithoutTemplateTest extends HTMLElement {}
 
     it('should render empty to the element', () => {
