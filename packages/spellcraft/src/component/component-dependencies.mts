@@ -21,6 +21,32 @@
  *
  * @returns
  *        The target component class.
+ *
+ * @example
+ * ```ts
+ * import { html } from '@zthun/helpful-fn';
+ * import { ZOtherComponent } from './other-component';
+ *
+ * @ZComponentRegister('z-fancy-component')
+ * @ZComponentRenderTemplate()
+ * @ZComponentRender()
+ * // Does not actually do anything, but makes it so that importing this
+ * // component does not tree shake out ZOtherComponent if all we are referencing
+ * // is the tag name of the component.
+ * @ZComponentDependencies([ZOtherComponent])
+ * export class ZFancyComponentElement extends HTMLElement {
+ *     public template() {
+ *         return html`
+ *            <z-other-component>
+ *              Notice that nowhere in this component references the ZOtherComponent class
+ *              but we use the tag name and expect it to be registered with the
+ *              custom elements registry.  We won't get this behavior working if
+ *              ZOtherComponent is tree shaken from our bundle.
+ *            </z-other-component>
+ *         `;
+ *     }
+ * }
+ * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function ZComponentDependencies(dependencies: CustomElementConstructor[]) {
