@@ -3,9 +3,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZComponentRegister } from './component-register.mjs';
-import { IZComponentRender, ZComponentRender } from './component-render.mjs';
+import { ZComponentRenderOnAttributeChanged } from './component-render-on-attribute-change.mjs';
+import { IZComponentRender } from './component-render.mjs';
 
-describe('ZComponentRender', () => {
+describe('ZComponentRenderOnAttributeChange', () => {
   afterEach(() => {
     new ZNode(document.body).clear();
   });
@@ -22,7 +23,7 @@ describe('ZComponentRender', () => {
     const tag = 'z-component-render-custom-element-test';
 
     @ZComponentRegister(tag)
-    @ZComponentRender()
+    @ZComponentRenderOnAttributeChanged()
     class ZComponentRenderCustomElementTest extends HTMLElement implements IZComponentRender {
       public static readonly observedAttributes = ['identity'];
 
@@ -32,21 +33,13 @@ describe('ZComponentRender', () => {
       public render = vi.fn();
     }
 
-    it('should render when connected', () => {
-      // Arrange.
-      // Act.
-      const target = createTestTarget<ZComponentRenderCustomElementTest>(tag);
-      // Assert.
-      expect(target.render).toHaveBeenCalledTimes(1);
-    });
-
     it('should render when an attribute changes', () => {
       // Arrange.
       const target = createTestTarget<ZComponentRenderCustomElementTest>(tag);
       // Act.
       target.identity = createGuid();
       // Assert.
-      expect(target.render).toHaveBeenCalledTimes(2);
+      expect(target.render).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -55,7 +48,7 @@ describe('ZComponentRender', () => {
     const tag = 'z-component-render-directive-test';
 
     @ZComponentRegister(tag, { extend: directive })
-    @ZComponentRender()
+    @ZComponentRenderOnAttributeChanged()
     class ZComponentRenderDirectiveTest extends HTMLInputElement implements IZComponentRender {
       public static readonly observedAttributes = ['identity'];
 
@@ -73,53 +66,13 @@ describe('ZComponentRender', () => {
       return document.body.querySelector<ZComponentRenderDirectiveTest>(directive)!;
     };
 
-    it('should render when constructed', () => {
-      // Arrange.
-      // Act.
-      const target = createTestTarget();
-      // Assert.
-      expect(target.render).toHaveBeenCalledTimes(1);
-    });
-
     it('should render when an attribute changes', () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
       target.identity = createGuid();
       // Assert.
-      expect(target.render).toHaveBeenCalledTimes(2);
-    });
-  });
-
-  describe('Skip all renders', () => {
-    const tag = 'z-component-render-never-test';
-
-    @ZComponentRegister(tag)
-    @ZComponentRender({ skipConnected: true, skipAttributeChanged: true })
-    class ZComponentRenderNeverTest extends HTMLElement implements IZComponentRender {
-      public static readonly observedAttributes = ['identity'];
-
-      @ZAttribute()
-      public identity: string;
-
-      public render = vi.fn();
-    }
-
-    it('should not render when connected', () => {
-      // Arrange.
-      // Act.
-      const target = createTestTarget<ZComponentRenderNeverTest>(tag);
-      // Assert.
-      expect(target.render).toHaveBeenCalledTimes(0);
-    });
-
-    it('should not render when an attribute changes', () => {
-      // Arrange.
-      const target = createTestTarget<ZComponentRenderNeverTest>(tag);
-      // Act.
-      target.identity = createGuid();
-      // Assert.
-      expect(target.render).toHaveBeenCalledTimes(0);
+      expect(target.render).toHaveBeenCalledTimes(1);
     });
   });
 });
