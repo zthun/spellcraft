@@ -14,15 +14,13 @@ export interface IZComponentRegisterOptions {
 /**
  * A mixin decorator that extends a WebComponent and adds the registration.
  *
- * The component will be registered with the custom elements registry.  This is a shortcut
- * for {@link registerCustomElement} with the given options.
+ * The component will be registered with the custom elements registry.
  *
  * The registration for a given component should happen as the final step in the
  * decoration stack - meaning it should be at the top.  This will register the final
- * output class that extends the target to be constructed.
- *
- * If you have more than 1 of these, then only the first one will be registered and
- * subsequent ones will be ignored.
+ * output class that extends the target to be constructed. If you have more than 1
+ * of these, then only the first one will be registered and subsequent ones will be
+ * ignored.
  *
  * @param tag -
  *        The tag that this component will register with.
@@ -31,6 +29,29 @@ export interface IZComponentRegisterOptions {
  *
  * @returns
  *        The class target.
+ *
+ * @example
+ *
+ * ```ts
+ * // This is equivalent to most docs that put this at the bottom
+ * // of the component class.  The main reason to use this is due to
+ * // how JavaScript class decorators work.  The ZFancyComponent here
+ * // is actually the prototype object, and everything beyond the
+ * // bottom level decorator is a class that extends it.  So the
+ * // registration has to happen at the top.
+ * @ZComponentRegister('z-fancy-component')
+ * export class ZFancyComponent extends HTMLElement {
+ * }
+ *```
+ *
+ * ```html
+ * // In some other html file
+ * <div>
+ *     <z-fancy-component>
+ *        Done right!
+ *     </z-fancy-component>
+ * </div>
+ * ```
  */
 export function ZComponentRegister(tag: string, options?: IZComponentRegisterOptions) {
   return function <C extends typeof HTMLElement>(Target: C) {
