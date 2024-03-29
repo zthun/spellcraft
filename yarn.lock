@@ -2615,7 +2615,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/spellcraft-web@workspace:packages/spellcraft-web":
+"@zthun/spellcraft-docs@workspace:packages/spellcraft-docs":
+  version: 0.0.0-use.local
+  resolution: "@zthun/spellcraft-docs@workspace:packages/spellcraft-docs"
+  dependencies:
+    "@zthun/spellcraft": "npm:^1.0.6"
+    "@zthun/spellcraft-web": "npm:^1.0.6"
+    typedoc: "npm:^0.25.12"
+    typedoc-plugin-extras: "npm:^3.0.0"
+    typescript: "npm:~5.4.3"
+  languageName: unknown
+  linkType: soft
+
+"@zthun/spellcraft-library@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@zthun/spellcraft-library@workspace:."
+  dependencies:
+    "@commitlint/cli": "npm:^19.2.1"
+    "@commitlint/config-conventional": "npm:^19.1.0"
+    "@types/lodash-es": "npm:^4.17.12"
+    "@vitest/coverage-istanbul": "npm:^1.4.0"
+    "@zthun/lint-janitor": "npm:^16.0.0"
+    "@zthun/lint-janitor-config": "npm:^16.0.1"
+    husky: "npm:^9.0.11"
+    jsdom: "npm:^24.0.0"
+    lerna: "npm:~8.1.2"
+    rimraf: "npm:^5.0.5"
+    rollup-plugin-visualizer: "npm:^5.12.0"
+    typescript: "npm:~5.4.3"
+    vite: "npm:^5.2.7"
+    vite-plugin-checker: "npm:^0.6.4"
+    vite-plugin-dts: "npm:^3.8.1"
+    vite-plugin-externalize-deps: "npm:^0.8.0"
+    vite-tsconfig-paths: "npm:^4.3.2"
+    vitest: "npm:^1.4.0"
+  languageName: unknown
+  linkType: soft
+
+"@zthun/spellcraft-web@npm:^1.0.6, @zthun/spellcraft-web@workspace:packages/spellcraft-web":
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft-web@workspace:packages/spellcraft-web"
   dependencies:
@@ -2823,6 +2860,13 @@ __metadata:
   version: 6.0.1
   resolution: "ansi-regex@npm:6.0.1"
   checksum: 10/1ff8b7667cded1de4fa2c9ae283e979fc87036864317da86a2e546725f96406746411d0d85e87a2d12fa5abd715d90006de7fa4fa0477c92321ad3b4c7d4e169
+  languageName: node
+  linkType: hard
+
+"ansi-sequence-parser@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "ansi-sequence-parser@npm:1.1.1"
+  checksum: 10/9ce30f257badc2ef62cac8028a7e26c368d22bf26650427192e8ffd102da42e377e3affe90fae58062eecc963b0b055f510dde3b677c7e0c433c67069b5a8ee5
   languageName: node
   linkType: hard
 
@@ -7315,6 +7359,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lunr@npm:^2.3.9":
+  version: 2.3.9
+  resolution: "lunr@npm:2.3.9"
+  checksum: 10/f2f6db34c046f5a767782fe2454e6dd69c75ba3c5cf5c1cb9cacca2313a99c2ba78ff8fa67dac866fb7c4ffd5f22e06684793f5f15ba14bddb598b94513d54bf
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^0.30.5, magic-string@npm:^0.30.8":
   version: 0.30.8
   resolution: "magic-string@npm:0.30.8"
@@ -7440,6 +7491,15 @@ __metadata:
     markdown-it: "npm:14.0.0"
     markdownlint-micromark: "npm:0.1.8"
   checksum: 10/1dca707fd1247579ae90bde4c60d338e34385cac285fcc00d48add7da2908b6bc63e47e34f1c9f902f8d8e0ce5b009643fc0fdbedfab35ca6f1cb0b6a8eae5ac
+  languageName: node
+  linkType: hard
+
+"marked@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "marked@npm:4.3.0"
+  bin:
+    marked: bin/marked.js
+  checksum: 10/c830bb4cb3705b754ca342b656e8a582d7428706b2678c898b856f6030c134ce2d1e19136efa3e6a1841f7330efbd24963d6bdeddc57d2938e906250f99895d0
   languageName: node
   linkType: hard
 
@@ -9671,6 +9731,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"shiki@npm:^0.14.7":
+  version: 0.14.7
+  resolution: "shiki@npm:0.14.7"
+  dependencies:
+    ansi-sequence-parser: "npm:^1.1.0"
+    jsonc-parser: "npm:^3.2.0"
+    vscode-oniguruma: "npm:^1.7.0"
+    vscode-textmate: "npm:^8.0.0"
+  checksum: 10/be3f2444c65bd0c57802026f171cb42ad571d361ee885be0c292b60785f68c70f19b69310f5ffe7f7a93db4c5ef50211e0a0248794bc6bb48d242bc43fe72a62
+  languageName: node
+  linkType: hard
+
 "side-channel@npm:^1.0.4, side-channel@npm:^1.0.6":
   version: 1.0.6
   resolution: "side-channel@npm:1.0.6"
@@ -9853,31 +9925,6 @@ __metadata:
   checksum: 10/8f6c6ae02ebb25b4ca658b8990d9e8a8f8d8a95e1d8b9fd84d87eed80a7dc8f8073d6a8d50b8a0295c0e8399e1f8814f5c00e2985e6bf3731540a16f7241cbf1
   languageName: node
   linkType: hard
-
-"spellcraft@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "spellcraft@workspace:."
-  dependencies:
-    "@commitlint/cli": "npm:^19.2.1"
-    "@commitlint/config-conventional": "npm:^19.1.0"
-    "@types/lodash-es": "npm:^4.17.12"
-    "@vitest/coverage-istanbul": "npm:^1.4.0"
-    "@zthun/lint-janitor": "npm:^16.0.0"
-    "@zthun/lint-janitor-config": "npm:^16.0.1"
-    husky: "npm:^9.0.11"
-    jsdom: "npm:^24.0.0"
-    lerna: "npm:~8.1.2"
-    rimraf: "npm:^5.0.5"
-    rollup-plugin-visualizer: "npm:^5.12.0"
-    typescript: "npm:~5.4.3"
-    vite: "npm:^5.2.7"
-    vite-plugin-checker: "npm:^0.6.4"
-    vite-plugin-dts: "npm:^3.8.1"
-    vite-plugin-externalize-deps: "npm:^0.8.0"
-    vite-tsconfig-paths: "npm:^4.3.2"
-    vitest: "npm:^1.4.0"
-  languageName: unknown
-  linkType: soft
 
 "split2@npm:^3.2.2":
   version: 3.2.2
@@ -10799,6 +10846,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typedoc-plugin-extras@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "typedoc-plugin-extras@npm:3.0.0"
+  peerDependencies:
+    typedoc: 0.25.x
+  checksum: 10/3039964cd60d064b4b6af72db05fb0fc9e30c383d635d0baa98eff55e7a59cc60f5c741359238a9483647f8720888c354eeef30bfc91c28f8346c5c20af8a21b
+  languageName: node
+  linkType: hard
+
+"typedoc@npm:^0.25.12":
+  version: 0.25.12
+  resolution: "typedoc@npm:0.25.12"
+  dependencies:
+    lunr: "npm:^2.3.9"
+    marked: "npm:^4.3.0"
+    minimatch: "npm:^9.0.3"
+    shiki: "npm:^0.14.7"
+  peerDependencies:
+    typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x
+  bin:
+    typedoc: bin/typedoc
+  checksum: 10/eb02b35a6fd1f8c3f9bb2b42b379139cce5b72b3797e983e58f61578b23610c1ee770dc442286981ab13d2949bdb746a84c38bcd856f09ac50a7a861cca56fd8
+  languageName: node
+  linkType: hard
+
 "typescript@npm:5.4.2":
   version: 5.4.2
   resolution: "typescript@npm:5.4.2"
@@ -11297,6 +11369,20 @@ __metadata:
   bin:
     installServerIntoExtension: bin/installServerIntoExtension
   checksum: 10/4ea1536e83ee392d0f0d4971828095a4efcd6b5b1310e7fc95f1d5e0e91328e52b27294718dcd5957d029d9301e8bb7cb181f1127937737a09a9a2ae413997e4
+  languageName: node
+  linkType: hard
+
+"vscode-oniguruma@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "vscode-oniguruma@npm:1.7.0"
+  checksum: 10/7da9d21459f9788544b258a5fd1b9752df6edd8b406a19eea0209c6bf76507d5717277016799301c4da0d536095f9ca8c06afd1ab8f4001189090c804ca4814e
+  languageName: node
+  linkType: hard
+
+"vscode-textmate@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "vscode-textmate@npm:8.0.0"
+  checksum: 10/9fa7d66d6042cb090d116c2d8820d34c8870cfcbaed6e404da89f66b899970ed0ac47b59a2e30fc40a25af5414822bb3ea27974f714e9b91910d69c894be95f7
   languageName: node
   linkType: hard
 

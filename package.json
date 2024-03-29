@@ -1,7 +1,7 @@
 {
-  "name": "spellcraft",
+  "name": "@zthun/spellcraft-library",
   "version": "0.0.0",
-  "description": "Style checks with tools for web projects using common rules.",
+  "description": "Basic web component libraries and helpers.",
   "license": "MIT",
   "repository": {
     "type": "git",
