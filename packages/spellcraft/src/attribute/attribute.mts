@@ -45,14 +45,79 @@ export type IZAttributeOptions = {
  * A decorator that marks an HTMLElement property that is backed by an
  * attribute that represents an intrinsic value.
  *
+ * All intrinsic values have a default value.
+ *
+ * |Type     |Default      |
+ * |---------|-------------|
+ * |bigint   |null         |
+ * |boolean  |false        |
+ * |function |null         |
+ * |number   |NaN          |
+ * |object   |null         |
+ * |string   |''           |
+ * |symbol   |null         |
+ * |trilean  |false        |
+ *
+ * If you do not want the default value for an attribute, then you have to set
+ * the {@link IZAttributeOptions.nullable} to true and the default value will
+ * return null if it is not set.
+ *
+ * Note that an attribute will support a trilean value that is not a fully native
+ * intrinsic value.  If you need support for trilean values in your components, then
+ * you will also want a dependency on the [\@zthun/trilean](https://www.npmjs.com/)
+ * package which implements helpers and type definitions.
+ *
  * @param options -
  *        The options for the attribute.
  *
  * @returns
  *        A property decorator that turns a single property to be backed by
  *        an HTMLElement attribute.
+ *
+ * @example Declare a string attribute.
+ *
+ * ```ts
+ * export class FancyComponent {
+ *    @ZAttribute()
+ *    public value: string;
+ * }
+ * ```
+ *
+ * @example Declare a boolean attribute.
+ *
+ * ```ts
+ * export class FancyComponent {
+ *    // Will attempt to parse the attribute value as a boolean.
+ *    // Boolean values will return false by default as the default
+ *    // intrinsic value is false for a boolean.
+ *    @ZAttribute({ type: 'boolean' })
+ *    public value: boolean;
+ * }
+ * ```
+ *
+ * @example Declare a numeric value with a fallback.
+ *
+ * ```ts
+ * export class FancyComponent {
+ *    // Will return 42 if there is no attribute set
+ *    @ZAttribute({ type: 'number', fallback: 42 })
+ *    public value: number;
+ * }
+ * ```
+ *
+ * @example Declare a trilean value with a fallback of indeterminate.
+ *
+ * ```ts
+ * import { trilean, ZTrilean } from '@zthun/trilean';
+ *
+ * export class FancyComponent {
+ *    // Will return the indeterminate value as the fallback.
+ *    @ZAttribute({ type: 'trilean', fallback: ZTrilean.Indeterminate })
+ *    public value: trilean;
+ * }
+ * ```
  */
-export function ZAttribute<V>(options?: IZAttributeOptions): PropertyDecorator {
+export function ZAttribute(options?: IZAttributeOptions): PropertyDecorator {
   return <C extends HTMLElement>(target: C, propertyKey: string | symbol): void => {
     const $default = kebabCase(String(propertyKey));
     const attr = String(firstDefined($default, options?.name));
@@ -83,7 +148,7 @@ export function ZAttribute<V>(options?: IZAttributeOptions): PropertyDecorator {
       trilean: (v) => ZTrilean.parse(v, ZTrilean.convert(fallback))
     };
 
-    const toString = (v: V | null | undefined): string | null => {
+    const toString = (v: any): string | null => {
       return v == null ? null : String(v);
     };
 
@@ -91,11 +156,11 @@ export function ZAttribute<V>(options?: IZAttributeOptions): PropertyDecorator {
       throw new Error(`Type, ${type}, is not a supported value of an attribute.  Use a property instead.`);
     };
 
-    const toTrilean = (v: V | null | undefined): string => {
+    const toTrilean = (v: any): string => {
       return ZTrilean.stringify(ZTrilean.convert(v));
     };
 
-    const intrToAttr: Record<ZIntrinsic, (v: V | null | undefined) => string | null> = {
+    const intrToAttr: Record<ZIntrinsic, (v: any) => string | null> = {
       bigint: toString,
       boolean: toString,
       function: toError,
@@ -111,7 +176,7 @@ export function ZAttribute<V>(options?: IZAttributeOptions): PropertyDecorator {
       return attrToIntr[_type](value);
     }
 
-    function set(this: C, newValue: V | null | undefined) {
+    function set(this: C, newValue: any) {
       const asText = intrToAttr[_type](newValue);
       ZAttributes.mutate(this, attr, asText);
     }
