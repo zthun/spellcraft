@@ -2,14 +2,16 @@ import { html } from '@zthun/helpful-fn';
 import {
   IZComponentTemplate,
   ZComponentRegister,
-  ZComponentRender,
+  ZComponentRenderOnAttributeChanged,
+  ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
 
 @ZComponentRegister('z-spellcraft-card')
 @ZComponentRenderTemplate()
-@ZComponentRender()
+@ZComponentRenderOnAttributeChanged()
+@ZComponentRenderOnConnected()
 @ZComponentShadow()
 export class ZSpellcraftCardElement extends HTMLElement implements IZComponentTemplate {
   public template() {

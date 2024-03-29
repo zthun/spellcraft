@@ -2,7 +2,8 @@ import { html } from '@zthun/helpful-fn';
 import {
   ZComponentDependencies,
   ZComponentRegister,
-  ZComponentRender,
+  ZComponentRenderOnAttributeChanged,
+  ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
@@ -10,7 +11,8 @@ import { ZSpellcraftIconElement } from '../icon/icon-element.mjs';
 
 @ZComponentRegister('z-spellcraft-header')
 @ZComponentRenderTemplate()
-@ZComponentRender()
+@ZComponentRenderOnConnected()
+@ZComponentRenderOnAttributeChanged()
 @ZComponentShadow()
 @ZComponentDependencies([ZSpellcraftIconElement])
 export class ZSpellcraftHeaderElement extends HTMLElement {
