@@ -6,9 +6,11 @@
   "words": [
     "bonta",
     "buildkit",
+    "buildx",
     "changefiles",
     "commitlint",
     "conventionalcommits",
+    "dockerhub",
     "htmlhint",
     "htmx",
     "nonbrowser",
