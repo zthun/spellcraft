@@ -29,3 +29,16 @@ RUN --mount=type=secret,id=GIT_CREDENTIALS,dst=/root/.git-credentials npx lerna 
     git push --tags
 RUN --mount=type=secret,id=NPM_CREDENTIALS,dst=/root/.npmrc npx lerna publish from-package --yes
 
+FROM node:lts-alpine as spellcraft-docs-install
+RUN npm install -g @zthun/spellcraft-docs
+
+FROM nginx:stable-alpine as spellcraft-docs
+COPY --from=spellcraft-docs-install /usr/local/lib/node_modules/@zthun/spellcraft-docs/dist/. /usr/share/nginx/html/
+
+FROM node:lts-alpine as spellcraft-web-install
+RUN npm install -g @zthun/spellcraft-web
+
+FROM nginx:stable-alpine as spellcraft-web
+COPY --from=spellcraft-web-install /usr/local/lib/node_modules/@zthun/spellcraft-web/dist/. /usr/share/nginx/html/
+
+

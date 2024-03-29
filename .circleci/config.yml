@@ -53,6 +53,18 @@ jobs:
       - run_docker_target:
           target: release
 
+  dockerize:
+    executor: system
+    steps:
+      - checkout
+      - run:
+          command: |
+            export DOCKER_BUILDKIT=1
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+            docker buildx create --use
+            docker buildx build --target spellcraft-web -t zthun/spellcraft-web:latest -t zthun/spellcraft-web:$(npm show @zthun/spellcraft-web version) --progress=plain --platform linux/arm64,linux/amd64 --push .
+            docker buildx build --target spellcraft-docs -t zthun/spellcraft-docs:latest -t zthun/spellcraft-docs:$(npm show @zthun/spellcraft-docs version) --progress=plain --platform linux/arm64,linux/amd64 --push .
+
 workflows:
   make:
     jobs:
@@ -74,3 +86,8 @@ workflows:
             branches:
               only:
                 - latest
+      - dockerize:
+          context:
+            - credentials
+          requires:
+            - release
