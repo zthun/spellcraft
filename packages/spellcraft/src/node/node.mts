@@ -1,5 +1,5 @@
 /**
- * A decorator for a node object which adds additional functionality for auto adding nodes and manipulating children.
+ * A decorator for a Node object which adds additional functionality for auto adding nodes and manipulating children.
  */
 export class ZNode {
   /**
