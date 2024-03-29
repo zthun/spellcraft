@@ -1,12 +1,13 @@
 import { ZTrilean, trilean } from '@zthun/helpful-fn';
 import { camelCase, kebabCase } from 'lodash-es';
-import { beforeAll, describe, expect, it } from 'vitest';
-import { registerCustomElement } from '../register/register-custom-element.mjs';
+import { describe, expect, it } from 'vitest';
+import { ZComponentRegister } from '../component/component-register.mjs';
 import { ZAttribute } from './attribute.mjs';
 
 const Batman = 'batman';
 const TowardsInfinity = BigInt('9394839483984938493849839483984938493849');
 
+@ZComponentRegister('z-with-attributes')
 class ZWithAttributes extends HTMLElement {
   @ZAttribute()
   public stringAttribute: string;
@@ -62,10 +63,6 @@ class ZWithAttributes extends HTMLElement {
 
 describe('ZAttribute', () => {
   const createTestTarget = () => new ZWithAttributes();
-
-  beforeAll(() => {
-    registerCustomElement('z-with-attributes', ZWithAttributes);
-  });
 
   function shouldReadTheAttribute<T>(expected: T, attribute: string) {
     // Arrange.
