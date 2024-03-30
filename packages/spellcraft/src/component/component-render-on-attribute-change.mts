@@ -31,13 +31,13 @@ export function ZComponentRenderOnAttributeChanged() {
   return function <C extends typeof HTMLElement>(Target: C) {
     const _Target = Target as any;
 
-    const K: any = class extends _Target implements IZLifecycleAttributeChanged {
+    const _ZComponentRenderOnAttributeChanged: any = class extends _Target implements IZLifecycleAttributeChanged {
       public attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-        super.connectedCallback?.call(this, name, oldValue, newValue);
+        super.attributeChangedCallback?.call(this, name, oldValue, newValue);
         this.render?.call(this, this.shadowRoot || this);
       }
     };
 
-    return K;
+    return _ZComponentRenderOnAttributeChanged;
   };
 }
