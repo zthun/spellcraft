@@ -1,7 +1,7 @@
 import { createGuid, html } from '@zthun/helpful-fn';
-import { IZLifecycleAttributeChanged } from 'src/lifecycle/lifecycle-attribute-changed.mjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
+import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentRenderOnAttributeChanged } from './component-render-on-attribute-change.mjs';
