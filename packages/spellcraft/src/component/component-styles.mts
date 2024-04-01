@@ -1,6 +1,5 @@
 import { createGuid, firstDefined } from '@zthun/helpful-fn';
-import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
-import { IZLifecycleDisconnected } from '../lifecycle/lifecycle-disconnected.mjs';
+import { ZComponentConstructor } from './component-constructor.mjs';
 
 /**
  * A web component that has a styles factory.
@@ -21,81 +20,81 @@ export interface IZComponentStyles {
  */
 export interface IZComponentStylesOptions {
   /**
-   * The id of the styles.
+   * The id of the styles to search for.
    *
-   * By setting this, it will keep the styles even
-   * after the component has been disconnected.  Setting an id
-   * is usually for global styles and will only be set once
-   * a component with the styles is used.
-   *
-   * It is recommended to only use this if you have styles
-   * that are static and will not change past the first
-   * render.  If you wind up with dynamic styles, I.E, styles
-   * that change with an attribute or property, setting a
-   * global style is not recommended and you should instead
-   * encapsulate those in the components shadow root if
-   * available.
+   * You don't have to set this but it is recommended
+   * to make it easy to debug and search for in the document
+   * head. If this is falsy, then an id will be generated for you
+   * for the given component.
    */
   id?: string;
 }
 
 /**
- * A component that adds styles to the document head.
- *
- * This is not styles for rendering.  These add global styles
- * to the document head fragment.  If you need to render styles
- * on the shadow root or the node itself, use a render template
- * decorator and include the styles in a style element under that.
+ * Represents an element that contains a style element.
+ */
+export interface IZComponentWithStyleElement {
+  /**
+   * Gets the current state of the style element.
+   *
+   * This can be null if the style element has not
+   * yet been created.
+   */
+  readonly styleElement: HTMLStyleElement | null;
+
+  /**
+   * Sets the styles for the given component in the document head
+   * fragment.
+   *
+   * This method will create the style element if it does not already
+   * exist.
+   *
+   * @param css -
+   *        The css for the component.
+   *
+   * @returns
+   *        The current style element attached for the component.
+   */
+  refreshStyles(css?: string): HTMLStyleElement;
+}
+
+type DecoratorOutput<T> = T & IZComponentWithStyleElement;
+
+/**
+ * A component that can add a style element to the document head.
  *
  * @param options -
  *        The options for the style component.
  *
  * @returns
- *        A new class that extends from the target class that implements
- *        the styles component.
+ *        A new class that extends from the target class that adds a new property,
+ *        styleElement
  */
-export function ZComponentStyles(options?: IZComponentStylesOptions) {
-  const persistent = !!options?.id;
+export function ZComponentStyles<TElement extends HTMLElement>(options?: IZComponentStylesOptions) {
+  const id = options?.id || `css-${createGuid()}`;
+  const selector = `#${id}`;
 
-  return function <C extends typeof HTMLElement>(Target: C) {
-    const _Target = Target as any;
+  return function (target: ZComponentConstructor<TElement>): ZComponentConstructor<DecoratorOutput<TElement>> {
+    // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
+    return class _ZComponentStyles extends target implements IZComponentWithStyleElement {
+      public styleElement: HTMLStyleElement | null = null;
 
-    const K: any = class extends _Target implements IZLifecycleConnected, IZLifecycleDisconnected {
-      public constructor() {
-        super();
-        this._id = options?.id || `css-${createGuid()}`;
+      public constructor(...args: any[]) {
+        super(...args);
+
+        this.styleElement = document.head.querySelector(selector);
       }
 
-      __styleElement() {
-        const selector = `#${this._id}`;
-        let e = document.head.querySelector(selector);
-
-        if (e == null) {
-          const insertTarget = this.shadowRoot || document.head;
-          e = document.createElement('style');
-          e.id = this._id;
-          insertTarget.appendChild(e);
-          e = document.head.querySelector<HTMLStyleElement>(selector)!;
+      public refreshStyles(css?: string): HTMLStyleElement {
+        if (this.styleElement == null) {
+          this.styleElement = document.createElement('style');
+          this.styleElement.id = id;
+          this.styleElement.textContent = firstDefined('', css);
+          document.head.appendChild(this.styleElement);
         }
 
-        return e;
-      }
-
-      public connectedCallback() {
-        super.connectedCallback?.call(this);
-        const $css = this.styles?.call(this);
-        this.__styleElement().textContent = firstDefined('', $css);
-      }
-
-      public disconnectedCallback() {
-        super.disconnectedCallback?.call(this);
-
-        if (!persistent) {
-          this.__styleElement().remove();
-        }
+        return this.styleElement;
       }
     };
-
-    return K;
   };
 }
