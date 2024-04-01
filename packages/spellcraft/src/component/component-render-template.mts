@@ -1,4 +1,5 @@
 import { ZNode } from '../node/node.mjs';
+import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentRender } from './component-render.mjs';
 
 /**
@@ -16,7 +17,7 @@ export interface IZComponentTemplate {
 }
 
 /**
- * A mixin decorator that extends a WebComponent and adds a flow that renders a template
+ * An aspect that extends a component and adds a flow that renders a template
  * to the shadow root if it exists or directly under the host container if it does not contain
  * a shadow root.
  *
@@ -28,22 +29,25 @@ export interface IZComponentTemplate {
  * Note that if you have multiples of these, it becomes last one wins and you will waste
  * cycles rendering extra templates that you will never see.
  *
+ * @param TElement -
+ *        The type of element that the decorator extends.
+ *
  * @returns
  *        A new decorated type that automatically implements a render method that clears
  *        the target shadow root or target node and renders an html template.
  */
-export function ZComponentRenderTemplate() {
-  return function <C extends typeof HTMLElement>(Target: C) {
+export function ZComponentRenderTemplate<TElement extends HTMLElement>() {
+  return function (Target: ZComponentConstructor<TElement>): any {
     const _Target = Target as any;
 
-    const K: any = class extends _Target implements IZComponentRender {
+    class _ZComponentRenderTemplate extends _Target implements IZComponentRender {
       public render(node: Node) {
         super.render?.call(this, node);
         const $html = this.template?.call(this);
         new ZNode(node).clear().template($html);
       }
-    };
+    }
 
-    return K;
+    return _ZComponentRenderTemplate;
   };
 }
