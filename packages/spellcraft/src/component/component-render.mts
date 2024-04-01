@@ -10,3 +10,13 @@ export interface IZComponentRender {
    */
   render(node: Node): void;
 }
+
+/**
+ * A web component that may support rendering.
+ */
+export interface IZComponentRenderMaybe {
+  /**
+   * See {@link IZComponentRender}.
+   */
+  render?(node: Node): void;
+}
