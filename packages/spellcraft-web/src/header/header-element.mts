@@ -13,11 +13,11 @@ import { ZSpellcraftIconElement } from '../icon/icon-element.mjs';
 export interface ZSpellcraftHeaderElement extends IZComponentRender {}
 
 @ZComponentRegister('z-spellcraft-header')
+@ZComponentDependencies([ZSpellcraftIconElement])
 @ZComponentRenderOnConnected()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderTemplate()
 @ZComponentShadow()
-@ZComponentDependencies([ZSpellcraftIconElement])
 export class ZSpellcraftHeaderElement extends HTMLElement {
   public template() {
     return html`
