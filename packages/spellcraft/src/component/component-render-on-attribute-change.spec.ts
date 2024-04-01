@@ -21,7 +21,7 @@ describe('ZComponentRenderOnAttributeChange', () => {
       extends HTMLElement
       implements IZComponentRender, IZLifecycleAttributeChanged
     {
-      public static readonly observedAttributes = ['identity'];
+      public static readonly observedAttributes? = ['identity'];
 
       @ZAttribute()
       public identity: string;
@@ -70,7 +70,7 @@ describe('ZComponentRenderOnAttributeChange', () => {
     @ZComponentRegister(tag, { extend: directive })
     @ZComponentRenderOnAttributeChanged()
     class ZComponentRenderDirectiveTest extends HTMLInputElement implements IZComponentRender {
-      public static readonly observedAttributes = ['identity'];
+      public static readonly observedAttributes? = ['identity'];
 
       @ZAttribute()
       public identity: string;
