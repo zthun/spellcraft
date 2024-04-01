@@ -1,5 +1,6 @@
 import { html } from '@zthun/helpful-fn';
 import {
+  IZComponentRender,
   IZComponentTemplate,
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
@@ -7,6 +8,8 @@ import {
   ZComponentRenderTemplate,
   ZComponentShadow
 } from '@zthun/spellcraft';
+
+export interface ZSpellcraftCardElement extends IZComponentRender {}
 
 @ZComponentRegister('z-spellcraft-card')
 @ZComponentRenderTemplate()

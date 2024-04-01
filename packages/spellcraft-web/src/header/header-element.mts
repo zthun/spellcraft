@@ -1,5 +1,6 @@
 import { html } from '@zthun/helpful-fn';
 import {
+  IZComponentRender,
   ZComponentDependencies,
   ZComponentRegister,
   ZComponentRenderOnAttributeChanged,
@@ -9,10 +10,12 @@ import {
 } from '@zthun/spellcraft';
 import { ZSpellcraftIconElement } from '../icon/icon-element.mjs';
 
+export interface ZSpellcraftHeaderElement extends IZComponentRender {}
+
 @ZComponentRegister('z-spellcraft-header')
-@ZComponentRenderTemplate()
 @ZComponentRenderOnConnected()
 @ZComponentRenderOnAttributeChanged()
+@ZComponentRenderTemplate()
 @ZComponentShadow()
 @ZComponentDependencies([ZSpellcraftIconElement])
 export class ZSpellcraftHeaderElement extends HTMLElement {
