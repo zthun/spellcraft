@@ -4,56 +4,39 @@ import { ZNode } from '../node/node.mjs';
 import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentRenderOnConnected } from './component-render-on-connected.mjs';
 import { IZComponentTemplate, ZComponentRenderTemplate } from './component-render-template.mjs';
+import { IZComponentRender } from './component-render.mjs';
 
 describe('ZComponentRenderTemplate', () => {
+  const tag = 'z-component-render-with-template-test';
+
   afterEach(() => {
     new ZNode(document.body).clear();
   });
 
-  const createTestTarget = <T extends HTMLElement>($tag: string) => {
+  interface ZComponentRenderWithTemplateTest extends IZComponentRender {}
+
+  @ZComponentRegister(tag)
+  @ZComponentRenderTemplate()
+  @ZComponentRenderOnConnected()
+  class ZComponentRenderWithTemplateTest extends HTMLElement implements IZComponentTemplate {
+    public template() {
+      return html`<div class="template-content"></div>`;
+    }
+  }
+
+  const createTestTarget = () => {
     const template = document.createElement('template');
-    template.innerHTML = html`<div><${$tag}></${$tag}></div>`;
+    template.innerHTML = html`<div><${tag}></${tag}></div>`;
     document.body.appendChild(template.content.cloneNode(true));
-    return document.body.querySelector<T>($tag)!;
+    return document.body.querySelector<ZComponentRenderWithTemplateTest>(tag)!;
   };
 
-  describe('With Template', () => {
-    const $tag = 'z-component-render-with-template-test';
-
-    @ZComponentRegister($tag)
-    @ZComponentRenderTemplate()
-    @ZComponentRenderOnConnected()
-    class ZComponentRenderWithTemplateTest extends HTMLElement implements IZComponentTemplate {
-      public template() {
-        return html`<div class="template-content"></div>`;
-      }
-    }
-
-    it('should render the html returned from the template method directly to the element', () => {
-      // Arrange.
-      const target = createTestTarget<ZComponentRenderWithTemplateTest>($tag);
-      // Act.
-      const actual = target.querySelector('.template-content');
-      // Assert.
-      expect(actual).toBeTruthy();
-    });
-  });
-
-  describe('Without Template', () => {
-    const $tag = 'z-component-render-without-template-test';
-
-    @ZComponentRegister($tag)
-    @ZComponentRenderTemplate()
-    @ZComponentRenderOnConnected()
-    class ZComponentRenderWithoutTemplateTest extends HTMLElement {}
-
-    it('should render empty to the element', () => {
-      // Arrange.
-      const target = createTestTarget<ZComponentRenderWithoutTemplateTest>($tag);
-      // Act.
-      const actual = target.childNodes;
-      // Assert.
-      expect(actual.length).toEqual(0);
-    });
+  it('should render the html returned from the template method directly to the element', () => {
+    // Arrange.
+    const target = createTestTarget();
+    // Act.
+    const actual = target.querySelector('.template-content');
+    // Assert.
+    expect(actual).toBeTruthy();
   });
 });

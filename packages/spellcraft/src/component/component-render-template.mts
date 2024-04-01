@@ -1,6 +1,6 @@
 import { ZNode } from '../node/node.mjs';
 import { ZComponentConstructor } from './component-constructor.mjs';
-import { IZComponentRender } from './component-render.mjs';
+import { IZComponentRender, IZComponentRenderMaybe } from './component-render.mjs';
 
 /**
  * A web component that has an html template factory.
@@ -15,6 +15,8 @@ export interface IZComponentTemplate {
    */
   template(): string | undefined;
 }
+
+type DecoratorRequirements = HTMLElement & IZComponentTemplate & IZComponentRenderMaybe;
 
 /**
  * An aspect that extends a component and adds a flow that renders a template
@@ -36,15 +38,13 @@ export interface IZComponentTemplate {
  *        A new decorated type that automatically implements a render method that clears
  *        the target shadow root or target node and renders an html template.
  */
-export function ZComponentRenderTemplate<TElement extends HTMLElement>() {
+export function ZComponentRenderTemplate<TElement extends DecoratorRequirements>() {
   return function (Target: ZComponentConstructor<TElement>): any {
-    const _Target = Target as any;
-
-    class _ZComponentRenderTemplate extends _Target implements IZComponentRender {
+    // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
+    class _ZComponentRenderTemplate extends Target implements IZComponentRender {
       public render(node: Node) {
         super.render?.call(this, node);
-        const $html = this.template?.call(this);
-        new ZNode(node).clear().template($html);
+        new ZNode(node).clear().template(this.template());
       }
     }
 
