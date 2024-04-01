@@ -1,3 +1,5 @@
+import { ZComponentConstructor } from './component-constructor.mjs';
+
 /**
  * Options for registering a component.
  */
@@ -12,10 +14,8 @@ export interface IZComponentRegisterOptions {
 }
 
 /**
- * A mixin decorator that extends a WebComponent and adds the registration.
- *
- * The component will be registered with the custom elements registry.
- *
+ * An aspect that registers of a custom element or directive to the custom elements registry.
+ * *
  * The registration for a given component should happen as the final step in the
  * decoration stack - meaning it should be at the top.  This will register the final
  * output class that extends the target to be constructed. If you have more than 1
@@ -26,6 +26,8 @@ export interface IZComponentRegisterOptions {
  *        The tag that this component will register with.
  * @param options -
  *        The options for the registration.
+ * @param TElement -
+ *        The type of element this decorator extends.
  *
  * @returns
  *        The class target.
@@ -53,11 +55,12 @@ export interface IZComponentRegisterOptions {
  * </div>
  * ```
  */
-export function ZComponentRegister(tag: string, options?: IZComponentRegisterOptions) {
-  return function <C extends typeof HTMLElement>(Target: C) {
+export function ZComponentRegister<TElement extends HTMLElement>(tag: string, options?: IZComponentRegisterOptions) {
+  return function (target: ZComponentConstructor<TElement>): any {
     if (customElements.get(tag) == null) {
-      customElements.define(tag, Target, { extends: options?.extend });
+      customElements.define(tag, target, { extends: options?.extend });
     }
-    return Target;
+
+    return target;
   };
 }
