@@ -5,5 +5,5 @@ export interface IZLifecycleAdopted {
   /**
    * Occurs when a component moves to a new document.
    */
-  adoptedCallback(): void;
+  adoptedCallback?(): void;
 }

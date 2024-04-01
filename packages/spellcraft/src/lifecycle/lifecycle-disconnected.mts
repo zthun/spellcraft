@@ -5,5 +5,5 @@ export interface IZLifecycleDisconnected {
   /**
    * Invoked when a web component is removed from the dom.
    */
-  disconnectedCallback(): void;
+  disconnectedCallback?(): void;
 }

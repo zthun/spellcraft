@@ -12,5 +12,5 @@ export interface IZLifecycleAttributeChanged {
    * @param newValue -
    *        The new value of the attribute.
    */
-  attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
+  attributeChangedCallback?(name: string, oldValue: string, newValue: string): void;
 }

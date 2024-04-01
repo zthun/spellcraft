@@ -5,5 +5,5 @@ export interface IZLifecycleConnected {
   /**
    * Invoked when a web component is inserted into the DOM.
    */
-  connectedCallback(): void;
+  connectedCallback?(): void;
 }
