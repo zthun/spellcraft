@@ -13,7 +13,7 @@ export interface IZComponentTemplate {
    *        The html of this component.  Should return
    *        undefined if there is no template.
    */
-  template(): string | undefined;
+  template(): string;
 }
 
 type DecoratorRequirements = HTMLElement & IZComponentTemplate & IZComponentRenderMaybe;
