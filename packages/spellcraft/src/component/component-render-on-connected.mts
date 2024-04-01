@@ -2,7 +2,7 @@ import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
 import { ZComponentConstructor } from './component-constructor.mjs';
 
 /**
- * A mixin decorator that adds a render invocation on the connected callback lifecycle event.
+ * An aspect that adds a render invocation on the connected callback lifecycle event.
  *
  * In order for the component to actually render anything, it needs to implement
  * {@link IZComponentRender}. You can build a render function using additional
@@ -10,6 +10,9 @@ import { ZComponentConstructor } from './component-constructor.mjs';
  *
  * The target node for the render method will be the shadowRoot if it is set, or
  * will point to this object if there is no shadow root.
+ *
+ * @param TElement -
+ *        The type of element that this decorator extends.
  *
  * @returns
  *        A new decorated type that automatically implements {@link IZLifecycleConnected}.
