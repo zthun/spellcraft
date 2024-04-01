@@ -1,5 +1,8 @@
 import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
 import { ZComponentConstructor } from './component-constructor.mjs';
+import { IZComponentRender } from './component-render.mjs';
+
+type DecoratorRequirements = HTMLElement & Required<IZComponentRender> & IZLifecycleAttributeChanged;
 
 /**
  * An aspect that adds a render invocation on the attribute changed
@@ -31,14 +34,13 @@ import { ZComponentConstructor } from './component-constructor.mjs';
  * }
  * ```
  */
-export function ZComponentRenderOnAttributeChanged<TElement extends HTMLElement>() {
+export function ZComponentRenderOnAttributeChanged<TElement extends DecoratorRequirements>() {
   return function (Target: ZComponentConstructor<TElement>): any {
-    const _Target = Target as any;
-
-    class _ZComponentRenderOnAttributeChanged extends _Target implements IZLifecycleAttributeChanged {
+    // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
+    class _ZComponentRenderOnAttributeChanged extends Target implements Required<IZLifecycleAttributeChanged> {
       public attributeChangedCallback(name: string, oldValue: string, newValue: string) {
         super.attributeChangedCallback?.call(this, name, oldValue, newValue);
-        this.render?.call(this, this.shadowRoot || this);
+        this.render(this.shadowRoot || this);
       }
     }
 
