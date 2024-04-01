@@ -32,13 +32,10 @@ export class ZNode {
    * @returns
    *        This object.
    */
-  public template(html: string | null | undefined): this {
-    if (html) {
-      const template = document.createElement('template');
-      template.innerHTML = html;
-      this.node.appendChild(template.content.cloneNode(true));
-    }
-
+  public template(html: string): this {
+    const template = document.createElement('template');
+    template.innerHTML = html;
+    this.node.appendChild(template.content.cloneNode(true));
     return this;
   }
 }
