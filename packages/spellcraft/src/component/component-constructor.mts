@@ -5,6 +5,6 @@
  * supports the difference subtypes of HTMLElement.
  */
 export type ZComponentConstructor<T extends HTMLElement> = {
-  new (): T;
+  new (...args: any[]): T;
   prototype: T;
 };
