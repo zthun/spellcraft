@@ -11,9 +11,8 @@ import { ZComponentConstructor } from './component-constructor.mjs';
  */
 export function ZComponentShadow<TElement extends HTMLElement>() {
   return function (target: ZComponentConstructor<TElement>): any {
-    const _Target = target as any;
-
-    class _ZComponentWithShadow extends _Target {
+    // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
+    class _ZComponentWithShadow extends target {
       public constructor(...args: any[]) {
         super(...args);
 
