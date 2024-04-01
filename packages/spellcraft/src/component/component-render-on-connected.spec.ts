@@ -1,4 +1,5 @@
 import { html } from '@zthun/helpful-fn';
+import { IZLifecycleConnected } from 'src/lifecycle/lifecycle-connected.mjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ZNode } from '../node/node.mjs';
 import { ZComponentRegister } from './component-register.mjs';
@@ -10,29 +11,43 @@ describe('ZComponentRenderOnConnected', () => {
     new ZNode(document.body).clear();
   });
 
-  const createTestTarget = <T extends HTMLElement>($tag: string) => {
-    const $html = html`<div><${$tag}></${$tag}></div>`;
-    const template = document.createElement('template');
-    template.innerHTML = $html;
-    document.body.appendChild(template.content.cloneNode(true));
-    return document.body.querySelector<T>($tag)!;
-  };
-
   describe('Custom Element Flow', () => {
     const tag = 'z-component-render-custom-element-test';
 
     @ZComponentRegister(tag)
     @ZComponentRenderOnConnected()
-    class ZComponentRenderCustomElementTest extends HTMLElement implements IZComponentRender {
+    class ZComponentRenderCustomElementTest extends HTMLElement implements IZComponentRender, IZLifecycleConnected {
       public render = vi.fn();
+
+      public _connectedCallback = vi.fn();
+
+      public connectedCallback(): void {
+        this._connectedCallback();
+      }
     }
+
+    const createTestTarget = () => {
+      const $html = html`<div><${tag}></${tag}></div>`;
+      const template = document.createElement('template');
+      template.innerHTML = $html;
+      document.body.appendChild(template.content.cloneNode(true));
+      return document.body.querySelector<ZComponentRenderCustomElementTest>(tag)!;
+    };
 
     it('should render when connected', () => {
       // Arrange.
       // Act.
-      const target = createTestTarget<ZComponentRenderCustomElementTest>(tag);
+      const target = createTestTarget();
       // Assert.
       expect(target.render).toHaveBeenCalledTimes(1);
+    });
+
+    it('should invoke the parent connected callback', () => {
+      // Arrange.
+      // Act.
+      const target = createTestTarget();
+      // Assert.
+      expect(target._connectedCallback).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -44,6 +59,12 @@ describe('ZComponentRenderOnConnected', () => {
     @ZComponentRenderOnConnected()
     class ZComponentRenderDirectiveTest extends HTMLInputElement implements IZComponentRender {
       public render = vi.fn();
+
+      public _connectedCallback = vi.fn();
+
+      public connectedCallback(): void {
+        this._connectedCallback();
+      }
     }
 
     const createTestTarget = () => {
@@ -60,6 +81,14 @@ describe('ZComponentRenderOnConnected', () => {
       const target = createTestTarget();
       // Assert.
       expect(target.render).toHaveBeenCalledTimes(1);
+    });
+
+    it('should invoke the parent connected callback', () => {
+      // Arrange.
+      // Act.
+      const target = createTestTarget();
+      // Assert.
+      expect(target._connectedCallback).toHaveBeenCalledTimes(1);
     });
   });
 });

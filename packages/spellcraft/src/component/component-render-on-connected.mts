@@ -1,4 +1,5 @@
 import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
+import { ZComponentConstructor } from './component-constructor.mjs';
 
 /**
  * A mixin decorator that adds a render invocation on the connected callback lifecycle event.
@@ -26,17 +27,17 @@ import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
  * }
  * ```
  */
-export function ZComponentRenderOnConnected() {
-  return function <C extends typeof HTMLElement>(Target: C) {
-    const _Target = Target as any;
+export function ZComponentRenderOnConnected<TElement extends HTMLElement>() {
+  return function (target: ZComponentConstructor<TElement>): any {
+    const _Target = target as any;
 
-    const K: any = class extends _Target implements IZLifecycleConnected {
+    class _ZComponentRenderOnConnected extends _Target implements IZLifecycleConnected {
       public connectedCallback() {
         super.connectedCallback?.call(this);
         this.render?.call(this, this.shadowRoot || this);
       }
-    };
+    }
 
-    return K;
+    return _ZComponentRenderOnConnected;
   };
 }
