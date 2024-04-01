@@ -8,6 +8,7 @@ export * from './component/component-render-on-connected.mjs';
 export * from './component/component-render-template.mjs';
 export * from './component/component-render.mjs';
 export * from './component/component-shadow.mjs';
+export * from './component/component-styles-add-on-connect.mjs';
 export * from './component/component-styles.mjs';
 export * from './lifecycle/lifecycle-adopted.mjs';
 export * from './lifecycle/lifecycle-attribute-changed.mjs';

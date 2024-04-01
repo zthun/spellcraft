@@ -1,8 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
 import { css } from '@zthun/helpful-fn';
-import { IZComponentStyles, ZComponentRegister, ZComponentStyles } from '@zthun/spellcraft';
+import {
+  IZComponentStyles,
+  IZComponentWithStyleElement,
+  ZComponentRegister,
+  ZComponentStyles,
+  ZComponentStylesAddOnConnect
+} from '@zthun/spellcraft';
+
+export interface ZSpellcraftThemeElement extends IZComponentWithStyleElement {}
 
 @ZComponentRegister('z-spellcraft-theme')
-@ZComponentStyles({ id: 'ZSpellcraftTheme-root' })
+@ZComponentStylesAddOnConnect()
+@ZComponentStyles()
 export class ZSpellcraftThemeElement extends HTMLElement implements IZComponentStyles {
   public styles() {
     return css`
