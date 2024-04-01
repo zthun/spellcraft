@@ -1,4 +1,4 @@
-import { createGuid, firstDefined } from '@zthun/helpful-fn';
+import { createGuid, firstDefined, firstTruthy } from '@zthun/helpful-fn';
 import { ZComponentConstructor } from './component-constructor.mjs';
 
 /**
@@ -58,8 +58,6 @@ export interface IZComponentWithStyleElement {
   refreshStyles(css?: string): HTMLStyleElement;
 }
 
-type DecoratorOutput<T> = T & IZComponentWithStyleElement;
-
 /**
  * A component that can add a style element to the document head.
  *
@@ -71,10 +69,10 @@ type DecoratorOutput<T> = T & IZComponentWithStyleElement;
  *        styleElement
  */
 export function ZComponentStyles<TElement extends HTMLElement>(options?: IZComponentStylesOptions) {
-  const id = options?.id || `css-${createGuid()}`;
+  const id = firstTruthy(`css-${createGuid()}`, options?.id);
   const selector = `#${id}`;
 
-  return function (target: ZComponentConstructor<TElement>): ZComponentConstructor<DecoratorOutput<TElement>> {
+  return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     return class _ZComponentStyles extends target implements IZComponentWithStyleElement {
       public styleElement: HTMLStyleElement | null = null;
@@ -89,10 +87,10 @@ export function ZComponentStyles<TElement extends HTMLElement>(options?: IZCompo
         if (this.styleElement == null) {
           this.styleElement = document.createElement('style');
           this.styleElement.id = id;
-          this.styleElement.textContent = firstDefined('', css);
           document.head.appendChild(this.styleElement);
         }
 
+        this.styleElement.textContent = firstDefined('', css);
         return this.styleElement;
       }
     };
