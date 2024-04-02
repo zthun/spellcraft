@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/zthun/spellcraft/compare/v2.0.1...v2.1.0) (2024-04-02)
+
+
+### Features
+
+* component styles now has correct implementation ([9cb7fff](https://github.com/zthun/spellcraft/commit/9cb7fffd44278df87b06a94259f175d189268fd2))
+* styles can now be updated on the head fragment when attributes of the owning element changes ([d7f940c](https://github.com/zthun/spellcraft/commit/d7f940c4f15447f9ab7012c960f9ad3fece74d07))
+
+
+### Bug Fixes
+
+* component constructor can now have any arguments passed to it ([b5920d6](https://github.com/zthun/spellcraft/commit/b5920d6001cb07a0a6c4e715950bbc458e99ce60))
+* template must now properly return the html ([457f751](https://github.com/zthun/spellcraft/commit/457f751987bcb367c5f67a6c8f13aebfe8af56e5))
+
+
+
 ## [2.0.1](https://github.com/zthun/spellcraft/compare/v2.0.0...v2.0.1) (2024-04-01)
 
 

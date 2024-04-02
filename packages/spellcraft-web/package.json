@@ -1,6 +1,6 @@
 {
   "name": "@zthun/spellcraft-web",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Website for documenting and testing the spellcraft framework",
   "author": "Anthony Bonta",
   "license": "MIT",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@zthun/helpful-fn": "^4.0.4",
-    "@zthun/spellcraft": "^2.0.1",
+    "@zthun/spellcraft": "^2.1.0",
     "highlight.js": "^11.9.0",
     "typescript": "~5.4.3",
     "vite": "^5.2.7",
