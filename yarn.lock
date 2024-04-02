@@ -2619,8 +2619,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft-docs@workspace:packages/spellcraft-docs"
   dependencies:
-    "@zthun/spellcraft": "npm:^2.0.0"
-    "@zthun/spellcraft-web": "npm:^2.0.0"
+    "@zthun/spellcraft": "npm:^2.0.1"
+    "@zthun/spellcraft-web": "npm:^2.0.1"
     typedoc: "npm:^0.25.12"
     typedoc-plugin-extras: "npm:^3.0.0"
     typescript: "npm:~5.4.3"
@@ -2652,12 +2652,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/spellcraft-web@npm:^2.0.0, @zthun/spellcraft-web@workspace:packages/spellcraft-web":
+"@zthun/spellcraft-web@npm:^2.0.1, @zthun/spellcraft-web@workspace:packages/spellcraft-web":
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft-web@workspace:packages/spellcraft-web"
   dependencies:
     "@zthun/helpful-fn": "npm:^4.0.4"
-    "@zthun/spellcraft": "npm:^2.0.0"
+    "@zthun/spellcraft": "npm:^2.0.1"
     highlight.js: "npm:^11.9.0"
     typescript: "npm:~5.4.3"
     vite: "npm:^5.2.7"
@@ -2665,7 +2665,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/spellcraft@npm:^2.0.0, @zthun/spellcraft@workspace:packages/spellcraft":
+"@zthun/spellcraft@npm:^2.0.1, @zthun/spellcraft@workspace:packages/spellcraft":
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft@workspace:packages/spellcraft"
   dependencies:
