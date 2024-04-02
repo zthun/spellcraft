@@ -1,6 +1,6 @@
 import { css, html } from '@zthun/helpful-fn';
-import { ZAttribute } from 'src/attribute/attribute.mjs';
 import { afterEach, describe, expect, it } from 'vitest';
+import { ZAttribute } from '../attribute/attribute.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentStylesAddOnConnect } from './component-styles-add-on-connect.mjs';
