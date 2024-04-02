@@ -18,7 +18,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@zthun/helpful-fn": "^4.0.4",
+    "@zthun/helpful-fn": "^4.1.0",
     "@zthun/spellcraft": "^2.1.0",
     "highlight.js": "^11.9.0",
     "typescript": "~5.4.3",
