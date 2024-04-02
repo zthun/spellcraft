@@ -55,8 +55,6 @@ export class ZSpellcraftThemeElement extends HTMLElement implements IZComponentS
         color: var(--color-body-contrast);
         padding: 0;
         margin: 0;
-        height: 100vh;
-
         font-family: 'Roboto';
       }
 
@@ -68,7 +66,7 @@ export class ZSpellcraftThemeElement extends HTMLElement implements IZComponentS
         color: var(--color-body-contrast);
       }
 
-      .ZSpellcraft-page {
+      main {
         padding: var(--gap-xl);
       }
     `;
