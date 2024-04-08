@@ -19,7 +19,7 @@
   "devDependencies": {
     "@zthun/spellcraft": "^2.1.1",
     "@zthun/spellcraft-web": "^2.1.1",
-    "typedoc": "^0.25.12",
+    "typedoc": "^0.25.13",
     "typedoc-plugin-extras": "^3.0.0",
     "typescript": "~5.4.4"
   },
