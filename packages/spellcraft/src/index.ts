@@ -2,6 +2,7 @@ export * from './attribute/attribute.mjs';
 export * from './attribute/attributes.mjs';
 export * from './component/component-class.mjs';
 export * from './component/component-constructor.mjs';
+export * from './component/component-css.mjs';
 export * from './component/component-dependencies.mjs';
 export * from './component/component-generate-id.mjs';
 export * from './component/component-register.mjs';
