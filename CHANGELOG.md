@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/zthun/spellcraft/compare/v2.2.0...v2.2.1) (2024-04-08)
+
+
+### Bug Fixes
+
+* new component decorators are now properly exported ([2f097ff](https://github.com/zthun/spellcraft/commit/2f097ffb91b3570ef4a450d4abe7a1effca796a1))
+
+
+
 ## [2.2.0](https://github.com/zthun/spellcraft/compare/v2.1.1...v2.2.0) (2024-04-08)
 
 
