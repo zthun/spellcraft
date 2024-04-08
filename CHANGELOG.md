@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/zthun/spellcraft/compare/v2.2.1...v2.2.2) (2024-04-08)
+
+
+### Bug Fixes
+
+* style element on styles is now queried when refreshed ([d96cd2f](https://github.com/zthun/spellcraft/commit/d96cd2f2814e852f0b3186d370d1cdae2ed5b760))
+
+
+
 ## [2.2.1](https://github.com/zthun/spellcraft/compare/v2.2.0...v2.2.1) (2024-04-08)
 
 
