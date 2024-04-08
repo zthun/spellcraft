@@ -1,4 +1,4 @@
-import { IZLifecycleDisconnectedMaybe } from 'src/lifecycle/lifecycle-disconnected.mjs';
+import { IZLifecycleDisconnectedMaybe } from '../lifecycle/lifecycle-disconnected.mjs';
 import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentWithStyleElement } from './component-styles.mjs';
 
