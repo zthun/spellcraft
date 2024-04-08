@@ -16,7 +16,11 @@ describe('ZComponentRenderOnEvent', () => {
     @ZComponentRegister(tag)
     @ZComponentRenderOnEvent('click')
     class ZComponentRenderOnEventSelfAndChildrenTest extends HTMLElement implements IZComponentRender {
-      public render = vi.fn();
+      public _render = vi.fn();
+
+      public render() {
+        this._render();
+      }
     }
 
     const createTestTarget = () => {
@@ -38,21 +42,21 @@ describe('ZComponentRenderOnEvent', () => {
       // Arrange.
       const target = createTestTarget();
       const btn = target.querySelector<HTMLButtonElement>('.should-raise-click');
-      target.render.mockClear();
+      target._render.mockClear();
       // Act.
       btn?.click();
       // Assert.
-      expect(target.render).toHaveBeenCalledTimes(1);
+      expect(target._render).toHaveBeenCalledTimes(1);
     });
 
     it('should render when an event is raised from the component itself', () => {
       // Arrange.
       const target = createTestTarget();
-      target.render.mockClear();
+      target._render.mockClear();
       // Act.
       target.click();
       // Assert.
-      expect(target.render).toHaveBeenCalledTimes(1);
+      expect(target._render).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -67,7 +71,11 @@ describe('ZComponentRenderOnEvent', () => {
       selector: '.should-raise-click'
     })
     class ZComponentRenderOnChildrenOnlyEventTest extends HTMLElement implements IZComponentRender {
-      public render = vi.fn();
+      public _render = vi.fn();
+
+      public render() {
+        this._render();
+      }
     }
 
     const createTestTarget = () => {
@@ -89,21 +97,21 @@ describe('ZComponentRenderOnEvent', () => {
       // Arrange.
       const target = createTestTarget();
       const btn = target.querySelector<HTMLButtonElement>('.should-raise-click');
-      target.render.mockClear();
+      target._render.mockClear();
       // Act.
       btn?.click();
       // Assert.
-      expect(target.render).toHaveBeenCalledTimes(1);
+      expect(target._render).toHaveBeenCalledTimes(1);
     });
 
     it('should not render when an event is raised from the component itself', () => {
       // Arrange.
       const target = createTestTarget();
-      target.render.mockClear();
+      target._render.mockClear();
       // Act.
       target.click();
       // Assert.
-      expect(target.render).not.toHaveBeenCalled();
+      expect(target._render).not.toHaveBeenCalled();
     });
   });
 });

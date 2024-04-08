@@ -53,12 +53,6 @@ export function ZComponentRenderOnEvent<TElement extends DecoratorRequirements>(
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error 2415 https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentRenderOnEvent extends target implements IZLifecycleConnected, IZLifecycleDisconnected {
-      private __render = (node: Node) => {
-        this.__render_on_event_target()?.removeEventListener(name, this.__render_on_event_handle);
-        this.render(node);
-        this.__render_on_event_target()?.addEventListener(name, this.__render_on_event_handle);
-      };
-
       private __render_on_event_target = () => (selector ? this.querySelector<HTMLElement>(selector) : this);
 
       private __render_on_event_handle = (e: Event) => {
@@ -74,8 +68,14 @@ export function ZComponentRenderOnEvent<TElement extends DecoratorRequirements>(
           e.preventDefault();
         }
 
-        this.__render(this.shadowRoot || this);
+        this.render(this.shadowRoot || this);
       };
+
+      public render(node: Node) {
+        this.__render_on_event_target()?.removeEventListener(name, this.__render_on_event_handle);
+        super.render(node);
+        this.__render_on_event_target()?.addEventListener(name, this.__render_on_event_handle);
+      }
 
       public connectedCallback(): void {
         super.connectedCallback?.call(this);
