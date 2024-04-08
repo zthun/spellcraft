@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.0](https://github.com/zthun/spellcraft/compare/v2.3.1...v2.4.0) (2024-04-08)
+
+
+### Features
+
+* components can now auto generate an id ([c397477](https://github.com/zthun/spellcraft/commit/c3974770f188126f58de225e422b4742b676e5ea))
+* you can now set the prefix on the styles id ([0e84fc0](https://github.com/zthun/spellcraft/commit/0e84fc090cea762a40921813a48e8d4b22c4e725))
+
+
+
 ## [2.3.1](https://github.com/zthun/spellcraft/compare/v2.3.0...v2.3.1) (2024-04-08)
 
 **Note:** Version bump only for package @zthun/spellcraft-library
