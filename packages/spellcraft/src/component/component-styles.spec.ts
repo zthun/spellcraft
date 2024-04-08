@@ -8,10 +8,10 @@ import { ZComponentStylesRemoveOnDisconnect } from './component-styles-remove-on
 import { ZComponentStylesUpdateOnAttributeChange } from './component-styles-update-on-attribute-change.mjs';
 import { IZComponentStyles, IZComponentWithStyleElement, ZComponentStyles } from './component-styles.mjs';
 
-describe('ZComponentShadow', () => {
+describe('ZComponentStyles', () => {
   const id = 'ZComponentStylesTest-root';
   const selector = `#${id}`;
-  const tag = 'z-component-shadow-test';
+  const tag = 'z-component-styles-test';
 
   interface ZComponentStylesTest extends IZComponentWithStyleElement {}
 
