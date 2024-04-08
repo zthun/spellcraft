@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/zthun/spellcraft/compare/v2.1.1...v2.2.0) (2024-04-08)
+
+
+### Features
+
+* component class allows auto class population for components ([10c7c96](https://github.com/zthun/spellcraft/commit/10c7c964e68f30c749064c6125315a41ae380aca))
+* you can now invoke render on a bubbled event ([98c9310](https://github.com/zthun/spellcraft/commit/98c93103531869bf64ccfb6e764d4b0dd22e2336))
+
+
+
 ## [2.1.1](https://github.com/zthun/spellcraft/compare/v2.1.0...v2.1.1) (2024-04-02)
 
 **Note:** Version bump only for package @zthun/spellcraft
