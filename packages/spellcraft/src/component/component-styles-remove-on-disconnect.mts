@@ -2,7 +2,12 @@ import { IZLifecycleDisconnectedMaybe } from '../lifecycle/lifecycle-disconnecte
 import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentWithStyleElement } from './component-styles.mjs';
 
-type DecoratorRequirements = HTMLElement & IZComponentWithStyleElement & IZLifecycleDisconnectedMaybe;
+/**
+ * Requirements for ZComponentStylesRemoveOnDisconnect targets.
+ */
+export type ZComponentStylesRemoveOnDisconnectRequirements = HTMLElement &
+  IZComponentWithStyleElement &
+  IZLifecycleDisconnectedMaybe;
 
 /**
  * A aspect will remove stylesElement when the parent component is disconnected from the DOM.
@@ -17,16 +22,16 @@ type DecoratorRequirements = HTMLElement & IZComponentWithStyleElement & IZLifec
  *        A new class that extends from the target class that adds a new property,
  *        styleElement
  */
-export function ZComponentStylesRemoveOnDisconnect<TElement extends DecoratorRequirements>() {
+export function ZComponentStylesRemoveOnDisconnect<TElement extends ZComponentStylesRemoveOnDisconnectRequirements>() {
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    class _ZComponentStylesAddOnConnect extends target implements IZLifecycleDisconnected {
+    class _ZComponentStylesRemoveOnDisconnect extends target implements IZLifecycleDisconnected {
       public disconnectedCallback(): void {
         super.disconnectedCallback?.call(this);
         this.styleElement?.remove();
       }
     }
 
-    return _ZComponentStylesAddOnConnect;
+    return _ZComponentStylesRemoveOnDisconnect;
   };
 }

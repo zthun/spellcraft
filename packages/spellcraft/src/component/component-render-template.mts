@@ -16,7 +16,10 @@ export interface IZComponentTemplate {
   template(): string;
 }
 
-type DecoratorRequirements = HTMLElement & IZComponentTemplate & IZComponentRenderMaybe;
+/**
+ * Requirements for ZComponentRenderTemplate targets
+ */
+export type ZComponentRenderTemplateRequirements = HTMLElement & IZComponentTemplate & IZComponentRenderMaybe;
 
 /**
  * An aspect that extends a component and adds a flow that renders a template
@@ -38,7 +41,7 @@ type DecoratorRequirements = HTMLElement & IZComponentTemplate & IZComponentRend
  *        A new decorated type that automatically implements a render method that clears
  *        the target shadow root or target node and renders an html template.
  */
-export function ZComponentRenderTemplate<TElement extends DecoratorRequirements>() {
+export function ZComponentRenderTemplate<TElement extends ZComponentRenderTemplateRequirements>() {
   return function (Target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentRenderTemplate extends Target implements IZComponentRender {

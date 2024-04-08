@@ -2,7 +2,13 @@ import { IZLifecycleConnected, IZLifecycleConnectedMaybe } from '../lifecycle/li
 import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentStyles, IZComponentWithStyleElement } from './component-styles.mjs';
 
-type DecoratorRequirements = HTMLElement & IZComponentWithStyleElement & IZComponentStyles & IZLifecycleConnectedMaybe;
+/**
+ * Requirements for ZComponentStylesAddOnConnect targets.
+ */
+export type ZComponentStylesAddOnConnectRequirements = HTMLElement &
+  IZComponentWithStyleElement &
+  IZComponentStyles &
+  IZLifecycleConnectedMaybe;
 
 /**
  * An aspect that will auto add a stylesElement when the component is connected to the DOM.
@@ -14,7 +20,7 @@ type DecoratorRequirements = HTMLElement & IZComponentWithStyleElement & IZCompo
  *        A new class that extends from the target class that adds a new property,
  *        styleElement
  */
-export function ZComponentStylesAddOnConnect<TElement extends DecoratorRequirements>() {
+export function ZComponentStylesAddOnConnect<TElement extends ZComponentStylesAddOnConnectRequirements>() {
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentStylesAddOnConnect extends target implements Required<IZLifecycleConnected> {

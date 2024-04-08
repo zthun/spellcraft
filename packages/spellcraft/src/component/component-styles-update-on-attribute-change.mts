@@ -5,7 +5,10 @@ import {
 import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentStyles, IZComponentWithStyleElement } from './component-styles.mjs';
 
-type DecoratorRequirements = HTMLElement &
+/**
+ * Requirements for ZComponentStylesUpdateOnAttributeChange targets.
+ */
+export type ZComponentStylesUpdateOnAttributeChangeRequirements = HTMLElement &
   IZComponentWithStyleElement &
   IZComponentStyles &
   IZLifecycleAttributeChangedMaybe;
@@ -20,7 +23,9 @@ type DecoratorRequirements = HTMLElement &
  *        A new class that extends from the target class that adds a new property,
  *        styleElement
  */
-export function ZComponentStylesUpdateOnAttributeChange<TElement extends DecoratorRequirements>() {
+export function ZComponentStylesUpdateOnAttributeChange<
+  TElement extends ZComponentStylesUpdateOnAttributeChangeRequirements
+>() {
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentStylesUpdateOnAttributeChange extends target implements IZLifecycleAttributeChanged {

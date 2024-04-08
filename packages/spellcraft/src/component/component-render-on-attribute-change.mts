@@ -5,7 +5,12 @@ import {
 import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentRender } from './component-render.mjs';
 
-type DecoratorRequirements = HTMLElement & Required<IZComponentRender> & IZLifecycleAttributeChangedMaybe;
+/**
+ * Requirements for ZComponentRenderOnAttributeChanged targets.
+ */
+export type ZComponentRenderOnAttributeChangedRequirements = HTMLElement &
+  Required<IZComponentRender> &
+  IZLifecycleAttributeChangedMaybe;
 
 /**
  * An aspect that adds a render invocation on the attribute changed
@@ -37,7 +42,7 @@ type DecoratorRequirements = HTMLElement & Required<IZComponentRender> & IZLifec
  * }
  * ```
  */
-export function ZComponentRenderOnAttributeChanged<TElement extends DecoratorRequirements>() {
+export function ZComponentRenderOnAttributeChanged<TElement extends ZComponentRenderOnAttributeChangedRequirements>() {
   return function (Target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     return class _ZComponentRenderOnAttributeChanged extends Target implements Required<IZLifecycleAttributeChanged> {

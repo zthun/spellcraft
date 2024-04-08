@@ -3,7 +3,13 @@ import { IZLifecycleDisconnected, IZLifecycleDisconnectedMaybe } from '../lifecy
 import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentRender } from './component-render.mjs';
 
-type DecoratorRequirements = HTMLElement & IZComponentRender & IZLifecycleConnectedMaybe & IZLifecycleDisconnectedMaybe;
+/**
+ * Requirements for ZComponentRenderOnEvent targets.
+ */
+export type ZComponentRenderOnEventRequirements = HTMLElement &
+  IZComponentRender &
+  IZLifecycleConnectedMaybe &
+  IZLifecycleDisconnectedMaybe;
 
 /**
  * The options for rendering on an event name.
@@ -41,7 +47,7 @@ export interface IZComponentRenderOnEventOptions {
  *        when it receives the event name.  The event will automatically be removed
  *        when the target element is disconnected from the DOM.
  */
-export function ZComponentRenderOnEvent<TElement extends DecoratorRequirements>(
+export function ZComponentRenderOnEvent<TElement extends ZComponentRenderOnEventRequirements>(
   name: string,
   options?: IZComponentRenderOnEventOptions
 ) {
