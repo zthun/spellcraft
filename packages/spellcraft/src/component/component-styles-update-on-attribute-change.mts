@@ -11,10 +11,8 @@ type DecoratorRequirements = HTMLElement &
   IZLifecycleAttributeChangedMaybe;
 
 /**
- * A component will auto add a stylesElement.
+ * An aspect will update the style element when an attribute changes.
  *
- * @param options -
- *        The options for the style component.
  * @param TElement -
  *        The element with requirements for adding this decorator.
  *

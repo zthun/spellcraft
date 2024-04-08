@@ -5,10 +5,8 @@ import { IZComponentStyles, IZComponentWithStyleElement } from './component-styl
 type DecoratorRequirements = HTMLElement & IZComponentWithStyleElement & IZComponentStyles & IZLifecycleConnectedMaybe;
 
 /**
- * A component will auto add a stylesElement.
+ * An aspect that will auto add a stylesElement when the component is connected to the DOM.
  *
- * @param options -
- *        The options for the style component.
  * @param TElement -
  *        The element with requirements for adding this decorator.
  *

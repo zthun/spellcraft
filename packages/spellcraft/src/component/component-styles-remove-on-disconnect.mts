@@ -5,12 +5,11 @@ import { IZComponentWithStyleElement } from './component-styles.mjs';
 type DecoratorRequirements = HTMLElement & IZComponentWithStyleElement & IZLifecycleDisconnectedMaybe;
 
 /**
- * A component will remove stylesElement when the parent component is disconnected from the DOM.
+ * A aspect will remove stylesElement when the parent component is disconnected from the DOM.
  *
- * You will
+ * You will mostly likely need this if you are using {@link ZComponentStyles} and you are not
+ * setting a static id.
  *
- * @param options -
- *        The options for the style component.
  * @param TElement -
  *        The element with requirements for adding this decorator.
  *
