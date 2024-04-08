@@ -77,13 +77,9 @@ export function ZComponentStyles<TElement extends HTMLElement>(options?: IZCompo
     return class _ZComponentStyles extends target implements IZComponentWithStyleElement {
       public styleElement: HTMLStyleElement | null = null;
 
-      public constructor(...args: any[]) {
-        super(...args);
-
-        this.styleElement = document.head.querySelector(selector);
-      }
-
       public refreshStyles(css?: string): HTMLStyleElement {
+        this.styleElement = document.head.querySelector(selector);
+
         if (this.styleElement == null) {
           this.styleElement = document.createElement('style');
           this.styleElement.id = id;
