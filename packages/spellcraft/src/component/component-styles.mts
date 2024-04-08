@@ -21,11 +21,18 @@ export interface IZComponentStyles {
 export interface IZComponentStylesOptions {
   /**
    * The id of the styles to search for.
+
    *
-   * You don't have to set this but it is recommended
-   * to make it easy to debug and search for in the document
-   * head. If this is falsy, then an id will be generated for you
-   * for the given component.
+   * If you don't set this, then a unique style element will
+   * be added to the head for the component that has this aspect
+   * and you should also add the
+   * {@link ZComponentStylesRemoveOnDisconnect} to remove it when
+   * the component is destroyed.
+   *
+   * If this is set, then multiple instances of the same component will
+   * share these styles, so you need to make sure that you do not
+   * have any dynamic styles and they are all static and only need
+   * to be created once.
    */
   id?: string;
 }
@@ -69,20 +76,20 @@ export interface IZComponentWithStyleElement {
  *        styleElement
  */
 export function ZComponentStyles<TElement extends HTMLElement>(options?: IZComponentStylesOptions) {
-  const id = firstTruthy(`css-${createGuid()}`, options?.id);
-  const selector = `#${id}`;
-
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     return class _ZComponentStyles extends target implements IZComponentWithStyleElement {
+      private _styleElementId = firstTruthy(`css-${createGuid()}`, options?.id);
+
       public styleElement: HTMLStyleElement | null = null;
 
       public refreshStyles(css?: string): HTMLStyleElement {
+        const selector = `#${this._styleElementId}`;
         this.styleElement = document.head.querySelector(selector);
 
         if (this.styleElement == null) {
           this.styleElement = document.createElement('style');
-          this.styleElement.id = id;
+          this.styleElement.id = this._styleElementId;
           document.head.appendChild(this.styleElement);
         }
 

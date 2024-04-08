@@ -4,6 +4,7 @@ import { ZAttribute } from '../attribute/attribute.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentStylesAddOnConnect } from './component-styles-add-on-connect.mjs';
+import { ZComponentStylesRemoveOnDisconnect } from './component-styles-remove-on-disconnect.mjs';
 import { ZComponentStylesUpdateOnAttributeChange } from './component-styles-update-on-attribute-change.mjs';
 import { IZComponentStyles, IZComponentWithStyleElement, ZComponentStyles } from './component-styles.mjs';
 
@@ -15,6 +16,7 @@ describe('ZComponentShadow', () => {
   interface ZComponentStylesTest extends IZComponentWithStyleElement {}
 
   @ZComponentRegister(tag)
+  @ZComponentStylesRemoveOnDisconnect()
   @ZComponentStylesUpdateOnAttributeChange()
   @ZComponentStylesAddOnConnect()
   @ZComponentStyles({ id })
@@ -78,5 +80,15 @@ describe('ZComponentShadow', () => {
     const actual = document.head.querySelector(selector);
     // Assert.
     expect(actual?.textContent).toContain('--color: blue');
+  });
+
+  it('should remove the style on disconnect', () => {
+    // Arrange.
+    const target = createTestTarget();
+    // Act.
+    target.remove();
+    const actual = document.head.querySelector(selector);
+    // Assert.
+    expect(actual).toBeFalsy();
   });
 });
