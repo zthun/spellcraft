@@ -21,7 +21,6 @@ export interface IZComponentStyles {
 export interface IZComponentStylesOptions {
   /**
    * The id of the styles to search for.
-
    *
    * If you don't set this, then a unique style element will
    * be added to the head for the component that has this aspect
@@ -35,6 +34,13 @@ export interface IZComponentStylesOptions {
    * to be created once.
    */
   id?: string;
+
+  /**
+   * The prefix to append to an auto generated id.
+   *
+   * This will default to "css"
+   */
+  prefix?: string;
 }
 
 /**
@@ -76,10 +82,12 @@ export interface IZComponentWithStyleElement {
  *        styleElement
  */
 export function ZComponentStyles<TElement extends HTMLElement>(options?: IZComponentStylesOptions) {
+  const prefix = firstTruthy('css', options?.prefix);
+
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     return class _ZComponentStyles extends target implements IZComponentWithStyleElement {
-      private _styleElementId = firstTruthy(`css-${createGuid()}`, options?.id);
+      private _styleElementId = firstTruthy(`${prefix}-${createGuid()}`, options?.id);
 
       public styleElement: HTMLStyleElement | null = null;
 
