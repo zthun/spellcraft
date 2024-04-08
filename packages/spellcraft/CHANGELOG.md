@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.0](https://github.com/zthun/spellcraft/compare/v2.4.0...v2.5.0) (2024-04-08)
+
+
+### Features
+
+* component css adds support for static styles that only get added to the DOM once ([f99affd](https://github.com/zthun/spellcraft/commit/f99affd1b4cc20e3b038c02f5ba4bc7dfd8af1ad))
+
+
+
 ## [2.4.0](https://github.com/zthun/spellcraft/compare/v2.3.1...v2.4.0) (2024-04-08)
 
 
