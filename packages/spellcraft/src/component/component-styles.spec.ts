@@ -2,10 +2,12 @@ import { css, html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
 import { ZNode } from '../node/node.mjs';
+import { ZProperty } from '../property/property.mjs';
 import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentStylesAddOnConnect } from './component-styles-add-on-connect.mjs';
 import { ZComponentStylesRemoveOnDisconnect } from './component-styles-remove-on-disconnect.mjs';
 import { ZComponentStylesUpdateOnAttributeChange } from './component-styles-update-on-attribute-change.mjs';
+import { ZComponentStylesUpdateOnPropertyChange } from './component-styles-update-on-property-change.mjs';
 import { IZComponentStyles, IZComponentWithStyleElement, ZComponentStyles } from './component-styles.mjs';
 
 describe('ZComponentStyles', () => {
@@ -17,6 +19,7 @@ describe('ZComponentStyles', () => {
 
   @ZComponentRegister(tag)
   @ZComponentStylesRemoveOnDisconnect()
+  @ZComponentStylesUpdateOnPropertyChange()
   @ZComponentStylesUpdateOnAttributeChange()
   @ZComponentStylesAddOnConnect()
   @ZComponentStyles({ id })
@@ -26,10 +29,14 @@ describe('ZComponentStyles', () => {
     @ZAttribute({ fallback: 'green' })
     public color: 'green' | 'blue';
 
+    @ZProperty({ initial: 'left' })
+    public align: string;
+
     public styles() {
       return css`
         html {
           --color: ${this.color};
+          --align: ${this.align};
         }
       `;
     }
@@ -80,6 +87,16 @@ describe('ZComponentStyles', () => {
     const actual = document.head.querySelector(selector);
     // Assert.
     expect(actual?.textContent).toContain('--color: blue');
+  });
+
+  it('should update the inner text of the style on an property change', () => {
+    // Arrange.
+    const target = createTestTarget();
+    // Act.
+    target.align = 'center';
+    const actual = document.head.querySelector(selector);
+    // Assert.
+    expect(actual?.textContent).toContain('--align: center');
   });
 
   it('should remove the style on disconnect', () => {
