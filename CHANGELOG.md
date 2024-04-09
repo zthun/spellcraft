@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/zthun/spellcraft/compare/v2.5.0...v2.6.0) (2024-04-09)
+
+
+### Features
+
+* property changed happens when a property changes on the component ([21383ad](https://github.com/zthun/spellcraft/commit/21383ad47aed7a005f53391e0ec0435d74a1f9c9))
+* property decorator specified a property on the component ([792528e](https://github.com/zthun/spellcraft/commit/792528e990f71048fceeb17f864c4e31a4fc467a))
+* render on property change re-renders the component when a property changes ([a505f9b](https://github.com/zthun/spellcraft/commit/a505f9b2049e18e11f116f56bfc89d111bee29c2))
+* update styles on property change causes the style element to refresh when a property changes ([8922d5b](https://github.com/zthun/spellcraft/commit/8922d5b0fab12b378df3550e41b40e8d64093668))
+
+
+
 ## [2.5.0](https://github.com/zthun/spellcraft/compare/v2.4.0...v2.5.0) (2024-04-08)
 
 
