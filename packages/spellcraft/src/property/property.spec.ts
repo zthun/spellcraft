@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-import { ZComponentRegister } from 'src/component/component-register.mjs';
 import { describe, expect, it, vi } from 'vitest';
+import { ZComponentRegister } from '../component/component-register.mjs';
 import { IZLifecyclePropertyChanged } from '../lifecycle/lifecycle-property-changed.mjs';
 import { ZProperty } from './property.mjs';
 
