@@ -23,4 +23,5 @@ export * from './lifecycle/lifecycle-attribute-changed.mjs';
 export * from './lifecycle/lifecycle-connected.mjs';
 export * from './lifecycle/lifecycle-disconnected.mjs';
 export * from './lifecycle/lifecycle-property-changed.mjs';
+export * from './node/node.mjs';
 export * from './property/property.mjs';
