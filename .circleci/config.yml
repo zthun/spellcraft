@@ -82,6 +82,7 @@ workflows:
           requires:
             - analyze
             - test
+            - check
           filters:
             branches:
               only:
