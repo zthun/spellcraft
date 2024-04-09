@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.2](https://github.com/zthun/spellcraft/compare/v2.6.1...v2.6.2) (2024-04-09)
+
+
+### Bug Fixes
+
+* export the ZNode class ([2e87852](https://github.com/zthun/spellcraft/commit/2e87852a9010e9f399e8c3ede1528f4a439a6790))
+
+
+
 ## [2.6.1](https://github.com/zthun/spellcraft/compare/v2.6.0...v2.6.1) (2024-04-09)
 
 
