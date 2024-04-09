@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/zthun/spellcraft/compare/v2.6.0...v2.6.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* source import path should no longer include src ([dc6d16a](https://github.com/zthun/spellcraft/commit/dc6d16af87234182f4ef5d0fe5a8bac2d455cf2e))
+
+
+
 ## [2.6.0](https://github.com/zthun/spellcraft/compare/v2.5.0...v2.6.0) (2024-04-09)
 
 
