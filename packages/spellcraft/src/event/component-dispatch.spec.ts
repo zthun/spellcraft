@@ -1,10 +1,10 @@
 import { createGuid, html } from '@zthun/helpful-fn';
-import { ZComponentRegister } from 'src/component/component-register.mjs';
-import { IZLifecycleAttributeChanged } from 'src/lifecycle/lifecycle-attribute-changed.mjs';
-import { IZLifecycleConnected } from 'src/lifecycle/lifecycle-connected.mjs';
-import { IZLifecyclePropertyChanged } from 'src/lifecycle/lifecycle-property-changed.mjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
+import { ZComponentRegister } from '../component/component-register.mjs';
+import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
+import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
+import { IZLifecyclePropertyChanged } from '../lifecycle/lifecycle-property-changed.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZProperty } from '../property/property.mjs';
 import { ZComponentDispatchOnAttributeChanged } from './component-dispatch-on-attribute-changed.mjs';

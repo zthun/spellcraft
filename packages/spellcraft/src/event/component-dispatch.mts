@@ -1,4 +1,4 @@
-import { ZComponentConstructor } from 'src/component/component-constructor.mjs';
+import { ZComponentConstructor } from '../component/component-constructor.mjs';
 
 /**
  * A component that has an internal event template to dispatch.
