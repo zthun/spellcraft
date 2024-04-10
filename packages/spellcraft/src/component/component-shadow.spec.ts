@@ -8,7 +8,7 @@ describe('ZComponentShadow', () => {
   const $tag = 'z-component-shadow-test';
 
   @ZComponentRegister($tag)
-  @ZComponentShadow()
+  @ZComponentShadow({ mode: 'closed' })
   @ZComponentShadow()
   class ZComponentShadowTest extends HTMLElement {}
 
