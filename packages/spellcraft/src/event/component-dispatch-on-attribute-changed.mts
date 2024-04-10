@@ -36,7 +36,7 @@ export function ZComponentDispatchOnAttributeChanged<C extends ZComponentDispatc
 
   return function (target: ZComponentConstructor<C>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentDispatchEventOnAttributeChange extends target implements IZLifecycleAttributeChanged {
+    return class _ZComponentDispatchOnAttributeChange extends target implements IZLifecycleAttributeChanged {
       public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
         super.attributeChangedCallback?.call(this, name, oldValue, newValue);
 
