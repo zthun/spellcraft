@@ -10,6 +10,9 @@ export type ZComponentShadowRequirements = HTMLElement;
  * Options for the ZComponentShadow decorator.
  */
 export interface IZComponentShadowOptions {
+  /**
+   * Whether the shadow root is open or closed.
+   */
   mode?: 'open' | 'closed';
 }
 
