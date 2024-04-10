@@ -1,5 +1,5 @@
+import { ZComponentConstructor } from '../component/component-constructor.mjs';
 import { IZLifecycleConnected, IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
-import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentRender } from './component-render.mjs';
 
 /**

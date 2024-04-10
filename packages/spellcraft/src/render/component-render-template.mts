@@ -1,5 +1,5 @@
+import { ZComponentConstructor } from '../component/component-constructor.mjs';
 import { ZNode } from '../node/node.mjs';
-import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentRender, IZComponentRenderMaybe } from './component-render.mjs';
 
 /**

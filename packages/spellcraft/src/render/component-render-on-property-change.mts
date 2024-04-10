@@ -1,8 +1,8 @@
+import { ZComponentConstructor } from '../component/component-constructor.mjs';
 import {
   IZLifecyclePropertyChanged,
   IZLifecyclePropertyChangedMaybe
 } from '../lifecycle/lifecycle-property-changed.mjs';
-import { ZComponentConstructor } from './component-constructor.mjs';
 import { IZComponentRender } from './component-render.mjs';
 
 /**

@@ -1,8 +1,8 @@
 import { html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { ZComponentRegister } from '../component/component-register.mjs';
 import { IZLifecycleConnected } from '../lifecycle/lifecycle-connected.mjs';
 import { ZNode } from '../node/node.mjs';
-import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentRenderOnConnected } from './component-render-on-connected.mjs';
 import { IZComponentRender } from './component-render.mjs';
 

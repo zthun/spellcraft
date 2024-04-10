@@ -1,9 +1,9 @@
 import { createGuid, html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
+import { ZComponentRegister } from '../component/component-register.mjs';
 import { IZLifecycleAttributeChanged } from '../lifecycle/lifecycle-attribute-changed.mjs';
 import { ZNode } from '../node/node.mjs';
-import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentRenderOnAttributeChanged } from './component-render-on-attribute-change.mjs';
 import { IZComponentRender } from './component-render.mjs';
 

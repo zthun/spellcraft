@@ -1,7 +1,7 @@
 import { html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it } from 'vitest';
+import { ZComponentRegister } from '../component/component-register.mjs';
 import { ZNode } from '../node/node.mjs';
-import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentRenderOnConnected } from './component-render-on-connected.mjs';
 import { IZComponentTemplate, ZComponentRenderTemplate } from './component-render-template.mjs';
 import { IZComponentRender } from './component-render.mjs';
