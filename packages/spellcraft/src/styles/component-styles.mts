@@ -1,5 +1,5 @@
 import { createGuid, firstDefined, firstTruthy } from '@zthun/helpful-fn';
-import { ZComponentConstructor } from './component-constructor.mjs';
+import { ZComponentConstructor } from '../component/component-constructor.mjs';
 
 /**
  * A web component that has a styles factory.

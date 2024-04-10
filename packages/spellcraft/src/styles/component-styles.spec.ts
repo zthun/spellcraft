@@ -1,9 +1,9 @@
 import { css, html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
+import { ZComponentRegister } from '../component/component-register.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZProperty } from '../property/property.mjs';
-import { ZComponentRegister } from './component-register.mjs';
 import { ZComponentStylesAddOnConnect } from './component-styles-add-on-connect.mjs';
 import { ZComponentStylesRemoveOnDisconnect } from './component-styles-remove-on-disconnect.mjs';
 import { ZComponentStylesUpdateOnAttributeChange } from './component-styles-update-on-attribute-change.mjs';

@@ -1,9 +1,9 @@
 import { css, html } from '@zthun/helpful-fn';
 import { afterEach, describe, expect, it } from 'vitest';
 import { ZNode } from '../node/node.mjs';
+import { IZComponentWithStyleElement } from '../styles/component-styles.mjs';
 import { ZComponentCss } from './component-css.mjs';
 import { ZComponentRegister } from './component-register.mjs';
-import { IZComponentWithStyleElement } from './component-styles.mjs';
 
 describe('ZComponentCss', () => {
   const id = 'ZComponentCss-test-root';
