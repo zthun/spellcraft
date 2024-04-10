@@ -7,16 +7,16 @@ import {
 import { IZComponentDispatch } from './component-dispatch.mjs';
 
 /**
- * Requirements for the ZComponentRaiseEventOnAttribute decorator.
+ * Requirements for the ZComponentDispatchOnAttributeChanged decorator.
  */
-export type ZComponentRaiseEventOnAttributeChangedRequirements = HTMLElement &
+export type ZComponentDispatchOnAttributeChangedRequirements = HTMLElement &
   IZComponentDispatch &
   IZLifecycleAttributeChangedMaybe;
 
 /**
  * Options for the dispatch event on attribute changed decorator.
  */
-export interface IZComponentDispatchEventOnAttributeChangedOptions {
+export interface IZComponentDispatchOnAttributeChangedOptions {
   /**
    * The attributes that will raise this specific event.
    *
@@ -29,8 +29,8 @@ export interface IZComponentDispatchEventOnAttributeChangedOptions {
 /**
  * An aspect that adds an implementation for raising an event
  */
-export function ZComponentDispatchEventOnAttributeChanged<C extends ZComponentRaiseEventOnAttributeChangedRequirements>(
-  options?: IZComponentDispatchEventOnAttributeChangedOptions
+export function ZComponentDispatchOnAttributeChanged<C extends ZComponentDispatchOnAttributeChangedRequirements>(
+  options?: IZComponentDispatchOnAttributeChangedOptions
 ) {
   const filter = firstDefined([], options?.filter);
 

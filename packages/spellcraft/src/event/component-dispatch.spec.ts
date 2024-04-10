@@ -7,14 +7,14 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ZAttribute } from '../attribute/attribute.mjs';
 import { ZNode } from '../node/node.mjs';
 import { ZProperty } from '../property/property.mjs';
-import { ZComponentDispatchEventOnAttributeChanged } from './component-dispatch-on-attribute-changed.mjs';
+import { ZComponentDispatchOnAttributeChanged } from './component-dispatch-on-attribute-changed.mjs';
 import { ZComponentDispatchOnPropertyChanged } from './component-dispatch-on-property-changed.mjs';
 import { IZComponentDispatch, ZComponentDispatch } from './component-dispatch.mjs';
 
-describe('ZComponentDispatchEvent', () => {
-  const tag = 'z-component-dispatch-event-test';
+describe('ZComponentDispatch', () => {
+  const tag = 'z-component-dispatch-test';
 
-  interface ZComponentDispatchEventTest extends IZComponentDispatch {}
+  interface ZComponentDispatchTest extends IZComponentDispatch {}
 
   afterEach(() => {
     new ZNode(document.body).clear();
@@ -25,11 +25,11 @@ describe('ZComponentDispatchEvent', () => {
   @ZComponentDispatch('property-change-callback')
   @ZComponentDispatchOnPropertyChanged({ filter: ['identity'] })
   @ZComponentDispatch(new CustomEvent('identity'))
-  @ZComponentDispatchEventOnAttributeChanged()
+  @ZComponentDispatchOnAttributeChanged()
   @ZComponentDispatch(() => new CustomEvent('attribute-change-callback'))
-  @ZComponentDispatchEventOnAttributeChanged({ filter: ['custom-change-callback'] })
+  @ZComponentDispatchOnAttributeChanged({ filter: ['custom-change-callback'] })
   @ZComponentDispatch(() => new CustomEvent('custom-change-callback'))
-  class ZComponentDispatchEventTest
+  class ZComponentDispatchTest
     extends HTMLElement
     implements IZLifecycleAttributeChanged, IZLifecycleConnected, IZLifecyclePropertyChanged
   {
@@ -69,7 +69,7 @@ describe('ZComponentDispatchEvent', () => {
     const template = document.createElement('template');
     template.innerHTML = $html;
     document.body.appendChild(template.content.cloneNode(true));
-    return document.body.querySelector<ZComponentDispatchEventTest>(tag)!;
+    return document.body.querySelector<ZComponentDispatchTest>(tag)!;
   };
 
   describe('Property', () => {
