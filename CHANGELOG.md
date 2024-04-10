@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.0](https://github.com/zthun/spellcraft/compare/v2.6.2...v2.7.0) (2024-04-10)
+
+
+### Features
+
+* component dispatch allows for dispatching events when property or attributes change ([f203b33](https://github.com/zthun/spellcraft/commit/f203b33e67b228277a7abc1036c1ec4b7a3047a0))
+* component shadow now allows you to create a closed shadow root ([fb6f4f3](https://github.com/zthun/spellcraft/commit/fb6f4f3351fb4f3c57e1614c86b34d5b4a400d0b))
+* template no display adds a template that renders a style with display none and important ([a82d611](https://github.com/zthun/spellcraft/commit/a82d61137b49781013cda5af4684dd90f9adefa1))
+
+
+
 ## [2.6.2](https://github.com/zthun/spellcraft/compare/v2.6.1...v2.6.2) (2024-04-09)
 
 
