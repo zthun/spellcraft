@@ -28,3 +28,5 @@ export * from './styles/component-styles-remove-on-disconnect.mjs';
 export * from './styles/component-styles-update-on-attribute-change.mjs';
 export * from './styles/component-styles-update-on-property-change.mjs';
 export * from './styles/component-styles.mjs';
+export * from './template/component-template-no-display.mjs';
+export * from './template/component-template-slot.mjs';
