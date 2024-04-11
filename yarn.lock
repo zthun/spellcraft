@@ -2664,7 +2664,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft-web@workspace:packages/spellcraft-web"
   dependencies:
-    "@zthun/helpful-fn": "npm:^4.1.1"
+    "@zthun/helpful-fn": "npm:^5.0.0"
     "@zthun/spellcraft": "npm:^2.7.2"
     highlight.js: "npm:^11.9.0"
     typescript: "npm:~5.4.5"
