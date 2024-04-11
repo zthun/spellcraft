@@ -3,7 +3,7 @@ import { ZComponentConstructor } from '../component/component-constructor.mjs';
 import { IZComponentTemplate } from '../render/component-render-template.mjs';
 
 /**
- * Requirements for ZComponentRenderTemplate targets
+ * Requirements for ZComponentTemplateNoDisplay targets
  */
 export type ZComponentTemplateNoDisplayRequirements = HTMLElement;
 
