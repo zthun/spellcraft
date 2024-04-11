@@ -21,7 +21,7 @@
     "@zthun/helpful-fn": "^4.1.1",
     "@zthun/spellcraft": "^2.6.2",
     "highlight.js": "^11.9.0",
-    "typescript": "~5.4.4",
+    "typescript": "~5.4.5",
     "vite": "^5.2.8",
     "vitest": "^1.4.0"
   },
