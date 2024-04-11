@@ -1,6 +1,6 @@
 {
   "name": "@zthun/spellcraft-docs",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "description": "A documentation website for spellcraft.",
   "author": "Anthony Bonta",
   "license": "MIT",
@@ -17,8 +17,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "@zthun/spellcraft": "^2.7.1",
-    "@zthun/spellcraft-web": "^2.7.1",
+    "@zthun/spellcraft": "^2.7.2",
+    "@zthun/spellcraft-web": "^2.7.2",
     "typedoc": "^0.25.13",
     "typedoc-plugin-extras": "^3.0.0",
     "typescript": "~5.4.5"
