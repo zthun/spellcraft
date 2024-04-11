@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.0](https://github.com/zthun/spellcraft/compare/v2.6.2...v2.7.0) (2024-04-10)
+
+**Note:** Version bump only for package @zthun/spellcraft-docs
+
+
+
+
+
 ## [2.6.2](https://github.com/zthun/spellcraft/compare/v2.6.1...v2.6.2) (2024-04-09)
 
 **Note:** Version bump only for package @zthun/spellcraft-docs
