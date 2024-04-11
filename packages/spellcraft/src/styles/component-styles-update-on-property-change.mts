@@ -16,17 +16,15 @@ export type ZComponentStylesUpdateOnPropertyChangeRequirements = HTMLElement &
 /**
  * An aspect will update the style element when a property changes.
  *
- * @param TElement -
+ * @param T -
  *        The element with requirements for adding this decorator.
  *
  * @returns
  *        A new class that extends from the target class that updates the style element
  *        when a property changes.
  */
-export function ZComponentStylesUpdateOnPropertyChange<
-  TElement extends ZComponentStylesUpdateOnPropertyChangeRequirements
->() {
-  return function (target: ZComponentConstructor<TElement>): any {
+export function ZComponentStylesUpdateOnPropertyChange<T extends ZComponentStylesUpdateOnPropertyChangeRequirements>() {
+  return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentStylesUpdateOnPropertyChange extends target implements IZLifecyclePropertyChanged {
       public propertyChangedCallback(name: string, oldValue: any, newValue: any): void {

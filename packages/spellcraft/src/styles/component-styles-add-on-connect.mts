@@ -13,15 +13,15 @@ export type ZComponentStylesAddOnConnectRequirements = HTMLElement &
 /**
  * An aspect that will auto add a stylesElement when the component is connected to the DOM.
  *
- * @param TElement -
+ * @param T -
  *        The element with requirements for adding this decorator.
  *
  * @returns
  *        A new class that extends from the target class that adds a new property,
  *        styleElement
  */
-export function ZComponentStylesAddOnConnect<TElement extends ZComponentStylesAddOnConnectRequirements>() {
-  return function (target: ZComponentConstructor<TElement>): any {
+export function ZComponentStylesAddOnConnect<T extends ZComponentStylesAddOnConnectRequirements>() {
+  return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentStylesAddOnConnect extends target implements Required<IZLifecycleConnected> {
       public connectedCallback(): void {

@@ -17,7 +17,7 @@ export type ZComponentRenderOnConnectedRequirements = HTMLElement & IZComponentR
  * The target node for the render method will be the shadowRoot if it is set, or
  * will point to this object if there is no shadow root.
  *
- * @param TElement -
+ * @param T -
  *        The type of element that this decorator extends.
  *
  * @returns
@@ -36,8 +36,8 @@ export type ZComponentRenderOnConnectedRequirements = HTMLElement & IZComponentR
  * }
  * ```
  */
-export function ZComponentRenderOnConnected<TElement extends ZComponentRenderOnConnectedRequirements>() {
-  return function (target: ZComponentConstructor<TElement>): any {
+export function ZComponentRenderOnConnected<T extends ZComponentRenderOnConnectedRequirements>() {
+  return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     return class _ZComponentRenderOnConnected extends target implements IZLifecycleConnected {
       public connectedCallback() {

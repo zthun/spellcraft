@@ -26,7 +26,7 @@ export interface IZComponentRegisterOptions {
  *        The tag that this component will register with.
  * @param options -
  *        The options for the registration.
- * @param TElement -
+ * @param T -
  *        The type of element this decorator extends.
  *
  * @returns
@@ -55,8 +55,8 @@ export interface IZComponentRegisterOptions {
  * </div>
  * ```
  */
-export function ZComponentRegister<TElement extends HTMLElement>(tag: string, options?: IZComponentRegisterOptions) {
-  return function (target: ZComponentConstructor<TElement>): any {
+export function ZComponentRegister<T extends HTMLElement>(tag: string, options?: IZComponentRegisterOptions) {
+  return function (target: ZComponentConstructor<T>): any {
     if (customElements.get(tag) == null) {
       customElements.define(tag, target, { extends: options?.extend });
     }

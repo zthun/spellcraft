@@ -34,15 +34,15 @@ export type ZComponentRenderTemplateRequirements = HTMLElement & IZComponentTemp
  * Note that if you have multiples of these, it becomes last one wins and you will waste
  * cycles rendering extra templates that you will never see.
  *
- * @param TElement -
+ * @param T -
  *        The type of element that the decorator extends.
  *
  * @returns
  *        A new decorated type that automatically implements a render method that clears
  *        the target shadow root or target node and renders an html template.
  */
-export function ZComponentRenderTemplate<TElement extends ZComponentRenderTemplateRequirements>() {
-  return function (Target: ZComponentConstructor<TElement>): any {
+export function ZComponentRenderTemplate<T extends ZComponentRenderTemplateRequirements>() {
+  return function (Target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentRenderTemplate extends Target implements IZComponentRender {
       public render(node: Node) {

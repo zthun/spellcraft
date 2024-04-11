@@ -36,7 +36,7 @@ export interface IZComponentDispatchOnPropertyChangedOptions {
  *        A new class prototype that runs the parent prototype
  *        {@link IZComponentDispatch.runDispatch} method when
  *        a property changes on the target class.  Only properties
- *        included in {@link options.filter} will run the dispatch.
+ *        included in {@link IZComponentDispatchOnPropertyChangedOptions.filter} will run the dispatch.
  */
 export function ZComponentDispatchOnPropertyChanged<C extends ZComponentDispatchOnPropertyChangedRequirements>(
   options?: IZComponentDispatchOnPropertyChangedOptions

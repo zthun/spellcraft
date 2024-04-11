@@ -23,7 +23,7 @@ export type ZComponentRenderOnAttributeChangedRequirements = HTMLElement &
  * The target node for the render method will be the shadowRoot if it is set, or
  * will point to this object if there is no shadow root.
  *
- * @param TElement -
+ * @param T -
  *        The element type that this aspect decorates.
  *
  * @returns
@@ -42,8 +42,8 @@ export type ZComponentRenderOnAttributeChangedRequirements = HTMLElement &
  * }
  * ```
  */
-export function ZComponentRenderOnAttributeChanged<TElement extends ZComponentRenderOnAttributeChangedRequirements>() {
-  return function (Target: ZComponentConstructor<TElement>): any {
+export function ZComponentRenderOnAttributeChanged<T extends ZComponentRenderOnAttributeChangedRequirements>() {
+  return function (Target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     return class _ZComponentRenderOnAttributeChanged extends Target implements Required<IZLifecycleAttributeChanged> {
       public attributeChangedCallback(name: string, oldValue: string, newValue: string) {

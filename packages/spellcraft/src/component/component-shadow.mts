@@ -24,7 +24,7 @@ export interface IZComponentShadowOptions {
  *
  * @param options -
  *        The options for the decorator.
- * @param TElement -
+ * @param T -
  *        The type of element that the target class prototypes from.
  */
 export function ZComponentShadow<T extends ZComponentShadowRequirements>(options?: IZComponentShadowOptions) {

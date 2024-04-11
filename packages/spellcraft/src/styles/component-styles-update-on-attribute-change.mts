@@ -16,7 +16,7 @@ export type ZComponentStylesUpdateOnAttributeChangeRequirements = HTMLElement &
 /**
  * An aspect will update the style element when an attribute changes.
  *
- * @param TElement -
+ * @param T -
  *        The element with requirements for adding this decorator.
  *
  * @returns
@@ -24,9 +24,9 @@ export type ZComponentStylesUpdateOnAttributeChangeRequirements = HTMLElement &
  *        styleElement
  */
 export function ZComponentStylesUpdateOnAttributeChange<
-  TElement extends ZComponentStylesUpdateOnAttributeChangeRequirements
+  T extends ZComponentStylesUpdateOnAttributeChangeRequirements
 >() {
-  return function (target: ZComponentConstructor<TElement>): any {
+  return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentStylesUpdateOnAttributeChange extends target implements IZLifecycleAttributeChanged {
       public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
