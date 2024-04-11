@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/zthun/spellcraft/compare/v2.7.0...v2.7.1) (2024-04-11)
+
+
+### Bug Fixes
+
+* export the new template decorators ([7fe4109](https://github.com/zthun/spellcraft/commit/7fe4109d94a887153da544c49607f747085c0963))
+
+
+
 ## [2.7.0](https://github.com/zthun/spellcraft/compare/v2.6.2...v2.7.0) (2024-04-10)
 
 
