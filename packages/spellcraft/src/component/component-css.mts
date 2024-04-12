@@ -37,8 +37,8 @@ export interface IZComponentCssOptions {
  *        The options for the style component.
  *
  * @returns
- *        A new class that extends from the target class that adds a new property,
- *        styleElement
+ *        A new class that extends from the target class that adds a style
+ *        element to the document head if it does not already exist.
  */
 export function ZComponentCss<TElement extends HTMLElement>(css: string, options?: IZComponentCssOptions) {
   const prefix = firstTruthy('css', options?.prefix);
