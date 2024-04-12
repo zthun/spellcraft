@@ -17,10 +17,17 @@
     "noreply",
     "npmjs",
     "npmrc",
+    "pingback",
     "spellcraft",
     "trilean",
     "zthun",
     "zthunworks"
   ],
-  "dictionaries": ["typescript", "node", "fonts", "npm", "en_US"]
+  "dictionaries": [
+    "typescript",
+    "node",
+    "fonts",
+    "npm",
+    "en_US"
+  ]
 }
