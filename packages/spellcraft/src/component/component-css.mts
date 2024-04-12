@@ -47,7 +47,7 @@ export function ZComponentCss<TElement extends HTMLElement>(css: string, options
 
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentCss extends target implements IZComponentWithStyleElement {
+    return class _ZComponentCss extends target {
       public constructor() {
         super();
 
