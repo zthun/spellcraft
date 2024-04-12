@@ -8,9 +8,9 @@ import { ZComponentRegister } from './component-register.mjs';
 describe('ZComponentCss', () => {
   const id = 'ZComponentCss-test-root';
   const selector = `#${id}`;
-  const tag = 'z-component-shadow-test';
+  const tag = 'z-component-css-test';
 
-  interface ZComponentStylesTest extends IZComponentWithStyleElement {}
+  interface ZComponentCssTest extends IZComponentWithStyleElement {}
 
   @ZComponentRegister(tag)
   @ZComponentCss(
@@ -29,7 +29,7 @@ describe('ZComponentCss', () => {
     `,
     { id }
   )
-  class ZComponentStylesTest extends HTMLElement {}
+  class ZComponentCssTest extends HTMLElement {}
 
   afterEach(() => {
     new ZNode(document.body).clear();
@@ -44,7 +44,7 @@ describe('ZComponentCss', () => {
       </div>
     `;
     document.body.appendChild(template.content.cloneNode(true));
-    return document.body.querySelector<ZComponentStylesTest>(tag)!;
+    return document.body.querySelector<ZComponentCssTest>(tag)!;
   };
 
   it('should add one styles element to the head', () => {
