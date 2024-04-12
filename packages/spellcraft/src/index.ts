@@ -5,6 +5,7 @@ export * from './component/component-constructor.mjs';
 export * from './component/component-css.mjs';
 export * from './component/component-dependencies.mjs';
 export * from './component/component-generate-id.mjs';
+export * from './component/component-link.mjs';
 export * from './component/component-register.mjs';
 export * from './component/component-shadow.mjs';
 export * from './event/component-dispatch-on-attribute-changed.mjs';
