@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.0](https://github.com/zthun/spellcraft/compare/v2.7.3...v2.8.0) (2024-04-12)
+
+
+### Features
+
+* component link decorator adds a link relationship in your document head ([3bb0b03](https://github.com/zthun/spellcraft/commit/3bb0b03e83474d2a461f1d05991421c10c729762))
+
+
+### Bug Fixes
+
+* the class returned from the css decorator should NOT implement IZComponentWithStyleElement ([c49380b](https://github.com/zthun/spellcraft/commit/c49380bb1b13ced05527521dbe7e48195a83935c))
+
+
+
 ## [2.7.3](https://github.com/zthun/spellcraft/compare/v2.7.2...v2.7.3) (2024-04-11)
 
 **Note:** Version bump only for package @zthun/spellcraft
