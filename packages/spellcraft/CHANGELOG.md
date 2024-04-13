@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/zthun/spellcraft/compare/v2.8.1...v2.8.2) (2024-04-13)
+
+
+### Bug Fixes
+
+* suffix id generated should be an actual guid ([8862150](https://github.com/zthun/spellcraft/commit/88621501298fba3d9b0ac2b1462243ce814561c5))
+
+
+
 ## [2.8.1](https://github.com/zthun/spellcraft/compare/v2.8.0...v2.8.1) (2024-04-13)
 
 
