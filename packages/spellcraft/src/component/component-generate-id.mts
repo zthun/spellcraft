@@ -49,7 +49,7 @@ export function ZComponentGenerateId<TElement extends ZComponentGenerateIdRequir
     class _ZComponentGenerateId extends target implements IZLifecycleConnected {
       public connectedCallback(): void {
         super.connectedCallback?.call(this);
-        this.id = this.id || `${prefix}-${createGuid}`;
+        this.id = this.id || `${prefix}-${createGuid()}`;
       }
     }
 
