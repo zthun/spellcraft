@@ -1,10 +1,11 @@
 import { createGuid, firstTruthy } from '@zthun/helpful-fn';
+import { IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
 import { ZComponentConstructor } from './component-constructor.mjs';
 
 /**
  * The requirements for ZComponentId targets.
  */
-export type ZComponentGenerateIdRequirements = HTMLElement;
+export type ZComponentGenerateIdRequirements = HTMLElement & IZLifecycleConnectedMaybe;
 
 /**
  * Options for the {@link ZComponentGenerateId} decorator.
@@ -45,10 +46,10 @@ export function ZComponentGenerateId<TElement extends ZComponentGenerateIdRequir
 
   return (target: ZComponentConstructor<TElement>): any => {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    class _ZComponentGenerateId extends target {
-      public constructor() {
-        super();
-        this.id = `${prefix}-${createGuid()}`;
+    class _ZComponentGenerateId extends target implements IZLifecycleConnected {
+      public connectedCallback(): void {
+        super.connectedCallback?.call(this);
+        this.id = this.id || `${prefix}-${createGuid}`;
       }
     }
 
