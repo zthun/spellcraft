@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/zthun/spellcraft/compare/v2.8.0...v2.8.1) (2024-04-13)
+
+
+### Bug Fixes
+
+* generate id should no longer throw an error when generating on custom elements (not directives). ([1b2ca6f](https://github.com/zthun/spellcraft/commit/1b2ca6fce6be5bde185cdd0892968f44e072bbf1))
+
+
+
 ## [2.8.0](https://github.com/zthun/spellcraft/compare/v2.7.3...v2.8.0) (2024-04-12)
 
 
