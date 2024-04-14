@@ -114,4 +114,46 @@ describe('ZComponentRenderOnEvent', () => {
       expect(target._render).not.toHaveBeenCalled();
     });
   });
+
+  describe('Multiple events', () => {
+    const tag = 'z-component-render-on-event-multiple-test';
+
+    @ZComponentRegister(tag)
+    @ZComponentRenderOnEvent('click', { selector: '.should-also-raise-click' })
+    @ZComponentRenderOnEvent('click', { selector: '.should-raise-click' })
+    class ZComponentRenderOnEventMultipleTest extends HTMLElement implements IZComponentRender {
+      public _render = vi.fn();
+
+      public render() {
+        this._render();
+      }
+    }
+
+    const createTestTarget = () => {
+      const $html = html`
+        <${tag}>
+          <button class='should-raise-click'></button>
+          <button class='should-also-raise-click'></button>
+        </${tag}>
+    `;
+
+      const template = document.createElement('template');
+      template.innerHTML = $html;
+      document.body.appendChild(template.content.cloneNode(true));
+      return document.body.querySelector<ZComponentRenderOnEventMultipleTest>(tag)!;
+    };
+
+    it('should render for each event by selector and event name', () => {
+      // Arrange.
+      const target = createTestTarget();
+      const shouldRaiseClick = target.querySelector<HTMLButtonElement>('.should-raise-click');
+      const shouldAlsoRaiseClick = target.querySelector<HTMLButtonElement>('.should-also-raise-click');
+      target._render.mockClear();
+      // Act.
+      shouldRaiseClick?.click();
+      shouldAlsoRaiseClick?.click();
+      // Assert.
+      expect(target._render).toHaveBeenCalledTimes(2);
+    });
+  });
 });

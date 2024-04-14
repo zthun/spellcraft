@@ -1,6 +1,6 @@
 import { ZComponentConstructor } from '../component/component-constructor.mjs';
-import { IZLifecycleConnected, IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
-import { IZLifecycleDisconnected, IZLifecycleDisconnectedMaybe } from '../lifecycle/lifecycle-disconnected.mjs';
+import { IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
+import { IZLifecycleDisconnectedMaybe } from '../lifecycle/lifecycle-disconnected.mjs';
 import { IZComponentRender } from './component-render.mjs';
 
 /**
@@ -56,41 +56,50 @@ export function ZComponentRenderOnEvent<TElement extends ZComponentRenderOnEvent
   const preventDefault = options?.preventDefault;
   const selector = options?.selector;
 
+  function findEventTarget(t: ZComponentRenderOnEventRequirements) {
+    return selector ? t.querySelector<HTMLElement>(selector) : t;
+  }
+
+  function handleEvent(t: ZComponentRenderOnEventRequirements | null, e: Event) {
+    if (stopPropagation) {
+      e.stopPropagation();
+    }
+
+    if (stopImmediatePropagation) {
+      e.stopImmediatePropagation();
+    }
+
+    if (preventDefault) {
+      e.preventDefault();
+    }
+
+    t?.render(t?.shadowRoot || t);
+  }
+
   return function (target: ZComponentConstructor<TElement>): any {
+    let event = handleEvent.bind(null, null);
+
     // @ts-expect-error 2415 https://github.com/microsoft/TypeScript/issues/58022
     class _ZComponentRenderOnEvent extends target implements IZLifecycleConnected, IZLifecycleDisconnected {
-      private __render_on_event_target = () => (selector ? this.querySelector<HTMLElement>(selector) : this);
-
-      private __render_on_event_handle = (e: Event) => {
-        if (stopPropagation) {
-          e.stopPropagation();
-        }
-
-        if (stopImmediatePropagation) {
-          e.stopImmediatePropagation();
-        }
-
-        if (preventDefault) {
-          e.preventDefault();
-        }
-
-        this.render(this.shadowRoot || this);
-      };
+      public constructor(...args: any[]) {
+        super(...args);
+        event = handleEvent.bind(this, this);
+      }
 
       public render(node: Node) {
-        this.__render_on_event_target()?.removeEventListener(name, this.__render_on_event_handle);
+        findEventTarget(this)?.removeEventListener(name, event);
         super.render(node);
-        this.__render_on_event_target()?.addEventListener(name, this.__render_on_event_handle);
+        findEventTarget(this)?.addEventListener(name, event);
       }
 
       public connectedCallback(): void {
         super.connectedCallback?.call(this);
-        this.__render_on_event_target()?.addEventListener(name, this.__render_on_event_handle);
+        findEventTarget(this)?.addEventListener(name, event);
       }
 
       public disconnectedCallback(): void {
         super.disconnectedCallback?.call(this);
-        this.__render_on_event_target()?.removeEventListener(name, this.__render_on_event_handle);
+        findEventTarget(this)?.removeEventListener(name, event);
       }
     }
 
