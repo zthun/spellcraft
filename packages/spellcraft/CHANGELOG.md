@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/zthun/spellcraft/compare/v2.8.2...v2.8.3) (2024-04-14)
+
+
+### Bug Fixes
+
+* render on event now properly calls render for each instance that is attached to the target class ([0d89ffe](https://github.com/zthun/spellcraft/commit/0d89ffe39c8ae1e5e0dfb7a7a08ba2fb91fbc0eb))
+
+
+
 ## [2.8.2](https://github.com/zthun/spellcraft/compare/v2.8.1...v2.8.2) (2024-04-13)
 
 
