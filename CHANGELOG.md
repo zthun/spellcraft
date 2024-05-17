@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.0](https://github.com/zthun/spellcraft/compare/v2.8.4...v2.9.0) (2024-05-17)
+
+
+### Features
+
+* lazy element allows you to lazily create an element and add it to the shadow root or target element ([8023ec9](https://github.com/zthun/spellcraft/commit/8023ec911d8b60ff2c40d624bdbbfac5812c6b9b))
+
+
+
 ## [2.8.4](https://github.com/zthun/spellcraft/compare/v2.8.3...v2.8.4) (2024-04-21)
 
 
