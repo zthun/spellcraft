@@ -1,4 +1,3 @@
-// @vitest-environment jsdom
 import { describe, expect, it, vi } from 'vitest';
 import { ZComponentRegister } from '../component/component-register.mjs';
 import { IZLifecyclePropertyChanged } from '../lifecycle/lifecycle-property-changed.mjs';
