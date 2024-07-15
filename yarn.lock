@@ -2625,12 +2625,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@zthun/helpful-fn@npm:5.0.1"
+"@zthun/helpful-fn@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "@zthun/helpful-fn@npm:5.0.3"
   dependencies:
-    uuid: "npm:^9.0.1"
-  checksum: 10/2fcdea070ead19745cc21f87aa51682f4db49510c274d575ad8bf738f49a1d7ed9a8012ee04a9d774a8d38336b5969597ade5be0e64b42e5961716fff86b0f9f
+    uuid: "npm:^10.0.0"
+  checksum: 10/bdf3ba09989faa58bc98151b21db9376ea4f3a86ad2efe704e88e2b9e73326af9c91ed2b4f37e0099dfda5f6e8c79fe91926a4b7680595c96ba1ef445865661a
   languageName: node
   linkType: hard
 
@@ -2747,9 +2747,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft-web@workspace:packages/spellcraft-web"
   dependencies:
-    "@zthun/helpful-fn": "npm:^5.0.1"
+    "@zthun/helpful-fn": "npm:^5.0.3"
     "@zthun/spellcraft": "npm:^2.9.0"
-    highlight.js: "npm:^11.9.0"
+    highlight.js: "npm:^11.10.0"
     typescript: "npm:~5.5.3"
     vite: "npm:^5.3.3"
     vitest: "npm:^2.0.2"
@@ -2760,8 +2760,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft@workspace:packages/spellcraft"
   dependencies:
-    "@zthun/helpful-fn": "npm:^5.0.1"
-    "@zthun/trilean": "npm:^2.0.0"
+    "@zthun/helpful-fn": "npm:^5.0.3"
+    "@zthun/trilean": "npm:^2.0.1"
     lodash-es: "npm:^4.17.21"
     typescript: "npm:~5.5.3"
     vite: "npm:^5.3.3"
@@ -2810,10 +2810,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/trilean@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@zthun/trilean@npm:2.0.0"
-  checksum: 10/cdbd44b216e56804207f3c47d18358b18b9314ffab726899cf2dfbde77e929ec3a0829d2fcf1c8e69b4eb82288c9fb8fe0c070e72c3e2b8532236928ca1f0f0d
+"@zthun/trilean@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@zthun/trilean@npm:2.0.1"
+  checksum: 10/1c695ae756498de227f28d9a42a2294eac332fffbf8c0b164df6605c2533ec1e91a383412031c829be6008d0a24cd5286da72d6435143f773d1d7e52d97ad3cb
   languageName: node
   linkType: hard
 
@@ -5836,10 +5836,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"highlight.js@npm:^11.9.0":
-  version: 11.9.0
-  resolution: "highlight.js@npm:11.9.0"
-  checksum: 10/44b3e42bc096a2e5207e514826a10ff7671de315a7216ebaeba76593d4f16dfe3f7078390cb5c2b08eae657694fef4fb65d775376db48480c829c83fbc4f157a
+"highlight.js@npm:^11.10.0":
+  version: 11.10.0
+  resolution: "highlight.js@npm:11.10.0"
+  checksum: 10/fc8747bcd4a491fc6a47ff80536881dcc9ea9b36cdc2a22a7be5670b89d76ca6c26df9d749017a23bbb2eb708331097a5ecbcee6330fb9064512d80cc3369d99
   languageName: node
   linkType: hard
 
@@ -10830,15 +10830,6 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 10/35aa60614811a201ff90f8ca5e9ecb7076a75c3821e17f0f5ff72d44e36c2d35fcbc2ceee9c4ac7317f4cc41895da30e74f3885e30313bee48fda6338f250538
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "uuid@npm:9.0.1"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 10/9d0b6adb72b736e36f2b1b53da0d559125ba3e39d913b6072f6f033e0c87835b414f0836b45bcfaf2bdf698f92297fea1c3cc19b0b258bc182c9c43cc0fab9f2
   languageName: node
   linkType: hard
 
