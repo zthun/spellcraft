@@ -15,7 +15,7 @@
     "check": "tsc --noEmit",
     "build": "lerna run build",
     "make": "yarn clean && yarn lint && yarn check && yarn test && yarn build",
-    "postinstall": "husky install"
+    "prepare": "husky"
   },
   "author": "Anthony Bonta",
   "devDependencies": {
