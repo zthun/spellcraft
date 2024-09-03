@@ -8,6 +8,7 @@
     "url": "https://github.com/zthun/spellcraft"
   },
   "private": true,
+  "type": "module",
   "scripts": {
     "clean": "rimraf --glob 'dist' 'reports' 'coverage' '*.tgz' '*.log' 'packages/**/dist' 'packages/**/docs' 'packages/**/*.tgz' 'packages/**/*.log' 'packages/**/.certificates' 'packages/**/stats'",
     "test": "vitest --run --coverage",

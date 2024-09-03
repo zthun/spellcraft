@@ -8,7 +8,7 @@ const generated = [
 ];
 const partialGenerated = ['cspell.json', 'lerna.json'];
 
-const esFiles = ['*.js', 'packages/**/src/**/*.ts'];
+const esFiles = ['*.cjs', 'packages/**/src/**/*.mts', 'packages/**/src/**/*.ts'];
 const markdownFiles = ['*.md', 'packages/**/*.md'];
 const jsonFiles = ['*.json', 'packages/**/*.json'];
 const yamlFiles = ['.circleci/config.yml'];
@@ -22,7 +22,7 @@ const yamlFilesExclude = generated;
 const prettyFilesExclude = generated.concat(partialGenerated);
 const spellingFilesExclude = generated.concat(partialGenerated);
 
-module.exports = {
+export default {
   esFiles,
   esFilesExclude,
   markdownFiles,
