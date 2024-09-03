@@ -1,5 +1,5 @@
-import { createGuid, firstDefined, firstTruthy } from '@zthun/helpful-fn';
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
+import { createGuid, firstDefined, firstTruthy } from "@zthun/helpful-fn";
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
 
 /**
  * A web component that has a styles factory.
@@ -81,13 +81,21 @@ export interface IZComponentWithStyleElement {
  *        A new class that extends from the target class that adds a new property,
  *        styleElement
  */
-export function ZComponentStyles<TElement extends HTMLElement>(options?: IZComponentStylesOptions) {
-  const prefix = firstTruthy('css', options?.prefix);
+export function ZComponentStyles<TElement extends HTMLElement>(
+  options?: IZComponentStylesOptions,
+) {
+  const prefix = firstTruthy("css", options?.prefix);
 
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentStyles extends target implements IZComponentWithStyleElement {
-      private _styleElementId = firstTruthy(`${prefix}-${createGuid()}`, options?.id);
+    return class _ZComponentStyles
+      extends target
+      implements IZComponentWithStyleElement
+    {
+      private _styleElementId = firstTruthy(
+        `${prefix}-${createGuid()}`,
+        options?.id,
+      );
 
       public styleElement: HTMLStyleElement | null = null;
 
@@ -96,12 +104,12 @@ export function ZComponentStyles<TElement extends HTMLElement>(options?: IZCompo
         this.styleElement = document.head.querySelector(selector);
 
         if (this.styleElement == null) {
-          this.styleElement = document.createElement('style');
+          this.styleElement = document.createElement("style");
           this.styleElement.id = this._styleElementId;
           document.head.appendChild(this.styleElement);
         }
 
-        this.styleElement.textContent = firstDefined('', css);
+        this.styleElement.textContent = firstDefined("", css);
         return this.styleElement;
       }
     };

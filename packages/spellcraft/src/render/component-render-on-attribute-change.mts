@@ -1,9 +1,9 @@
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
 import {
   IZLifecycleAttributeChanged,
-  IZLifecycleAttributeChangedMaybe
-} from '../lifecycle/lifecycle-attribute-changed.mjs';
-import { IZComponentRender } from './component-render.mjs';
+  IZLifecycleAttributeChangedMaybe,
+} from "../lifecycle/lifecycle-attribute-changed.mjs";
+import { IZComponentRender } from "./component-render.mjs";
 
 /**
  * Requirements for ZComponentRenderOnAttributeChanged targets.
@@ -42,11 +42,20 @@ export type ZComponentRenderOnAttributeChangedRequirements = HTMLElement &
  * }
  * ```
  */
-export function ZComponentRenderOnAttributeChanged<T extends ZComponentRenderOnAttributeChangedRequirements>() {
+export function ZComponentRenderOnAttributeChanged<
+  T extends ZComponentRenderOnAttributeChangedRequirements,
+>() {
   return function (Target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentRenderOnAttributeChanged extends Target implements Required<IZLifecycleAttributeChanged> {
-      public attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    return class _ZComponentRenderOnAttributeChanged
+      extends Target
+      implements Required<IZLifecycleAttributeChanged>
+    {
+      public attributeChangedCallback(
+        name: string,
+        oldValue: string,
+        newValue: string,
+      ) {
         super.attributeChangedCallback?.call(this, name, oldValue, newValue);
         this.render(this.shadowRoot || this);
       }

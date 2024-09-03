@@ -1,10 +1,10 @@
-import { firstDefined } from '@zthun/helpful-fn';
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
+import { firstDefined } from "@zthun/helpful-fn";
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
 import {
   IZLifecyclePropertyChanged,
-  IZLifecyclePropertyChangedMaybe
-} from '../lifecycle/lifecycle-property-changed.mjs';
-import { IZComponentDispatch } from './component-dispatch.mjs';
+  IZLifecyclePropertyChangedMaybe,
+} from "../lifecycle/lifecycle-property-changed.mjs";
+import { IZComponentDispatch } from "./component-dispatch.mjs";
 
 /**
  * Requirements for the ZComponentDispatchOnPropertyChanged decorator.
@@ -38,15 +38,22 @@ export interface IZComponentDispatchOnPropertyChangedOptions {
  *        a property changes on the target class.  Only properties
  *        included in {@link IZComponentDispatchOnPropertyChangedOptions.filter} will run the dispatch.
  */
-export function ZComponentDispatchOnPropertyChanged<C extends ZComponentDispatchOnPropertyChangedRequirements>(
-  options?: IZComponentDispatchOnPropertyChangedOptions
-) {
+export function ZComponentDispatchOnPropertyChanged<
+  C extends ZComponentDispatchOnPropertyChangedRequirements,
+>(options?: IZComponentDispatchOnPropertyChangedOptions) {
   const filter = firstDefined([], options?.filter);
 
   return function (target: ZComponentConstructor<C>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentDispatchOnPropertyChange extends target implements IZLifecyclePropertyChanged {
-      public propertyChangedCallback(name: string | symbol, oldValue: any, newValue: any): void {
+    return class _ZComponentDispatchOnPropertyChange
+      extends target
+      implements IZLifecyclePropertyChanged
+    {
+      public propertyChangedCallback(
+        name: string | symbol,
+        oldValue: any,
+        newValue: any,
+      ): void {
         super.propertyChangedCallback?.call(this, name, oldValue, newValue);
 
         if (!filter.length || filter.includes(name)) {

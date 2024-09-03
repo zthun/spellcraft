@@ -1,13 +1,13 @@
-import { ZTrilean, trilean } from '@zthun/trilean';
-import { camelCase, kebabCase } from 'lodash-es';
-import { describe, expect, it } from 'vitest';
-import { ZComponentRegister } from '../component/component-register.mjs';
-import { ZAttribute } from './attribute.mjs';
+import { ZTrilean, trilean } from "@zthun/trilean";
+import { camelCase, kebabCase } from "lodash-es";
+import { describe, expect, it } from "vitest";
+import { ZComponentRegister } from "../component/component-register.mjs";
+import { ZAttribute } from "./attribute.mjs";
 
-const Batman = 'batman';
-const TowardsInfinity = BigInt('9394839483984938493849839483984938493849');
+const Batman = "batman";
+const TowardsInfinity = BigInt("9394839483984938493849839483984938493849");
 
-@ZComponentRegister('z-with-attributes')
+@ZComponentRegister("z-with-attributes")
 class ZWithAttributes extends HTMLElement {
   @ZAttribute()
   public stringAttribute: string;
@@ -18,50 +18,50 @@ class ZWithAttributes extends HTMLElement {
   @ZAttribute({ nullable: true })
   public stringNullable: string | null;
 
-  @ZAttribute({ type: 'bigint' })
+  @ZAttribute({ type: "bigint" })
   public bigIntAttribute: bigint | null;
 
-  @ZAttribute({ type: 'bigint', fallback: TowardsInfinity })
+  @ZAttribute({ type: "bigint", fallback: TowardsInfinity })
   public bigIntWithFallback: bigint;
 
-  @ZAttribute({ type: 'bigint', nullable: true })
+  @ZAttribute({ type: "bigint", nullable: true })
   public bigIntNullable: bigint | null;
 
-  @ZAttribute({ type: 'number' })
+  @ZAttribute({ type: "number" })
   public numberAttribute: number;
 
-  @ZAttribute({ type: 'number', fallback: Number.MAX_SAFE_INTEGER })
+  @ZAttribute({ type: "number", fallback: Number.MAX_SAFE_INTEGER })
   public numberWithFallback: number;
 
-  @ZAttribute({ type: 'number', nullable: true })
+  @ZAttribute({ type: "number", nullable: true })
   public numberNullable: number | null;
 
-  @ZAttribute({ type: 'boolean' })
+  @ZAttribute({ type: "boolean" })
   public booleanAttribute: boolean;
 
-  @ZAttribute({ type: 'boolean', fallback: true })
+  @ZAttribute({ type: "boolean", fallback: true })
   public booleanWithFallback: boolean;
 
-  @ZAttribute({ type: 'boolean', nullable: true })
+  @ZAttribute({ type: "boolean", nullable: true })
   public booleanNullable: boolean | null;
 
-  @ZAttribute({ type: 'function' })
+  @ZAttribute({ type: "function" })
   public functionAttribute: () => any;
 
-  @ZAttribute({ type: 'symbol' })
+  @ZAttribute({ type: "symbol" })
   public symbolAttribute: symbol;
 
-  @ZAttribute({ type: 'object' })
+  @ZAttribute({ type: "object" })
   public objectAttribute: object;
 
-  @ZAttribute({ type: 'trilean' })
+  @ZAttribute({ type: "trilean" })
   public trileanAttribute: trilean;
 
-  @ZAttribute({ type: 'trilean', fallback: true })
+  @ZAttribute({ type: "trilean", fallback: true })
   public trileanWithFallbackTrue: trilean;
 }
 
-describe('ZAttribute', () => {
+describe("ZAttribute", () => {
   const createTestTarget = () => new ZWithAttributes();
 
   function shouldReadTheAttribute<T>(expected: T, attribute: string) {
@@ -133,221 +133,227 @@ describe('ZAttribute', () => {
     expect(actual).toThrowError();
   }
 
-  describe('String', () => {
-    it('should read the attribute', () => {
-      shouldReadTheAttribute('text for my element', 'string-attribute');
+  describe("String", () => {
+    it("should read the attribute", () => {
+      shouldReadTheAttribute("text for my element", "string-attribute");
     });
 
-    it('should return fallback for a missing attribute', () => {
-      shouldBeDefaultForMissingValue('', 'string-attribute');
+    it("should return fallback for a missing attribute", () => {
+      shouldBeDefaultForMissingValue("", "string-attribute");
     });
 
-    it('should set the attribute', () => {
-      shouldUpdateTheAttribute('text for my element', 'string-attribute');
+    it("should set the attribute", () => {
+      shouldUpdateTheAttribute("text for my element", "string-attribute");
     });
 
-    it('should default the attribute', () => {
-      shouldDefaultTheAttribute('', 'string-attribute');
+    it("should default the attribute", () => {
+      shouldDefaultTheAttribute("", "string-attribute");
     });
 
-    it('should default to null for nullable', () => {
-      shouldBeNullForNullableValue('string-nullable');
+    it("should default to null for nullable", () => {
+      shouldBeNullForNullableValue("string-nullable");
     });
 
-    it('should default the attribute with a fallback', () => {
-      shouldDefaultTheAttribute(Batman, 'string-with-fallback');
-    });
-  });
-
-  describe('BigInt', () => {
-    it('should read the attribute', () => {
-      shouldReadTheAttribute(BigInt(42), 'big-int-attribute');
-    });
-
-    it('should return null for a missing attribute', () => {
-      shouldBeDefaultForMissingValue(null, 'big-int-attribute');
-    });
-
-    it('should return fallback for a missing attribute with a fallback', () => {
-      shouldBeDefaultForMissingValue(TowardsInfinity, 'big-int-with-fallback');
-    });
-
-    it('should default to null for nullable', () => {
-      shouldBeNullForNullableValue('big-int-nullable');
-    });
-
-    it('should set the attribute', () => {
-      shouldUpdateTheAttribute(BigInt(42), 'big-int-attribute');
+    it("should default the attribute with a fallback", () => {
+      shouldDefaultTheAttribute(Batman, "string-with-fallback");
     });
   });
 
-  describe('Number', () => {
-    it('should read the attribute', () => {
-      shouldReadTheAttribute(42, 'number-attribute');
+  describe("BigInt", () => {
+    it("should read the attribute", () => {
+      shouldReadTheAttribute(BigInt(42), "big-int-attribute");
     });
 
-    it('should return null for a missing attribute', () => {
-      shouldBeDefaultForMissingValue(NaN, 'number-attribute');
+    it("should return null for a missing attribute", () => {
+      shouldBeDefaultForMissingValue(null, "big-int-attribute");
     });
 
-    it('should set the attribute', () => {
-      shouldUpdateTheAttribute(BigInt(42), 'number-attribute');
+    it("should return fallback for a missing attribute with a fallback", () => {
+      shouldBeDefaultForMissingValue(TowardsInfinity, "big-int-with-fallback");
     });
 
-    it('should default the attribute', () => {
-      shouldDefaultTheAttribute(NaN, 'number-attribute');
+    it("should default to null for nullable", () => {
+      shouldBeNullForNullableValue("big-int-nullable");
     });
 
-    it('should default to null for nullable', () => {
-      shouldBeNullForNullableValue('number-nullable');
-    });
-
-    it('should default the attribute to a fallback', () => {
-      shouldDefaultTheAttribute(Number.MAX_SAFE_INTEGER, 'number-with-fallback');
+    it("should set the attribute", () => {
+      shouldUpdateTheAttribute(BigInt(42), "big-int-attribute");
     });
   });
 
-  describe('Object', () => {
-    it('should always return null (not supported)', () => {
-      shouldReadTheAttribute(null, 'object-attribute');
+  describe("Number", () => {
+    it("should read the attribute", () => {
+      shouldReadTheAttribute(42, "number-attribute");
     });
 
-    it('should throw an error when being set', () => {
-      shouldRequireProperty('object-attribute');
+    it("should return null for a missing attribute", () => {
+      shouldBeDefaultForMissingValue(NaN, "number-attribute");
+    });
+
+    it("should set the attribute", () => {
+      shouldUpdateTheAttribute(BigInt(42), "number-attribute");
+    });
+
+    it("should default the attribute", () => {
+      shouldDefaultTheAttribute(NaN, "number-attribute");
+    });
+
+    it("should default to null for nullable", () => {
+      shouldBeNullForNullableValue("number-nullable");
+    });
+
+    it("should default the attribute to a fallback", () => {
+      shouldDefaultTheAttribute(
+        Number.MAX_SAFE_INTEGER,
+        "number-with-fallback",
+      );
     });
   });
 
-  describe('Boolean', () => {
-    it('should return true if the value is true', () => {
-      shouldReadTheAttribute(true, 'boolean-attribute');
+  describe("Object", () => {
+    it("should always return null (not supported)", () => {
+      shouldReadTheAttribute(null, "object-attribute");
     });
 
-    it('should return false if the value is false', () => {
-      shouldReadTheAttribute(false, 'boolean-attribute');
+    it("should throw an error when being set", () => {
+      shouldRequireProperty("object-attribute");
+    });
+  });
+
+  describe("Boolean", () => {
+    it("should return true if the value is true", () => {
+      shouldReadTheAttribute(true, "boolean-attribute");
     });
 
-    it('should return true if the value is empty', () => {
+    it("should return false if the value is false", () => {
+      shouldReadTheAttribute(false, "boolean-attribute");
+    });
+
+    it("should return true if the value is empty", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
-      target.setAttribute('boolean-attribute', '');
+      target.setAttribute("boolean-attribute", "");
       const actual = target.booleanAttribute;
       // Assert.
       expect(actual).toEqual(true);
     });
 
-    it('should return false if the value is null', () => {
+    it("should return false if the value is null", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
-      target.removeAttribute('boolean-attribute');
+      target.removeAttribute("boolean-attribute");
       const actual = target.booleanAttribute;
       // Assert.
       expect(actual).toEqual(false);
     });
 
-    it('should default to null for nullable', () => {
-      shouldBeNullForNullableValue('boolean-nullable');
+    it("should default to null for nullable", () => {
+      shouldBeNullForNullableValue("boolean-nullable");
     });
 
-    it('should return the fallback if the attribute is not set', () => {
+    it("should return the fallback if the attribute is not set", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
-      target.removeAttribute('boolean-with-fallback');
+      target.removeAttribute("boolean-with-fallback");
       const actual = target.booleanWithFallback;
       // Assert.
       expect(actual).toEqual(true);
     });
 
-    it('should set the attribute', () => {
-      shouldUpdateTheAttribute(false, 'boolean-attribute');
+    it("should set the attribute", () => {
+      shouldUpdateTheAttribute(false, "boolean-attribute");
     });
 
-    it('should default the attribute', () => {
-      shouldDefaultTheAttribute(false, 'boolean-attribute');
-    });
-  });
-
-  describe('Function', () => {
-    it('should always return null (not supported)', () => {
-      shouldReadTheAttribute(null, 'function-attribute');
-    });
-
-    it('should throw an error when being set', () => {
-      shouldRequireProperty('function-attribute');
+    it("should default the attribute", () => {
+      shouldDefaultTheAttribute(false, "boolean-attribute");
     });
   });
 
-  describe('Symbol', () => {
-    it('should always return null (not supported)', () => {
-      shouldReadTheAttribute(null, 'symbol-attribute');
+  describe("Function", () => {
+    it("should always return null (not supported)", () => {
+      shouldReadTheAttribute(null, "function-attribute");
     });
 
-    it('should throw an error when being set', () => {
-      shouldRequireProperty('symbol-attribute');
+    it("should throw an error when being set", () => {
+      shouldRequireProperty("function-attribute");
     });
   });
 
-  describe('Trilean', () => {
-    it('should return true if the value is true', () => {
-      shouldReadTheAttribute(true, 'trilean-attribute');
+  describe("Symbol", () => {
+    it("should always return null (not supported)", () => {
+      shouldReadTheAttribute(null, "symbol-attribute");
     });
 
-    it('should return false if the value is false', () => {
-      shouldReadTheAttribute(false, 'trilean-attribute');
+    it("should throw an error when being set", () => {
+      shouldRequireProperty("symbol-attribute");
+    });
+  });
+
+  describe("Trilean", () => {
+    it("should return true if the value is true", () => {
+      shouldReadTheAttribute(true, "trilean-attribute");
     });
 
-    it('should return indeterminate if the value is indeterminate', () => {
+    it("should return false if the value is false", () => {
+      shouldReadTheAttribute(false, "trilean-attribute");
+    });
+
+    it("should return indeterminate if the value is indeterminate", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
-      target.setAttribute('trilean-attribute', ZTrilean.stringify(ZTrilean.Indeterminate));
+      target.setAttribute(
+        "trilean-attribute",
+        ZTrilean.stringify(ZTrilean.Indeterminate),
+      );
       const actual = target.trileanAttribute;
       // Assert.
       expect(actual).toEqual(ZTrilean.Indeterminate);
     });
 
-    it('should return false if the value is empty', () => {
+    it("should return false if the value is empty", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
-      target.setAttribute('trilean-attribute', '');
+      target.setAttribute("trilean-attribute", "");
       const actual = target.trileanAttribute;
       // Assert.
       expect(actual).toEqual(false);
     });
 
-    it('should return the fallback if the attribute is not set', () => {
+    it("should return the fallback if the attribute is not set", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
-      target.removeAttribute('trilean-with-fallback-true');
+      target.removeAttribute("trilean-with-fallback-true");
       const actual = target.trileanWithFallbackTrue;
       // Assert.
       expect(actual).toEqual(true);
     });
 
-    it('should set the attribute to false', () => {
-      shouldUpdateTheAttribute(false, 'trilean-attribute');
+    it("should set the attribute to false", () => {
+      shouldUpdateTheAttribute(false, "trilean-attribute");
     });
 
-    it('should set the attribute to true', () => {
-      shouldUpdateTheAttribute(true, 'trilean-attribute');
+    it("should set the attribute to true", () => {
+      shouldUpdateTheAttribute(true, "trilean-attribute");
     });
 
-    it('should set the attribute to indeterminate', () => {
+    it("should set the attribute to indeterminate", () => {
       // Arrange.
       const target = createTestTarget();
       // Act.
       target.trileanAttribute = ZTrilean.Indeterminate;
-      const actual = target.getAttribute('trilean-attribute');
+      const actual = target.getAttribute("trilean-attribute");
       // Assert.
-      expect(actual).toEqual('indeterminate');
+      expect(actual).toEqual("indeterminate");
     });
 
-    it('should default the attribute', () => {
-      shouldDefaultTheAttribute(false, 'trilean-attribute');
+    it("should default the attribute", () => {
+      shouldDefaultTheAttribute(false, "trilean-attribute");
     });
   });
 });

@@ -1,10 +1,10 @@
-import { firstDefined } from '@zthun/helpful-fn';
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
+import { firstDefined } from "@zthun/helpful-fn";
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
 import {
   IZLifecycleAttributeChanged,
-  IZLifecycleAttributeChangedMaybe
-} from '../lifecycle/lifecycle-attribute-changed.mjs';
-import { IZComponentDispatch } from './component-dispatch.mjs';
+  IZLifecycleAttributeChangedMaybe,
+} from "../lifecycle/lifecycle-attribute-changed.mjs";
+import { IZComponentDispatch } from "./component-dispatch.mjs";
 
 /**
  * Requirements for the ZComponentDispatchOnAttributeChanged decorator.
@@ -29,15 +29,22 @@ export interface IZComponentDispatchOnAttributeChangedOptions {
 /**
  * An aspect that adds an implementation for raising an event
  */
-export function ZComponentDispatchOnAttributeChanged<C extends ZComponentDispatchOnAttributeChangedRequirements>(
-  options?: IZComponentDispatchOnAttributeChangedOptions
-) {
+export function ZComponentDispatchOnAttributeChanged<
+  C extends ZComponentDispatchOnAttributeChangedRequirements,
+>(options?: IZComponentDispatchOnAttributeChangedOptions) {
   const filter = firstDefined([], options?.filter);
 
   return function (target: ZComponentConstructor<C>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentDispatchOnAttributeChange extends target implements IZLifecycleAttributeChanged {
-      public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+    return class _ZComponentDispatchOnAttributeChange
+      extends target
+      implements IZLifecycleAttributeChanged
+    {
+      public attributeChangedCallback(
+        name: string,
+        oldValue: string,
+        newValue: string,
+      ): void {
         super.attributeChangedCallback?.call(this, name, oldValue, newValue);
 
         if (!filter.length || filter.includes(name)) {

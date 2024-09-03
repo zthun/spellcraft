@@ -1,4 +1,4 @@
-import { ZComponentConstructor } from './component-constructor.mjs';
+import { ZComponentConstructor } from "./component-constructor.mjs";
 
 /**
  * Options for registering a component.
@@ -55,7 +55,10 @@ export interface IZComponentRegisterOptions {
  * </div>
  * ```
  */
-export function ZComponentRegister<T extends HTMLElement>(tag: string, options?: IZComponentRegisterOptions) {
+export function ZComponentRegister<T extends HTMLElement>(
+  tag: string,
+  options?: IZComponentRegisterOptions,
+) {
   return function (target: ZComponentConstructor<T>): any {
     if (customElements.get(tag) == null) {
       customElements.define(tag, target, { extends: options?.extend });

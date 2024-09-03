@@ -33,7 +33,7 @@ export class ZNode {
    *        This object.
    */
   public template(html: string): this {
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = html;
     this.node.appendChild(template.content.cloneNode(true));
     return this;

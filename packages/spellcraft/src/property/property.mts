@@ -1,11 +1,12 @@
-import { kebabCase } from 'lodash-es';
-import { ZAttributes } from '../attribute/attributes.mjs';
-import { IZLifecyclePropertyChangedMaybe } from '../lifecycle/lifecycle-property-changed.mjs';
+import { kebabCase } from "lodash-es";
+import { ZAttributes } from "../attribute/attributes.mjs";
+import { IZLifecyclePropertyChangedMaybe } from "../lifecycle/lifecycle-property-changed.mjs";
 
 /**
  * The requirements for a ZProperty target
  */
-export type ZPropertyRequirements = HTMLElement & IZLifecyclePropertyChangedMaybe;
+export type ZPropertyRequirements = HTMLElement &
+  IZLifecyclePropertyChangedMaybe;
 
 /**
  * Options for a web component property.
@@ -37,7 +38,9 @@ export interface ZPropertyOptions {
  *        The property decorator which wraps a property to invoke the
  *        property change event when it changes.
  */
-export function ZProperty<C extends ZPropertyRequirements>(options?: ZPropertyOptions): PropertyDecorator {
+export function ZProperty<C extends ZPropertyRequirements>(
+  options?: ZPropertyOptions,
+): PropertyDecorator {
   return (target: C, propertyKey: string | symbol): void => {
     const attribute = options?.attribute || undefined;
 
@@ -52,15 +55,20 @@ export function ZProperty<C extends ZPropertyRequirements>(options?: ZPropertyOp
       _value = newValue;
 
       if (oldValue !== newValue) {
-        this.propertyChangedCallback?.call(this, propertyKey, oldValue, newValue);
+        this.propertyChangedCallback?.call(
+          this,
+          propertyKey,
+          oldValue,
+          newValue,
+        );
       }
 
       if (attribute) {
         const name = `data-${kebabCase(propertyKey.toString())}`;
         const value =
-          typeof attribute === 'function'
+          typeof attribute === "function"
             ? attribute(newValue)
-            : typeof newValue === 'string'
+            : typeof newValue === "string"
               ? newValue
               : JSON.stringify(newValue);
         ZAttributes.mutate(this, name, value);
@@ -69,7 +77,7 @@ export function ZProperty<C extends ZPropertyRequirements>(options?: ZPropertyOp
 
     Object.defineProperty(target, propertyKey, {
       get,
-      set
+      set,
     });
   };
 }

@@ -1,6 +1,9 @@
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
-import { IZLifecycleDisconnectedMaybe } from '../lifecycle/lifecycle-disconnected.mjs';
-import { IZComponentWithStyleElement } from './component-styles.mjs';
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
+import {
+  IZLifecycleDisconnected,
+  IZLifecycleDisconnectedMaybe,
+} from "../lifecycle/lifecycle-disconnected.mjs";
+import { IZComponentWithStyleElement } from "./component-styles.mjs";
 
 /**
  * Requirements for ZComponentStylesRemoveOnDisconnect targets.
@@ -22,10 +25,15 @@ export type ZComponentStylesRemoveOnDisconnectRequirements = HTMLElement &
  *        A new class that extends from the target class that adds a new property,
  *        styleElement
  */
-export function ZComponentStylesRemoveOnDisconnect<T extends ZComponentStylesRemoveOnDisconnectRequirements>() {
+export function ZComponentStylesRemoveOnDisconnect<
+  T extends ZComponentStylesRemoveOnDisconnectRequirements,
+>() {
   return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    class _ZComponentStylesRemoveOnDisconnect extends target implements IZLifecycleDisconnected {
+    class _ZComponentStylesRemoveOnDisconnect
+      extends target
+      implements IZLifecycleDisconnected
+    {
       public disconnectedCallback(): void {
         super.disconnectedCallback?.call(this);
         this.styleElement?.remove();

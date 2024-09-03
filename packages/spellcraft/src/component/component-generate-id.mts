@@ -1,11 +1,12 @@
-import { createGuid, firstTruthy } from '@zthun/helpful-fn';
-import { IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
-import { ZComponentConstructor } from './component-constructor.mjs';
+import { createGuid, firstTruthy } from "@zthun/helpful-fn";
+import { IZLifecycleConnectedMaybe } from "../lifecycle/lifecycle-connected.mjs";
+import { ZComponentConstructor } from "./component-constructor.mjs";
 
 /**
  * The requirements for ZComponentId targets.
  */
-export type ZComponentGenerateIdRequirements = HTMLElement & IZLifecycleConnectedMaybe;
+export type ZComponentGenerateIdRequirements = HTMLElement &
+  IZLifecycleConnectedMaybe;
 
 /**
  * Options for the {@link ZComponentGenerateId} decorator.
@@ -39,10 +40,10 @@ export interface IZComponentGenerateIdOptions {
  * <z-fancy-component class="ZFancyComponent-root"></z-fancy-component>
  * ```
  */
-export function ZComponentGenerateId<TElement extends ZComponentGenerateIdRequirements>(
-  options?: IZComponentGenerateIdOptions
-) {
-  const prefix = firstTruthy('e', options?.prefix);
+export function ZComponentGenerateId<
+  TElement extends ZComponentGenerateIdRequirements,
+>(options?: IZComponentGenerateIdOptions) {
+  const prefix = firstTruthy("e", options?.prefix);
 
   return (target: ZComponentConstructor<TElement>): any => {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022

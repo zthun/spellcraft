@@ -1,4 +1,4 @@
-import { firstDefined } from '@zthun/helpful-fn';
+import { firstDefined } from "@zthun/helpful-fn";
 
 /**
  * A set of organized helpers for working with dom attributes.
@@ -15,8 +15,16 @@ export abstract class ZAttributes {
    *        The value to set.  If this is null or undefined, then the attribute is
    *        removed, otherwise, it is set.
    */
-  public static mutate<T extends string = string>(e: Element, name: string, val: T | null | undefined): void {
-    val == null ? e.removeAttribute(name) : e.setAttribute(name, val);
+  public static mutate<T extends string = string>(
+    e: Element,
+    name: string,
+    val: T | null | undefined,
+  ): void {
+    if (val == null) {
+      e.removeAttribute(name);
+    } else {
+      e.setAttribute(name, val);
+    }
   }
 
   /**
@@ -33,7 +41,11 @@ export abstract class ZAttributes {
    *        The value of the attribute, or fallback if there is no
    *        value for the given name.
    */
-  public static query<T extends string = string>(e: Element, name: string, fallback: T): T {
+  public static query<T extends string = string>(
+    e: Element,
+    name: string,
+    fallback: T,
+  ): T {
     return firstDefined(fallback, e.getAttribute(name) as T);
   }
 
@@ -56,26 +68,29 @@ export abstract class ZAttributes {
    *        then that object is json stringified and put into
    *        the attribute.
    */
-  public static stringify(name: string, value: boolean | string | number | object | null | undefined): string {
+  public static stringify(
+    name: string,
+    value: boolean | string | number | object | null | undefined,
+  ): string {
     if (value == null) {
-      return '';
+      return "";
     }
 
     const t = typeof value;
 
-    if (t === 'boolean') {
-      return value ? name : '';
+    if (t === "boolean") {
+      return value ? name : "";
     }
 
-    if (t === 'number') {
+    if (t === "number") {
       return `${name}="${value}"`;
     }
 
-    if (t === 'object') {
+    if (t === "object") {
       return `${name}="${JSON.stringify(value)}"`;
     }
 
     const str = String(value);
-    return str === '' ? '' : `${name}="${str}"`;
+    return str === "" ? "" : `${name}="${str}"`;
   }
 }

@@ -12,7 +12,11 @@ export interface IZLifecycleAttributeChanged {
    * @param newValue -
    *        The new value of the attribute.
    */
-  attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
+  attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    newValue: string,
+  ): void;
 }
 
 /**
@@ -24,5 +28,9 @@ export interface IZLifecycleAttributeChangedMaybe {
    * @see {@link IZLifecycleAttributeChanged.attributeChangedCallback} -
    *      This implementation of this is optional.
    */
-  attributeChangedCallback?(name: string, oldValue: string, newValue: string): void;
+  attributeChangedCallback?(
+    name: string,
+    oldValue: string,
+    newValue: string,
+  ): void;
 }

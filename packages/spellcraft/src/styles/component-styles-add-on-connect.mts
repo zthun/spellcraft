@@ -1,6 +1,12 @@
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
-import { IZLifecycleConnected, IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
-import { IZComponentStyles, IZComponentWithStyleElement } from './component-styles.mjs';
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
+import {
+  IZLifecycleConnected,
+  IZLifecycleConnectedMaybe,
+} from "../lifecycle/lifecycle-connected.mjs";
+import {
+  IZComponentStyles,
+  IZComponentWithStyleElement,
+} from "./component-styles.mjs";
 
 /**
  * Requirements for ZComponentStylesAddOnConnect targets.
@@ -20,10 +26,15 @@ export type ZComponentStylesAddOnConnectRequirements = HTMLElement &
  *        A new class that extends from the target class that adds a new property,
  *        styleElement
  */
-export function ZComponentStylesAddOnConnect<T extends ZComponentStylesAddOnConnectRequirements>() {
+export function ZComponentStylesAddOnConnect<
+  T extends ZComponentStylesAddOnConnectRequirements,
+>() {
   return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    class _ZComponentStylesAddOnConnect extends target implements Required<IZLifecycleConnected> {
+    class _ZComponentStylesAddOnConnect
+      extends target
+      implements Required<IZLifecycleConnected>
+    {
       public connectedCallback(): void {
         super.connectedCallback?.call(this);
         this.refreshStyles(this.styles());

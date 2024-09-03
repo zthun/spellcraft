@@ -1,10 +1,14 @@
-import { IZLifecycleConnected, IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
-import { ZComponentConstructor } from './component-constructor.mjs';
+import {
+  IZLifecycleConnected,
+  IZLifecycleConnectedMaybe,
+} from "../lifecycle/lifecycle-connected.mjs";
+import { ZComponentConstructor } from "./component-constructor.mjs";
 
 /**
  * The requirements for ZComponentClass targets.
  */
-export type ZComponentClassRequirements = HTMLElement & IZLifecycleConnectedMaybe;
+export type ZComponentClassRequirements = HTMLElement &
+  IZLifecycleConnectedMaybe;
 
 /**
  * Automatically applies one or more class names to the host element upon being connected.
@@ -34,7 +38,10 @@ export type ZComponentClassRequirements = HTMLElement & IZLifecycleConnectedMayb
  * <z-fancy-component class="ZFancyComponent-root"></z-fancy-component>
  * ```
  */
-export function ZComponentClass<TElement extends ZComponentClassRequirements>(className: string, ...others: string[]) {
+export function ZComponentClass<TElement extends ZComponentClassRequirements>(
+  className: string,
+  ...others: string[]
+) {
   const classes = [className].concat(others);
 
   return (Target: ZComponentConstructor<TElement>): any => {

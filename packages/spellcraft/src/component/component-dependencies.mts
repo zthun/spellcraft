@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { ZComponentConstructor } from './component-constructor.mjs';
+import { ZComponentConstructor } from "./component-constructor.mjs";
 
 /**
  * A mixin decorator that signals that the component has other component dependencies.
@@ -52,7 +52,9 @@ import { ZComponentConstructor } from './component-constructor.mjs';
  * }
  * ```
  */
-export function ZComponentDependencies<TElement extends HTMLElement>(dependencies: CustomElementConstructor[]) {
+export function ZComponentDependencies<TElement extends HTMLElement>(
+  dependencies: CustomElementConstructor[],
+) {
   return function (Target: ZComponentConstructor<TElement>): any {
     return Target;
   };

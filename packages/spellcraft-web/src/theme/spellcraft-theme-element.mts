@@ -1,19 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
-import { css } from '@zthun/helpful-fn';
+import { css } from "@zthun/helpful-fn";
 import {
   IZComponentStyles,
   IZComponentWithStyleElement,
   ZComponentRegister,
   ZComponentStyles,
-  ZComponentStylesAddOnConnect
-} from '@zthun/spellcraft';
+  ZComponentStylesAddOnConnect,
+} from "@zthun/spellcraft";
 
 export interface ZSpellcraftThemeElement extends IZComponentWithStyleElement {}
 
-@ZComponentRegister('z-spellcraft-theme')
+@ZComponentRegister("z-spellcraft-theme")
 @ZComponentStylesAddOnConnect()
 @ZComponentStyles()
-export class ZSpellcraftThemeElement extends HTMLElement implements IZComponentStyles {
+export class ZSpellcraftThemeElement
+  extends HTMLElement
+  implements IZComponentStyles
+{
   public styles() {
     return css`
       html {
@@ -55,7 +58,7 @@ export class ZSpellcraftThemeElement extends HTMLElement implements IZComponentS
         color: var(--color-body-contrast);
         padding: 0;
         margin: 0;
-        font-family: 'Roboto';
+        font-family: "Roboto";
       }
 
       a {

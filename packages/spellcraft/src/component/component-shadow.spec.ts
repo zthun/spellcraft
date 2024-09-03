@@ -1,14 +1,14 @@
-import { html } from '@zthun/helpful-fn';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZNode } from '../node/node.mjs';
-import { ZComponentRegister } from './component-register.mjs';
-import { ZComponentShadow } from './component-shadow.mjs';
+import { html } from "@zthun/helpful-fn";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZNode } from "../node/node.mjs";
+import { ZComponentRegister } from "./component-register.mjs";
+import { ZComponentShadow } from "./component-shadow.mjs";
 
-describe('ZComponentShadow', () => {
-  const $tag = 'z-component-shadow-test';
+describe("ZComponentShadow", () => {
+  const $tag = "z-component-shadow-test";
 
   @ZComponentRegister($tag)
-  @ZComponentShadow({ mode: 'closed' })
+  @ZComponentShadow({ mode: "closed" })
   @ZComponentShadow()
   class ZComponentShadowTest extends HTMLElement {}
 
@@ -17,13 +17,13 @@ describe('ZComponentShadow', () => {
   });
 
   const createTestTarget = () => {
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = html`<div><${$tag}></${$tag}></div>`;
     document.body.appendChild(template.content.cloneNode(true));
     return document.body.querySelector<ZComponentShadowTest>($tag)!;
   };
 
-  it('should add an open shadow root', () => {
+  it("should add an open shadow root", () => {
     // Arrange.
     const target = createTestTarget();
     // Act.

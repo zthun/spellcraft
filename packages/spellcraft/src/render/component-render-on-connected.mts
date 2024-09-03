@@ -1,11 +1,16 @@
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
-import { IZLifecycleConnected, IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
-import { IZComponentRender } from './component-render.mjs';
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
+import {
+  IZLifecycleConnected,
+  IZLifecycleConnectedMaybe,
+} from "../lifecycle/lifecycle-connected.mjs";
+import { IZComponentRender } from "./component-render.mjs";
 
 /**
  * Requirements for ZComponentRenderOnConnected targets.
  */
-export type ZComponentRenderOnConnectedRequirements = HTMLElement & IZComponentRender & IZLifecycleConnectedMaybe;
+export type ZComponentRenderOnConnectedRequirements = HTMLElement &
+  IZComponentRender &
+  IZLifecycleConnectedMaybe;
 
 /**
  * An aspect that adds a render invocation on the connected callback lifecycle event.
@@ -36,10 +41,15 @@ export type ZComponentRenderOnConnectedRequirements = HTMLElement & IZComponentR
  * }
  * ```
  */
-export function ZComponentRenderOnConnected<T extends ZComponentRenderOnConnectedRequirements>() {
+export function ZComponentRenderOnConnected<
+  T extends ZComponentRenderOnConnectedRequirements,
+>() {
   return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentRenderOnConnected extends target implements IZLifecycleConnected {
+    return class _ZComponentRenderOnConnected
+      extends target
+      implements IZLifecycleConnected
+    {
       public connectedCallback() {
         super.connectedCallback?.call(this);
         this.render(this.shadowRoot || this);

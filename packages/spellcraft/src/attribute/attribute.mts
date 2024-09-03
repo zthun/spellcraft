@@ -1,7 +1,7 @@
-import { firstDefined } from '@zthun/helpful-fn';
-import { ZIntrinsic, ZTrilean, trilean } from '@zthun/trilean';
-import { kebabCase } from 'lodash-es';
-import { ZAttributes } from './attributes.mjs';
+import { firstDefined } from "@zthun/helpful-fn";
+import { ZIntrinsic, ZTrilean, trilean } from "@zthun/trilean";
+import { kebabCase } from "lodash-es";
+import { ZAttributes } from "./attributes.mjs";
 
 /**
  * Options for an attribute property.
@@ -118,13 +118,16 @@ export type IZAttributeOptions = {
  * ```
  */
 export function ZAttribute(options?: IZAttributeOptions): PropertyDecorator {
-  return <C extends HTMLElement>(target: C, propertyKey: string | symbol): void => {
+  return <C extends HTMLElement>(
+    target: C,
+    propertyKey: string | symbol,
+  ): void => {
     const $default = kebabCase(String(propertyKey));
     const attr = String(firstDefined($default, options?.name));
     const nullable = options?.nullable;
     const type = options?.type;
     const fallback = options?.fallback;
-    const _type = type || 'string';
+    const _type = type || "string";
 
     const $defaults: Record<ZIntrinsic, any> = {
       bigint: null,
@@ -132,20 +135,26 @@ export function ZAttribute(options?: IZAttributeOptions): PropertyDecorator {
       function: null,
       number: nullable ? null : NaN,
       object: null,
-      string: nullable ? null : '',
+      string: nullable ? null : "",
       symbol: null,
-      trilean: false
+      trilean: false,
     };
 
-    const attrToIntr: Record<ZIntrinsic, (v: string | null) => bigint | number | string | boolean | symbol> = {
-      bigint: (v) => (v == null ? firstDefined($defaults.bigint, fallback) : BigInt(v)),
-      boolean: (v) => (v == null ? firstDefined($defaults.boolean, fallback) : v !== 'false'),
+    const attrToIntr: Record<
+      ZIntrinsic,
+      (v: string | null) => bigint | number | string | boolean | symbol
+    > = {
+      bigint: (v) =>
+        v == null ? firstDefined($defaults.bigint, fallback) : BigInt(v),
+      boolean: (v) =>
+        v == null ? firstDefined($defaults.boolean, fallback) : v !== "false",
       function: () => $defaults.function,
-      number: (v) => (v == null ? firstDefined($defaults.number, fallback) : +v),
+      number: (v) =>
+        v == null ? firstDefined($defaults.number, fallback) : +v,
       object: () => $defaults.object,
       string: (v) => (v == null ? firstDefined($defaults.string, fallback) : v),
       symbol: () => $defaults.symbol,
-      trilean: (v) => ZTrilean.parse(v, ZTrilean.convert(fallback))
+      trilean: (v) => ZTrilean.parse(v, ZTrilean.convert(fallback)),
     };
 
     const toString = (v: any): string | null => {
@@ -153,7 +162,9 @@ export function ZAttribute(options?: IZAttributeOptions): PropertyDecorator {
     };
 
     const toError = () => {
-      throw new Error(`Type, ${type}, is not a supported value of an attribute.  Use a property instead.`);
+      throw new Error(
+        `Type, ${type}, is not a supported value of an attribute.  Use a property instead.`,
+      );
     };
 
     const toTrilean = (v: any): string => {
@@ -168,7 +179,7 @@ export function ZAttribute(options?: IZAttributeOptions): PropertyDecorator {
       object: toError,
       string: toString,
       symbol: toError,
-      trilean: toTrilean
+      trilean: toTrilean,
     };
 
     function get(this: C) {
@@ -183,7 +194,7 @@ export function ZAttribute(options?: IZAttributeOptions): PropertyDecorator {
 
     Object.defineProperty(target, propertyKey, {
       get,
-      set
+      set,
     });
   };
 }

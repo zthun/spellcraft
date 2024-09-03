@@ -1,4 +1,4 @@
-import { html } from '@zthun/helpful-fn';
+import { html } from "@zthun/helpful-fn";
 import {
   IZComponentRender,
   IZComponentTemplate,
@@ -6,17 +6,20 @@ import {
   ZComponentRenderOnAttributeChanged,
   ZComponentRenderOnConnected,
   ZComponentRenderTemplate,
-  ZComponentShadow
-} from '@zthun/spellcraft';
+  ZComponentShadow,
+} from "@zthun/spellcraft";
 
 export interface ZSpellcraftCardElement extends IZComponentRender {}
 
-@ZComponentRegister('z-spellcraft-card')
+@ZComponentRegister("z-spellcraft-card")
 @ZComponentRenderTemplate()
 @ZComponentRenderOnAttributeChanged()
 @ZComponentRenderOnConnected()
 @ZComponentShadow()
-export class ZSpellcraftCardElement extends HTMLElement implements IZComponentTemplate {
+export class ZSpellcraftCardElement
+  extends HTMLElement
+  implements IZComponentTemplate
+{
   public template() {
     return html`
       <style>
@@ -26,25 +29,25 @@ export class ZSpellcraftCardElement extends HTMLElement implements IZComponentTe
           margin-bottom: var(--gap-md);
         }
 
-        ::slotted([slot='title']),
-        ::slotted([slot='subtitle']) {
+        ::slotted([slot="title"]),
+        ::slotted([slot="subtitle"]) {
           margin: 0;
         }
 
-        ::slotted([slot='avatar']) {
+        ::slotted([slot="avatar"]) {
           font-size: 1.75rem;
           margin-right: var(--gap-sm);
         }
 
-        ::slotted([slot='title']) {
+        ::slotted([slot="title"]) {
           grid-area: title;
         }
 
-        ::slotted([slot='subtitle']) {
+        ::slotted([slot="subtitle"]) {
           grid-area: subtitle;
         }
 
-        ::slotted([slot='avatar']) {
+        ::slotted([slot="avatar"]) {
           grid-area: avatar;
         }
 
@@ -73,8 +76,8 @@ export class ZSpellcraftCardElement extends HTMLElement implements IZComponentTe
           padding: var(--gap-sm);
 
           grid-template-areas:
-            'avatar title'
-            'avatar subtitle';
+            "avatar title"
+            "avatar subtitle";
         }
 
         article {

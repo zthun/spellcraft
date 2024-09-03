@@ -41,10 +41,10 @@ export interface IZPropertyLazyElementOptions<T extends HTMLElement> {
  *        A property decorator which will return a read only property
  *        that lazy loads an element onto the shadow dom or attached element.
  */
-export function ZPropertyLazyElement<T extends HTMLElement, C extends ZPropertyLazyElementRequirements<T>>(
-  name: string,
-  options?: IZPropertyLazyElementOptions<T>
-): PropertyDecorator {
+export function ZPropertyLazyElement<
+  T extends HTMLElement,
+  C extends ZPropertyLazyElementRequirements<T>,
+>(name: string, options?: IZPropertyLazyElementOptions<T>): PropertyDecorator {
   return (target: C, propertyKey: string | symbol): void => {
     const $factory = () => document.createElement(name) as T;
     const { selector = name, factory = $factory } = options || {};

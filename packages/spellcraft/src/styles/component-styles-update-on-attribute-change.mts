@@ -1,9 +1,12 @@
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
 import {
   IZLifecycleAttributeChanged,
-  IZLifecycleAttributeChangedMaybe
-} from '../lifecycle/lifecycle-attribute-changed.mjs';
-import { IZComponentStyles, IZComponentWithStyleElement } from './component-styles.mjs';
+  IZLifecycleAttributeChangedMaybe,
+} from "../lifecycle/lifecycle-attribute-changed.mjs";
+import {
+  IZComponentStyles,
+  IZComponentWithStyleElement,
+} from "./component-styles.mjs";
 
 /**
  * Requirements for ZComponentStylesUpdateOnAttributeChange targets.
@@ -24,12 +27,19 @@ export type ZComponentStylesUpdateOnAttributeChangeRequirements = HTMLElement &
  *        styleElement
  */
 export function ZComponentStylesUpdateOnAttributeChange<
-  T extends ZComponentStylesUpdateOnAttributeChangeRequirements
+  T extends ZComponentStylesUpdateOnAttributeChangeRequirements,
 >() {
   return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    class _ZComponentStylesUpdateOnAttributeChange extends target implements IZLifecycleAttributeChanged {
-      public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+    class _ZComponentStylesUpdateOnAttributeChange
+      extends target
+      implements IZLifecycleAttributeChanged
+    {
+      public attributeChangedCallback(
+        name: string,
+        oldValue: string,
+        newValue: string,
+      ): void {
         super.attributeChangedCallback?.call(this, name, oldValue, newValue);
         this.refreshStyles(this.styles());
       }

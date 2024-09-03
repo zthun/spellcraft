@@ -1,13 +1,13 @@
-import { html } from '@zthun/helpful-fn';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZNode } from '../node/node.mjs';
-import { ZComponentClass } from './component-class.mjs';
-import { ZComponentRegister } from './component-register.mjs';
+import { html } from "@zthun/helpful-fn";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZNode } from "../node/node.mjs";
+import { ZComponentClass } from "./component-class.mjs";
+import { ZComponentRegister } from "./component-register.mjs";
 
-describe('ZComponentClass', () => {
-  const $tag = 'z-component-class-test';
-  const $class = 'ZComponentClassTest-root';
-  const $subclass = 'ZComponentClassTest-more';
+describe("ZComponentClass", () => {
+  const $tag = "z-component-class-test";
+  const $class = "ZComponentClassTest-root";
+  const $subclass = "ZComponentClassTest-more";
 
   afterEach(() => {
     new ZNode(document.body).clear();
@@ -19,13 +19,13 @@ describe('ZComponentClass', () => {
 
   const createTestTarget = () => {
     const $html = html`<div><${$tag}></${$tag}></div>`;
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = $html;
     document.body.appendChild(template.content.cloneNode(true));
     return document.body.querySelector<ZComponentClassTest>($tag);
   };
 
-  it('should add all classes to the output element', () => {
+  it("should add all classes to the output element", () => {
     // Arrange.
     const target = createTestTarget();
     // Act.

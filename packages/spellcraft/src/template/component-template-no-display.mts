@@ -1,6 +1,6 @@
-import { html } from '@zthun/helpful-fn';
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
-import { IZComponentTemplate } from '../render/component-render-template.mjs';
+import { html } from "@zthun/helpful-fn";
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
+import { IZComponentTemplate } from "../render/component-render-template.mjs";
 
 /**
  * Requirements for ZComponentTemplateNoDisplay targets
@@ -21,10 +21,15 @@ export type ZComponentTemplateNoDisplayRequirements = HTMLElement;
  *        A new decorated type that automatically implements a render method that clears
  *        the target shadow root or target node and renders an html template.
  */
-export function ZComponentTemplateNoDisplay<T extends ZComponentTemplateNoDisplayRequirements>() {
+export function ZComponentTemplateNoDisplay<
+  T extends ZComponentTemplateNoDisplayRequirements,
+>() {
   return function (Target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentTemplateNoDisplay extends Target implements IZComponentTemplate {
+    return class _ZComponentTemplateNoDisplay
+      extends Target
+      implements IZComponentTemplate
+    {
       public template() {
         return html`
           <style>

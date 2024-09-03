@@ -1,4 +1,4 @@
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
 
 /**
  * A component that has an internal event template to dispatch.
@@ -34,15 +34,18 @@ export type ZComponentDispatchRequirements = HTMLElement;
  *        which will dispatch an event copy specified by {@link event}.
  */
 export function ZComponentDispatch<C extends ZComponentDispatchRequirements>(
-  event: string | Event | ((t: C) => Event)
+  event: string | Event | ((t: C) => Event),
 ) {
   return function (target: ZComponentConstructor<C>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
-    return class _ZComponentDispatch extends target implements IZComponentDispatch {
+    return class _ZComponentDispatch
+      extends target
+      implements IZComponentDispatch
+    {
       public runDispatch() {
-        if (typeof event === 'string') {
+        if (typeof event === "string") {
           this.dispatchEvent(new CustomEvent(event));
-        } else if (typeof event === 'function') {
+        } else if (typeof event === "function") {
           this.dispatchEvent(event(this as any));
         } else {
           this.dispatchEvent(new Event(event.type, event));

@@ -1,24 +1,24 @@
-import { ZComponentConstructor } from './component-constructor.mjs';
+import { ZComponentConstructor } from "./component-constructor.mjs";
 
 /**
  * Values that can be placed in a link's rel attribute.
  */
 export type ZLinkRelationship =
-  | 'alternate'
-  | 'author'
-  | 'dns-prefetch'
-  | 'help'
-  | 'icon'
-  | 'license'
-  | 'next'
-  | 'pingback'
-  | 'preconnect'
-  | 'prefetch'
-  | 'preload'
-  | 'prerender'
-  | 'prev'
-  | 'search'
-  | 'stylesheet';
+  | "alternate"
+  | "author"
+  | "dns-prefetch"
+  | "help"
+  | "icon"
+  | "license"
+  | "next"
+  | "pingback"
+  | "preconnect"
+  | "prefetch"
+  | "preload"
+  | "prerender"
+  | "prev"
+  | "search"
+  | "stylesheet";
 
 /**
  * An aspect that can add a link element to the document head one time.
@@ -36,7 +36,10 @@ export type ZLinkRelationship =
  *        link element to the document head when constructed if it does not
  *        already exist.
  */
-export function ZComponentLink<TElement extends HTMLElement>(rel: ZLinkRelationship, href: string) {
+export function ZComponentLink<TElement extends HTMLElement>(
+  rel: ZLinkRelationship,
+  href: string,
+) {
   return function (target: ZComponentConstructor<TElement>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022
     return class _ZComponentLink extends target {
@@ -44,10 +47,11 @@ export function ZComponentLink<TElement extends HTMLElement>(rel: ZLinkRelations
         super();
 
         const selector = `link[rel="${rel}"][href="${href}"]`;
-        let linkElement = document.head.querySelector<HTMLLinkElement>(selector);
+        let linkElement =
+          document.head.querySelector<HTMLLinkElement>(selector);
 
         if (linkElement == null) {
-          linkElement = document.createElement('link');
+          linkElement = document.createElement("link");
           linkElement.rel = rel;
           linkElement.href = href;
           document.head.appendChild(linkElement);

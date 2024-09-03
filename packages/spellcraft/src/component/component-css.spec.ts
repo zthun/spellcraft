@@ -1,14 +1,14 @@
-import { css, html } from '@zthun/helpful-fn';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZNode } from '../node/node.mjs';
-import { IZComponentWithStyleElement } from '../styles/component-styles.mjs';
-import { ZComponentCss } from './component-css.mjs';
-import { ZComponentRegister } from './component-register.mjs';
+import { css, html } from "@zthun/helpful-fn";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZNode } from "../node/node.mjs";
+import { IZComponentWithStyleElement } from "../styles/component-styles.mjs";
+import { ZComponentCss } from "./component-css.mjs";
+import { ZComponentRegister } from "./component-register.mjs";
 
-describe('ZComponentCss', () => {
-  const id = 'ZComponentCss-test-root';
+describe("ZComponentCss", () => {
+  const id = "ZComponentCss-test-root";
   const selector = `#${id}`;
-  const tag = 'z-component-css-test';
+  const tag = "z-component-css-test";
 
   interface ZComponentCssTest extends IZComponentWithStyleElement {}
 
@@ -19,7 +19,7 @@ describe('ZComponentCss', () => {
         --color: red;
       }
     `,
-    { id }
+    { id },
   )
   @ZComponentCss(
     css`
@@ -27,7 +27,7 @@ describe('ZComponentCss', () => {
         --color: green;
       }
     `,
-    { id }
+    { id },
   )
   class ZComponentCssTest extends HTMLElement {}
 
@@ -37,7 +37,7 @@ describe('ZComponentCss', () => {
   });
 
   const createTestTarget = () => {
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = html`
       <div>
         <${tag}></${tag}>
@@ -47,22 +47,22 @@ describe('ZComponentCss', () => {
     return document.body.querySelector<ZComponentCssTest>(tag)!;
   };
 
-  it('should add one styles element to the head', () => {
+  it("should add one styles element to the head", () => {
     // Arrange.
     createTestTarget();
     // Act.
     const actual = document.head.querySelectorAll(selector);
     // Assert.
     expect(actual.length).toEqual(1);
-    expect(actual[0].nodeName).toEqual('STYLE');
+    expect(actual[0].nodeName).toEqual("STYLE");
   });
 
-  it('should set the inner text of the style', () => {
+  it("should set the inner text of the style", () => {
     // Arrange.
     createTestTarget();
     // Act.
     const actual = document.head.querySelector(selector);
     // Assert.
-    expect(actual?.textContent).toContain('--color: green');
+    expect(actual?.textContent).toContain("--color: green");
   });
 });

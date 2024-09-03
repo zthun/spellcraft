@@ -1,19 +1,23 @@
-import { css, html } from '@zthun/helpful-fn';
-import { afterEach, describe, expect, it } from 'vitest';
-import { ZAttribute } from '../attribute/attribute.mjs';
-import { ZComponentRegister } from '../component/component-register.mjs';
-import { ZNode } from '../node/node.mjs';
-import { ZProperty } from '../property/property.mjs';
-import { ZComponentStylesAddOnConnect } from './component-styles-add-on-connect.mjs';
-import { ZComponentStylesRemoveOnDisconnect } from './component-styles-remove-on-disconnect.mjs';
-import { ZComponentStylesUpdateOnAttributeChange } from './component-styles-update-on-attribute-change.mjs';
-import { ZComponentStylesUpdateOnPropertyChange } from './component-styles-update-on-property-change.mjs';
-import { IZComponentStyles, IZComponentWithStyleElement, ZComponentStyles } from './component-styles.mjs';
+import { css, html } from "@zthun/helpful-fn";
+import { afterEach, describe, expect, it } from "vitest";
+import { ZAttribute } from "../attribute/attribute.mjs";
+import { ZComponentRegister } from "../component/component-register.mjs";
+import { ZNode } from "../node/node.mjs";
+import { ZProperty } from "../property/property.mjs";
+import { ZComponentStylesAddOnConnect } from "./component-styles-add-on-connect.mjs";
+import { ZComponentStylesRemoveOnDisconnect } from "./component-styles-remove-on-disconnect.mjs";
+import { ZComponentStylesUpdateOnAttributeChange } from "./component-styles-update-on-attribute-change.mjs";
+import { ZComponentStylesUpdateOnPropertyChange } from "./component-styles-update-on-property-change.mjs";
+import {
+  IZComponentStyles,
+  IZComponentWithStyleElement,
+  ZComponentStyles,
+} from "./component-styles.mjs";
 
-describe('ZComponentStyles', () => {
-  const id = 'ZComponentStylesTest-root';
+describe("ZComponentStyles", () => {
+  const id = "ZComponentStylesTest-root";
   const selector = `#${id}`;
-  const tag = 'z-component-styles-test';
+  const tag = "z-component-styles-test";
 
   interface ZComponentStylesTest extends IZComponentWithStyleElement {}
 
@@ -24,12 +28,12 @@ describe('ZComponentStyles', () => {
   @ZComponentStylesAddOnConnect()
   @ZComponentStyles({ id })
   class ZComponentStylesTest extends HTMLElement implements IZComponentStyles {
-    public static readonly observedAttributes = Object.freeze(['color']);
+    public static readonly observedAttributes = Object.freeze(["color"]);
 
-    @ZAttribute({ fallback: 'green' })
-    public color: 'green' | 'blue';
+    @ZAttribute({ fallback: "green" })
+    public color: "green" | "blue";
 
-    @ZProperty({ initial: 'left' })
+    @ZProperty({ initial: "left" })
     public align: string;
 
     public styles() {
@@ -48,7 +52,7 @@ describe('ZComponentStyles', () => {
   });
 
   const createTestTarget = () => {
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = html`
       <div>
         <${tag}></${tag}>
@@ -60,46 +64,46 @@ describe('ZComponentStyles', () => {
     return document.body.querySelector<ZComponentStylesTest>(tag)!;
   };
 
-  it('should add one styles element to the head', () => {
+  it("should add one styles element to the head", () => {
     // Arrange.
     createTestTarget();
     // Act.
     const actual = document.head.querySelectorAll(selector);
     // Assert.
     expect(actual.length).toEqual(1);
-    expect(actual[0].nodeName).toEqual('STYLE');
+    expect(actual[0].nodeName).toEqual("STYLE");
   });
 
-  it('should set the inner text of the style', () => {
+  it("should set the inner text of the style", () => {
     // Arrange.
     createTestTarget();
     // Act.
     const actual = document.head.querySelector(selector);
     // Assert.
-    expect(actual?.textContent).toContain('--color: green');
+    expect(actual?.textContent).toContain("--color: green");
   });
 
-  it('should update the inner text of the style on an attribute change', () => {
+  it("should update the inner text of the style on an attribute change", () => {
     // Arrange.
     const target = createTestTarget();
     // Act.
-    target.color = 'blue';
+    target.color = "blue";
     const actual = document.head.querySelector(selector);
     // Assert.
-    expect(actual?.textContent).toContain('--color: blue');
+    expect(actual?.textContent).toContain("--color: blue");
   });
 
-  it('should update the inner text of the style on an property change', () => {
+  it("should update the inner text of the style on an property change", () => {
     // Arrange.
     const target = createTestTarget();
     // Act.
-    target.align = 'center';
+    target.align = "center";
     const actual = document.head.querySelector(selector);
     // Assert.
-    expect(actual?.textContent).toContain('--align: center');
+    expect(actual?.textContent).toContain("--align: center");
   });
 
-  it('should remove the style on disconnect', () => {
+  it("should remove the style on disconnect", () => {
     // Arrange.
     const target = createTestTarget();
     // Act.

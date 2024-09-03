@@ -12,7 +12,11 @@ export interface IZLifecyclePropertyChanged {
    * @param newValue -
    *        The new value of the property.
    */
-  propertyChangedCallback(name: string | symbol, oldValue: any, newValue: any): void;
+  propertyChangedCallback(
+    name: string | symbol,
+    oldValue: any,
+    newValue: any,
+  ): void;
 }
 
 /**
@@ -29,5 +33,9 @@ export interface IZLifecyclePropertyChangedMaybe {
    * @param newValue -
    *        The new value of the property.
    */
-  propertyChangedCallback?(name: string | symbol, oldValue: any, newValue: any): void;
+  propertyChangedCallback?(
+    name: string | symbol,
+    oldValue: any,
+    newValue: any,
+  ): void;
 }

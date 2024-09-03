@@ -1,5 +1,5 @@
-import { firstDefined } from '@zthun/helpful-fn';
-import { ZComponentConstructor } from './component-constructor.mjs';
+import { firstDefined } from "@zthun/helpful-fn";
+import { ZComponentConstructor } from "./component-constructor.mjs";
 
 /**
  * Requirements for the ZComponentShadow decorator.
@@ -13,7 +13,7 @@ export interface IZComponentShadowOptions {
   /**
    * Whether the shadow root is open or closed.
    */
-  mode?: 'open' | 'closed';
+  mode?: "open" | "closed";
 }
 
 /**
@@ -27,8 +27,10 @@ export interface IZComponentShadowOptions {
  * @param T -
  *        The type of element that the target class prototypes from.
  */
-export function ZComponentShadow<T extends ZComponentShadowRequirements>(options?: IZComponentShadowOptions) {
-  const mode = firstDefined('open', options?.mode);
+export function ZComponentShadow<T extends ZComponentShadowRequirements>(
+  options?: IZComponentShadowOptions,
+) {
+  const mode = firstDefined("open", options?.mode);
 
   return function (target: ZComponentConstructor<T>): any {
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/58022

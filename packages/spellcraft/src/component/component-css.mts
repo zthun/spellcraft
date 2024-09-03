@@ -1,5 +1,5 @@
-import { createGuid, firstTruthy } from '@zthun/helpful-fn';
-import { ZComponentConstructor } from './component-constructor.mjs';
+import { createGuid, firstTruthy } from "@zthun/helpful-fn";
+import { ZComponentConstructor } from "./component-constructor.mjs";
 
 /**
  * Options for a styles component.
@@ -40,8 +40,11 @@ export interface IZComponentCssOptions {
  *        A new class that extends from the target class that adds a style
  *        element to the document head if it does not already exist.
  */
-export function ZComponentCss<TElement extends HTMLElement>(css: string, options?: IZComponentCssOptions) {
-  const prefix = firstTruthy('css', options?.prefix);
+export function ZComponentCss<TElement extends HTMLElement>(
+  css: string,
+  options?: IZComponentCssOptions,
+) {
+  const prefix = firstTruthy("css", options?.prefix);
   const id = firstTruthy(`${prefix}-${createGuid()}`, options?.id);
   const selector = `#${id}`;
 
@@ -54,7 +57,7 @@ export function ZComponentCss<TElement extends HTMLElement>(css: string, options
         let styleElement = document.head.querySelector(selector);
 
         if (styleElement == null) {
-          styleElement = document.createElement('style');
+          styleElement = document.createElement("style");
           styleElement.id = id;
           styleElement.textContent = css;
           document.head.appendChild(styleElement);

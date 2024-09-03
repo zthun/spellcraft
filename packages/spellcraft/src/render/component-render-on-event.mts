@@ -1,7 +1,13 @@
-import { ZComponentConstructor } from '../component/component-constructor.mjs';
-import { IZLifecycleConnectedMaybe } from '../lifecycle/lifecycle-connected.mjs';
-import { IZLifecycleDisconnectedMaybe } from '../lifecycle/lifecycle-disconnected.mjs';
-import { IZComponentRender } from './component-render.mjs';
+import { ZComponentConstructor } from "../component/component-constructor.mjs";
+import {
+  IZLifecycleConnected,
+  IZLifecycleConnectedMaybe,
+} from "../lifecycle/lifecycle-connected.mjs";
+import {
+  IZLifecycleDisconnected,
+  IZLifecycleDisconnectedMaybe,
+} from "../lifecycle/lifecycle-disconnected.mjs";
+import { IZComponentRender } from "./component-render.mjs";
 
 /**
  * Requirements for ZComponentRenderOnEvent targets.
@@ -47,10 +53,9 @@ export interface IZComponentRenderOnEventOptions {
  *        when it receives the event name.  The event will automatically be removed
  *        when the target element is disconnected from the DOM.
  */
-export function ZComponentRenderOnEvent<TElement extends ZComponentRenderOnEventRequirements>(
-  name: string,
-  options?: IZComponentRenderOnEventOptions
-) {
+export function ZComponentRenderOnEvent<
+  TElement extends ZComponentRenderOnEventRequirements,
+>(name: string, options?: IZComponentRenderOnEventOptions) {
   const stopPropagation = options?.stopPropagation;
   const stopImmediatePropagation = options?.stopImmediatePropagation;
   const preventDefault = options?.preventDefault;
@@ -60,7 +65,10 @@ export function ZComponentRenderOnEvent<TElement extends ZComponentRenderOnEvent
     return selector ? t.querySelector<HTMLElement>(selector) : t;
   }
 
-  function handleEvent(t: ZComponentRenderOnEventRequirements | null, e: Event) {
+  function handleEvent(
+    t: ZComponentRenderOnEventRequirements | null,
+    e: Event,
+  ) {
     if (stopPropagation) {
       e.stopPropagation();
     }
@@ -80,7 +88,10 @@ export function ZComponentRenderOnEvent<TElement extends ZComponentRenderOnEvent
     let event = handleEvent.bind(null, null);
 
     // @ts-expect-error 2415 https://github.com/microsoft/TypeScript/issues/58022
-    class _ZComponentRenderOnEvent extends target implements IZLifecycleConnected, IZLifecycleDisconnected {
+    class _ZComponentRenderOnEvent
+      extends target
+      implements IZLifecycleConnected, IZLifecycleDisconnected
+    {
       public constructor(...args: any[]) {
         super(...args);
         event = handleEvent.bind(this, this);
