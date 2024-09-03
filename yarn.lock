@@ -2626,12 +2626,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/helpful-fn@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "@zthun/helpful-fn@npm:5.0.3"
+"@zthun/helpful-fn@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@zthun/helpful-fn@npm:6.0.0"
   dependencies:
     uuid: "npm:^10.0.0"
-  checksum: 10/bdf3ba09989faa58bc98151b21db9376ea4f3a86ad2efe704e88e2b9e73326af9c91ed2b4f37e0099dfda5f6e8c79fe91926a4b7680595c96ba1ef445865661a
+  checksum: 10/c92ce7752895814ea2de938762f2a8b1e1df347c7e633832f389221772df5d85df11d54dc84c4645c9176e39a9bca1a3cc34cb8b98661d255593fe40e9112503
   languageName: node
   linkType: hard
 
@@ -2748,7 +2748,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft-web@workspace:packages/spellcraft-web"
   dependencies:
-    "@zthun/helpful-fn": "npm:^5.0.3"
+    "@zthun/helpful-fn": "npm:^6.0.0"
     "@zthun/spellcraft": "npm:^2.9.1"
     highlight.js: "npm:^11.10.0"
     typescript: "npm:^5.5.4"
@@ -2761,8 +2761,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft@workspace:packages/spellcraft"
   dependencies:
-    "@zthun/helpful-fn": "npm:^5.0.3"
-    "@zthun/trilean": "npm:^2.0.1"
+    "@zthun/helpful-fn": "npm:^6.0.0"
+    "@zthun/trilean": "npm:^2.0.2"
     lodash-es: "npm:^4.17.21"
     typescript: "npm:^5.5.4"
     vite: "npm:^5.4.2"
@@ -2811,10 +2811,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zthun/trilean@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@zthun/trilean@npm:2.0.1"
-  checksum: 10/1c695ae756498de227f28d9a42a2294eac332fffbf8c0b164df6605c2533ec1e91a383412031c829be6008d0a24cd5286da72d6435143f773d1d7e52d97ad3cb
+"@zthun/trilean@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@zthun/trilean@npm:2.0.2"
+  checksum: 10/99e9edb66adc589a3ccf9174875f17c6de5226396804be74aceea9ded79d1cdd3869475d2f28066eaf55ae622a33a759b5ac9bfdb5ebfec5801fd8f828171e59
   languageName: node
   linkType: hard
 
