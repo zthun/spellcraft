@@ -1,26 +1,26 @@
-import { visualizer } from 'rollup-plugin-visualizer';
-import { defineConfig } from 'vite';
-import checker from 'vite-plugin-checker';
-import tsConfigPaths from 'vite-tsconfig-paths';
+import { visualizer } from "rollup-plugin-visualizer";
+import { defineConfig } from "vite";
+import { checker } from "vite-plugin-checker";
+import tsConfigPaths from "vite-tsconfig-paths";
 
 export function defineWeb(dir: string) {
   return defineConfig({
     plugins: [
       tsConfigPaths(),
       checker({
-        typescript: true
+        typescript: true,
       }),
       visualizer({
-        filename: `${dir}/stats/analysis.html`
-      })
+        filename: `${dir}/stats/analysis.html`,
+      }),
     ],
     server: {
-      strictPort: true
+      strictPort: true,
     },
     resolve: {
       alias: {
-        lodash: 'lodash-es'
-      }
-    }
+        lodash: "lodash-es",
+      },
+    },
   });
 }

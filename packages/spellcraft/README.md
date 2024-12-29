@@ -136,8 +136,8 @@ combating framework bloat, the solution lies in embracing
 ## Installation
 
 ```bash
-# Spellcraft is meant to be installed as a dependency, NOT a peer dependency that is made to be someone
-# else's problem.
+# Spellcraft is meant to be installed as a dependency, NOT a peer dependency
+# that is made to be someone else's problem.
 
 # Using npm
 > npm install @zthun/spellcraft

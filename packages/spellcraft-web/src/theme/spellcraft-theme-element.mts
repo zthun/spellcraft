@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
 import { css } from "@zthun/helpful-fn";
 import {
   IZComponentStyles,
