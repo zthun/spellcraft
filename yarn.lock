@@ -2911,7 +2911,7 @@ __metadata:
   resolution: "@zthun/spellcraft-docs@workspace:packages/spellcraft-docs"
   dependencies:
     "@zthun/spellcraft": "npm:^2.9.2"
-    "@zthun/spellcraft-web": "npm:^2.9.3"
+    "@zthun/spellcraft-web": "npm:^2.9.4"
     typedoc: "npm:^0.27.6"
     typescript: "npm:~5.7.2"
   languageName: unknown
@@ -2943,7 +2943,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zthun/spellcraft-web@npm:^2.9.3, @zthun/spellcraft-web@workspace:packages/spellcraft-web":
+"@zthun/spellcraft-web@npm:^2.9.4, @zthun/spellcraft-web@workspace:packages/spellcraft-web":
   version: 0.0.0-use.local
   resolution: "@zthun/spellcraft-web@workspace:packages/spellcraft-web"
   dependencies:
