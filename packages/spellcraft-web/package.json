@@ -18,12 +18,12 @@
     "access": "public"
   },
   "devDependencies": {
-    "@zthun/helpful-fn": "^7.0.5",
+    "@zthun/helpful-fn": "^7.2.1",
     "@zthun/spellcraft": "^2.9.2",
     "highlight.js": "^11.11.1",
-    "typescript": "~5.7.2",
-    "vite": "^5.4.11",
-    "vitest": "^2.1.8"
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.4"
   },
   "files": [
     "dist"
